@@ -8,6 +8,8 @@ import Students from './Components/Pages/Students';
 import Admin from './Components/Pages/Admin';
 import Faculty from './Components/Pages/Faculty';
 import Fees from './Components/Pages/Fees';
+import SignUp from "./Components/SignUP/SignUp";
+import Login from "./Login/Login";
 
 
 
@@ -15,7 +17,9 @@ import Fees from './Components/Pages/Fees';
 function App() {
   return(
     <Router>
+
     <NavbarCustom />
+      <Route path="/SignUp" exact component={SignUp}/>
     <Switch>
       <Route path='/' exact component={Home} />
       <Route path='/Admission' component={Admission} />
@@ -23,6 +27,7 @@ function App() {
       <Route path='/Faculty' component={Faculty} />
       <Route path='/Fees' component={Fees} />
       <Route path='/Admin' component={Admin} />
+      <Route path='/Login'  component={Login} />
     </Switch>
   </Router>
 

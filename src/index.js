@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Login from './Login/login';
+import Login from './Login/Login';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -32,8 +32,8 @@ const analytics = getAnalytics(app);
 
 const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
-  if (user) {
-    const uid = user.uid;
+  // if (user) {
+  //   const uid = user.uid;
     //alert(uid)
 
     
@@ -45,14 +45,14 @@ onAuthStateChanged(auth, (user) => {
     );
 
     // ...
-  } else {
-    ReactDOM.render(
-      <React.StrictMode>
-        <Login />
-      </React.StrictMode>,
-      document.getElementById('root')
-    );
-  }
+  // } else {
+  //   ReactDOM.render(
+  //     <React.StrictMode>
+  //       <Login />
+  //     </React.StrictMode>,
+  //     document.getElementById('root')
+  //   );
+  // }
 });
      
     

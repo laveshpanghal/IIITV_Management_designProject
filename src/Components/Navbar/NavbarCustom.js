@@ -10,7 +10,7 @@ NavBtnLink,
 
 import ReactDOM from 'react-dom';
 import {signOut, getAuth} from "firebase/auth";
-import Login from "../../Login/login";
+import Login from "../../Login/Login";
 
  function logout() {
     //alert("Logout Successfully")
@@ -43,7 +43,7 @@ return (
         &emsp; IIIT Vadodara
         </a>
 
-		<NavLink to='/Admission' >
+		<NavLink to='/Login' >
 			Admission
 		</NavLink>
 		<NavLink to='/Students' >
