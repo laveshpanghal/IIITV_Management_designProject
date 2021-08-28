@@ -10,6 +10,7 @@ import Faculty from './Components/Pages/Faculty';
 import Fees from './Components/Pages/Fees';
 import SignUp from "./Components/SignUP/SignUp";
 import Login from "./Login/Login";
+import AdmissionForms from "./Components/Pages/admission/AdmissionForm";
 
 
 
@@ -19,6 +20,7 @@ function App() {
     <Router>
 
     <NavbarCustom />
+      <Route path ="/AdmissionForm" exact component={AdmissionForms}/>
       <Route path="/SignUp" exact component={SignUp}/>
     <Switch>
       <Route path='/' exact component={Home} />

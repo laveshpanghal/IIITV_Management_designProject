@@ -1,12 +1,12 @@
 import React from 'react';
 import "../../Login/login.css"
 import { getDatabase, ref, child, get } from "firebase/database";
+import {useHistory} from "react-router-dom";
+
+
 const Admission = () => {
 const RealDb = ref(getDatabase())
-
-
-
-
+const history = useHistory()
     function verify(e) {
 
     e.preventDefault()
@@ -22,7 +22,13 @@ const RealDb = ref(getDatabase())
 
             get(child(RealDb, `counsellingEnrollment/2021/${applicantEnrollmentNo}/status`)).then((snapshot) => {
                 if (snapshot.exists()) {
-                    console.log(snapshot.val());
+
+                    if(snapshot.val()==="verified")
+                    {
+                        history.push("/AdmissionForm")
+
+                    }
+
                 } else {
                     console.log("No data available");
                 }
