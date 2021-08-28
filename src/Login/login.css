@@ -1,30 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+*
 
 body,
 input {
     font-family: "Poppins", sans-serif;
-}
-
-.container {
-    position: absolute;
-    width: 100%;
-    background-color: #fff;
-    min-height: 100vh;
-    overflow: hidden;
-}
-
-.forms-container {
-    overflow: auto;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
 }
 
 
@@ -40,9 +19,10 @@ input {
 .input-field {
 
 
-    width: 100%;
+    width: 80%;
     background-color: #f0f0f0;
-    margin: 10px 0;
+    margin: auto;
+    margin-bottom: 20px;
     height: 55px;
     border-radius: 55px;
     display: grid;
@@ -95,7 +75,7 @@ input {
 }
 
 
-.btn {
+.btn-submit {
     width: 150px;
     background-color: #5995fd;
     border: none;
@@ -110,6 +90,6 @@ input {
     transition: 0.5s;
 }
 
-.btn:hover {
+.btn-submit:hover {
     background-color: #4d84e2;
 }
