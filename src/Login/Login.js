@@ -84,8 +84,10 @@ const Login = () => {
           <button  className="btn-submit solid text-center" id="sign_in_btn" onClick={login} >Login</button>
           <div id="password_reset">
             Forgot password ,Click to reset
-              <button className= "btn-submit solid text-center" onClick={HandleSignUP}>Sign UP</button>
           </div>
+
+            <button className= "btn-submit solid text-center" onClick={HandleSignUP}>Sign UP</button>
+
       </div>
   </div>
 </div>
