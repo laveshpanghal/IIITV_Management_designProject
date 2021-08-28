@@ -43,26 +43,26 @@ return (
         &emsp; IIIT Vadodara
         </a>
 
-		<NavLink to='/Admission' activeStyle>
+		<NavLink to='/Admission' >
 			Admission
 		</NavLink>
-		<NavLink to='/Students' activeStyle>
+		<NavLink to='/Students' >
 			Students
 		</NavLink>
-		<NavLink to='/Faculty' activeStyle>
+		<NavLink to='/Faculty' >
 			Faculty
 		</NavLink>
-		<NavLink to='/Admin' activeStyle>
+		<NavLink to='/Admin' >
 			Admin
 		</NavLink>
-		<NavLink to='/Fees' activeStyle>
+		<NavLink to='/Fees' >
 			Fees
 		</NavLink>
 
         <form className="d-flex h-100">
             <input className="form-control mx-auto h-50 my-auto" type="search" placeholder="Search" aria-label="Search"/>
             &emsp;
-            <button className="btn btn-outline-success" onClick={logout} type="submit">Logout</button>
+            <button className="btn btn-outline-success h-50 my-auto" onClick={logout} type="submit">Logout</button>
         </form>
 
 		</NavMenu>
