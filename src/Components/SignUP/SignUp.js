@@ -41,6 +41,10 @@ const SignUp = () => {
     }
 
 
+    function loginUser() {
+        history.push("/Login")
+    }
+
     return (
         <div id="container" className="container text-center">
             <div className="row ">
@@ -68,8 +72,13 @@ const SignUp = () => {
                             <i className="fas fa-lock"/>
                             <input type="password" placeholder="Confirm Password" id="passwordC"/>
                         </div>
-                        <button className="btn-submit solid text-center" id="sign_up_btn"
-                               onClick={registerUser}>Register</button>
+                        <div className="container text-center d-flex-vertical">
+                            <button className="btn-submit solid text-center" id="sign_up_btn"
+                                    onClick={registerUser}>Register</button>
+                            <br/>
+                            <button className="btn btn-outline-primary w-50 solid text-center" id="sign_in_btn"
+                                    onClick={loginUser}>Already have account ,SignIn</button>
+                        </div>
 
                     </div>
                 </div>

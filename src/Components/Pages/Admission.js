@@ -57,7 +57,7 @@ const history = useHistory()
                         <input className="input-field" id="enrollmentInput"/>
                     </div>
 
-                    <button type="submit" className="btn btn-primary my-5" onClick={verify}>Submit</button>
+                    <button type="submit" className="btn-submit btn-primary w-50 solid text-center my-5" onClick={verify}>Submit</button>
                 </form>
 
             </div>

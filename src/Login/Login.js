@@ -86,7 +86,7 @@ const Login = () => {
             Forgot password ,Click to reset
           </div>
 
-            <button className= "btn-submit solid text-center" onClick={HandleSignUP}>Sign UP</button>
+            <button className= "btn btn-outline-primary w-50 solid text-center" onClick={HandleSignUP}>Do no have account ,Register</button>
 
       </div>
   </div>
