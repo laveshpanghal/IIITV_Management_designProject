@@ -7,30 +7,34 @@ NavMenu,
 NavBtn,
 NavBtnLink,
 } from './NavBarElementsCustom';
-
+import {useHistory} from "react-router-dom";
 import ReactDOM from 'react-dom';
 import {signOut, getAuth} from "firebase/auth";
 import Login from "../../Login/Login";
+import App from "../../App";
 
- function logout() {
-    //alert("Logout Successfully")
-    const auth = getAuth();
-    signOut(auth).then(() => {
-      ReactDOM.render(
-        <React.StrictMode>
-          <Login />
-        </React.StrictMode>,
-        document.getElementById('root')
-      );
-    }).catch((error) => {
-      alert(error)
-    });
-  
-    
-  
-  }
+
 
 const NavbarCustom = () => {
+
+
+	function logout() {
+		//alert("Logout Successfully")
+		const auth = getAuth();
+		signOut(auth).then(() => {
+			ReactDOM.render(
+			  <React.StrictMode>
+			    <Login />
+			  </React.StrictMode>,
+			  document.getElementById('root')
+			);
+		}).catch((error) => {
+			alert(error)
+		});
+
+	}
+
+
 return (
 	<>
 	<Nav className="d-flex">

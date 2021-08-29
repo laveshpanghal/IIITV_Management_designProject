@@ -21,8 +21,7 @@ input {
 
     width: 80%;
     background-color: #f0f0f0;
-    margin: auto;
-    margin-bottom: 20px;
+    margin: auto auto 20px;
     height: 55px;
     border-radius: 55px;
     display: grid;
@@ -43,7 +42,6 @@ input {
     vertical-align: middle;
     background: none;
     outline: none;
-    border: none;
     margin-right: 10px;
     font-size: 1.1rem;
     color: #333;

@@ -44,7 +44,7 @@ const history = useHistory()
     return (
         <div className="container text-center">
 
-            <div className="card w-50 my-5 mx-auto">
+            <div className="card w-md-50 my-5 mx-auto">
 
                 <br/>
                 <br/>
@@ -54,10 +54,10 @@ const history = useHistory()
                 <form className="d-flex-vertical my-10">
                     <div className="form-group ">
                         <br/>
-                        <input className="input-field" id="enrollmentInput"/>
+                        <input className="input-field btn btn-secondary-outline"  placeholder="Enter JEE Enrollment no" id="enrollmentInput"/>
                     </div>
 
-                    <button type="submit" className="btn-submit btn-primary w-50 solid text-center my-5" onClick={verify}>Submit</button>
+                    <button type="submit" className="btn-submit btn-primary w-40 solid text-center my-5" onClick={verify}>Submit</button>
                 </form>
 
             </div>
