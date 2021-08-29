@@ -17,17 +17,21 @@ import App from "../../App";
 
 const NavbarCustom = () => {
 
+	const history = useHistory()
 
 	function logout() {
 		//alert("Logout Successfully")
 		const auth = getAuth();
 		signOut(auth).then(() => {
-			ReactDOM.render(
-			  <React.StrictMode>
-			    <Login />
-			  </React.StrictMode>,
-			  document.getElementById('root')
-			);
+			console.log(auth)
+
+			history.push("/Login")
+			// ReactDOM.render(
+			//   <React.StrictMode>
+			//     <Login />
+			//   </React.StrictMode>,
+			//   document.getElementById('root')
+			// );
 		}).catch((error) => {
 			alert(error)
 		});
