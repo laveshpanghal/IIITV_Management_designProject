@@ -79,7 +79,15 @@ const Login = () => {
           </div>
           <div className="input-field">
             <i className="fas fa-lock" />
-            <input type="password" placeholder="Password" id="passwordS" />
+            <input style={{
+                background:'none',
+                outline: 'none',
+                border: 'none',
+                lineHeight:'1',
+                fontWeight: '600',
+                fontSize: '1.1rem',
+                color: '#333'
+            }} type="password" placeholder="Password" id="passwordS" />
           </div>
           <button  className="btn-submit solid text-center" id="sign_in_btn" onClick={login} >Login</button>
           <div id="password_reset">

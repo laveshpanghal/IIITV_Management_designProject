@@ -57,20 +57,52 @@ const SignUp = () => {
                         <h2 className="title">IIIT Vadodara Sign up</h2>
                         <div className="input-field">
                             <i className="fas fa-user"/>
-                            <input type="text" placeholder="User Name" id="Name"/>
+                            <input style={{
+                                background:'none',
+                                outline: 'none',
+                                border: 'none',
+                                lineHeight:'1',
+                                fontWeight: '600',
+                                fontSize: '1.1rem',
+                                color: '#333'
+                            }} type="text" placeholder="User Name" id="Name"/>
                         </div>
                         <div className="input-field">
                             <i className="fas fa-user"/>
-                            <input type="email" placeholder="User Email" id="emailS"/>
+                            <input style={{
+                                background:'none',
+                                outline: 'none',
+                                border: 'none',
+                                lineHeight:'1',
+                                fontWeight: '600',
+                                fontSize: '1.1rem',
+                                color: '#333'
+                            }} type="email" placeholder="User Email" id="emailS"/>
                         </div>
 
                         <div className="input-field">
                             <i className="fas fa-lock"/>
-                            <input type="password" placeholder="Password" id="passwordS"/>
+                            <input style={{
+                                background:'none',
+                                outline: 'none',
+                                border: 'none',
+                                lineHeight:'1',
+                                fontWeight: '600',
+                                fontSize: '1.1rem',
+                                color: '#333'
+                            }} type="password" placeholder="Password" id="passwordS"/>
                         </div>
                         <div className="input-field">
                             <i className="fas fa-lock"/>
-                            <input type="password" placeholder="Confirm Password" id="passwordC"/>
+                            <input style={{
+                                background:'none',
+                                outline: 'none',
+                                border: 'none',
+                                lineHeight:'1',
+                                fontWeight: '600',
+                                fontSize: '1.1rem',
+                                color: '#333'
+                            }} type="password" placeholder="Confirm Password" id="passwordC"/>
                         </div>
                         <div className="container text-center d-flex-vertical">
                             <button className="btn-submit solid text-center" id="sign_up_btn"

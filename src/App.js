@@ -11,6 +11,7 @@ import Fees from './Components/Pages/Fees';
 import SignUp from "./Components/SignUP/SignUp";
 import Login from "./Login/Login";
 import AdmissionForms from "./Components/Pages/admission/AdmissionForm";
+import AdmissionDocumentUpload from "./Components/Pages/admission/AdmissionDocumentUpload";
 
 
 
@@ -21,6 +22,7 @@ function App() {
 
     <NavbarCustom />
       <Route path ="/AdmissionForm" exact component={AdmissionForms}/>
+      <Route path ="/AdmissionDocumentUpload" exact component={AdmissionDocumentUpload}/>
       <Route path="/SignUp" exact component={SignUp}/>
     <Switch>
       <Route path='/' exact component={Home} />

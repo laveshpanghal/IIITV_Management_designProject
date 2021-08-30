@@ -5,10 +5,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import realDb from "../../../index";
 import {ref,set} from "firebase/database";
 import {useHistory} from "react-router-dom";
+import ReactDOM from "react-dom";
+import App from "../../../App";
+import AdmissionDocumentUpload from "./AdmissionDocumentUpload";
 const AdmissionForms = () => {
     const history =useHistory()
 
-    const [startDate, setStartDate] = useState(new Date());
     const [data, setData] = useState(
         {
             name: "",
@@ -48,12 +50,12 @@ const AdmissionForms = () => {
         e.preventDefault()
         console.log(data)
 
-    set(ref(realDb,"AdmissionForms/2021/"+data.entranceExamRollNo),data).then((history)=>{
-        history.push('/Fees')
+    set(ref(realDb,"AdmissionForms/2021/"+data.entranceExamRollNo),data).then(()=>{
+        // history.push('/AdmissionDocumentUpload')
 
 
-    })
-
+    });
+        history.push('/AdmissionDocumentUpload')
 
     }
 
@@ -71,7 +73,7 @@ const AdmissionForms = () => {
                     <label htmlFor="name"><b>Name</b></label>
                     <br/>
                     <input type="text" placeholder="Enter name" name="name" required onChange={onChange}/>
-                    <br/>
+                    <br/><br/>
                     <label htmlFor="dob"><b>Select date of birth</b></label>
                     <br/>
                     <input
@@ -81,7 +83,7 @@ const AdmissionForms = () => {
                         name="dob"
                         onChange={(e) => onChange(e)}
                     />
-                    <br/>
+                    <br/><br/>
                     <label htmlFor="gender"><b>Gender</b></label>
                     <br/>
                     <select name="gender" id="gender" required onChange={(e) => onChange(e)}>
@@ -100,11 +102,10 @@ const AdmissionForms = () => {
                         <option value="other">Other</option>
                     </select><br/><br/>
 
-                    <br/><br/>
                     <label htmlFor="address"><b>Address</b></label>
                     <input type="text" placeholder="Enter address" name="parmanentAddress" required
                            onChange={onChange}/>
-                    <br/>
+                    <br/><br/>
                     <label htmlFor="aadhar"><b>Aadhar Number</b></label>
                     <br/>
                     <input type="number" placeholder="Enter Aadhar Number" name="adharCardNo" required
@@ -114,26 +115,28 @@ const AdmissionForms = () => {
                     <br/>
                     <input type="text" placeholder="Enter father's name" name="fathersName" required
                            onChange={onChange}/>
-                    <br/>
+                    <br/><br/>
                     <label htmlFor="mname"><b>Mother Name</b></label>
                     <input type="text" placeholder="Enter mother's name" name="mothersName" required
                            onChange={onChange}/>
+                    <br/><br/>
                     <label htmlFor="fphone"><b>Father's Mobile</b></label>
                     <br/>
                     <input type="tel" id="fphone" name="fathersMobileNo" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
                            onChange={onChange}/>
-                    <br/>
+                    <br/><br/>
                     <label htmlFor="mphone"><b>Mother's Mobile</b></label>
                     <br/>
                     <input type="tel" id="mphone" name="mothersMobileNo" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
                            onChange={onChange}/>
-                    <br/>
+                    <br/><br/>
                     <label htmlFor="phone"><b>Mobile(self)</b></label>
                     <br/>
                     <input type="tel" id="phone" name="personalMobileNo" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
                            onChange={onChange}/> <br/><br/>
                     <label htmlFor="email"><b>Email</b></label>
                     <input type="text" placeholder="Enter Email" name="emailAddress" required onChange={onChange}/>
+                    <br/><br/>
                     <label htmlFor="passYear"><b>Passing year </b></label>
                     <br/>
                     <input
@@ -147,14 +150,14 @@ const AdmissionForms = () => {
                     <label htmlFor="Eroll"><b>Entrance Exam Roll Number</b></label>
                     <input type="text" placeholder="Enter roll no" name="entranceExamRollNo" required
                            onChange={onChange}/>
-                    <br/>
+                    <br/><br/>
                     <label htmlFor="branch"><b>Branch</b></label>
                     <br/>
                     <select name="branch" id="branch" required onChange={(e) => onChange(e)}>
                         <option value="computerScience">Computer Science</option>
                         <option value="IT">IT</option>
                     </select>
-                    <br/>
+                    <br/><br/>
                     <label htmlFor="tYear"><b>10th Passing year</b></label>
                     <br/>
                     <input
@@ -163,7 +166,7 @@ const AdmissionForms = () => {
                         placeholder="select Date of birth"
                         name="yearOfPassing10"
                         onChange={(e) => onChange(e)}/>
-                    <br/>
+                    <br/><br/>
                     <label htmlFor="twYear"><b>12th Passing year</b></label>
                     <br/>
                     <input
@@ -176,11 +179,13 @@ const AdmissionForms = () => {
                     <br/><br/>
                     <label htmlFor="focc"><b>Father's Occupation</b></label>
                     <input type="text" placeholder="occupation" name="fathersOccupation" required onChange={onChange}/>
+                    <br/><br/>
                     <label htmlFor="Mocc"><b>Mother's Occupation</b></label>
                     <input type="text" placeholder="occupation" name="mothersOccupation" required onChange={onChange}/>
                     {/*<p>We do not share this information with any other person or organisation. <a href="#"*/}
                     {/*                                                                              style={{color: 'dodgerblue'}}>Terms &amp; Privacy</a>.*/}
                     {/*</p>*/}
+                    <br/><br/><br/>
                     <div className="d-flex">
                         <button className="btn btn-outline-success w-50 solid text-center mx-2"
                                 onClick={handleAdmissionFormSubmit}>Submit form
