@@ -12,6 +12,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import firebase from "firebase/compat";
 import {getDatabase} from "firebase/database";
+import {getStorage} from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -32,6 +33,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const realDb = getDatabase();
+const storageDb = getStorage();
 
 
 
@@ -70,4 +72,6 @@ onAuthStateChanged(auth, (user) => {
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
 export default realDb;
