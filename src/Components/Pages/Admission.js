@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "../../Login/login.css"
 import { getDatabase, ref, child, get } from "firebase/database";
 import {useHistory} from "react-router-dom";
 
 
+
 const Admission = () => {
-const RealDb = ref(getDatabase())
-const history = useHistory()
+    const RealDb = ref(getDatabase())
+    const history = useHistory()
+
     function verify(e) {
 
     e.preventDefault()
@@ -30,6 +32,7 @@ const history = useHistory()
                     }
 
                 } else {
+                    alert("Not eligible for admission")
                     console.log("No data available");
                 }
             }).catch((error) => {

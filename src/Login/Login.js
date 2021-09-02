@@ -87,7 +87,7 @@ const Login = () => {
                 fontWeight: '600',
                 fontSize: '1.1rem',
                 color: '#333'
-            }} type="password" placeholder="Password" id="passwordS" />
+            }}   type="password" placeholder="Password" id="passwordS" />
           </div>
           <button  className="btn-submit solid text-center" id="sign_in_btn" onClick={login} >Login</button>
           <div id="password_reset">

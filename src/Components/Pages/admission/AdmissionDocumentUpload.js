@@ -72,13 +72,15 @@ const AdmissionDocumentUpload = () => {
             const storageRef = ref(storage, "/AdmissionFormDocs/testId/" + doc.name)
             const uploadTask = uploadBytes(storageRef, doc.file).then((snapshot) => {
 
+                history.push("/AdmissionFees")
 
             })
-            uploadTask.on("state_changed", () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    console.log(downloadURL)
-                })
-            })
+            // uploadTask.task.on("state_changed",(snapshot)=>{},(error)=>{}, () => {
+            //     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            //         console.log(downloadURL)
+            //     });
+            //
+            // });
 
         })
 
