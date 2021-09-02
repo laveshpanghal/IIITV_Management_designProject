@@ -1,7 +1,5 @@
 import React, {useState} from "react";
 import "../Styles/AdmissionForm.css"
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import realDb from "../../../index";
 import {set, ref as RefDb} from "firebase/database";
 import {getStorage, ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
