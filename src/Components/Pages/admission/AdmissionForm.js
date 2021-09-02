@@ -1,7 +1,5 @@
 import React, {useState} from "react";
 import "../Styles/AdmissionForm.css"
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import realDb from "../../../index";
 import {ref,set} from "firebase/database";
 import {useHistory} from "react-router-dom";
