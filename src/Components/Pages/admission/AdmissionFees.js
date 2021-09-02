@@ -120,9 +120,9 @@ const AdmissionFees = () => {
 
                     </span>
 
-                    <span className="d-flex" hidden={!payOnline}>
+                    <span className="d-flex"  >
 
-                        <div className="mx-10">
+                        <div className="mx-10" hidden={!payOnline}>
 
                         <p>You will be redirected to payment gateway in some time do not press back or refresh.</p>
                         <button className="w-50 btn btn-outline-success my-5">Pay online</button>

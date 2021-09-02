@@ -1,5 +1,7 @@
 // import "./App.css"
 import React from 'react';
+import {ToastContainer} from "react-toastify";
+import {AppProvider} from "./Context/AppContext";
 import NavbarCustom from './Components/Navbar/NavbarCustom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './Components/Pages';
@@ -19,8 +21,8 @@ import AdmissionFees from "./Components/Pages/admission/AdmissionFees";
 
 function App() {
   return(
+     <AppProvider>
     <Router>
-
     <NavbarCustom />
       <Route path ="/AdmissionForm" exact component={AdmissionForms}/>
       <Route path ="/AdmissionFees" exact component={AdmissionFees}/>
@@ -36,6 +38,7 @@ function App() {
       <Route path='/Login'  component={Login} />
     </Switch>
   </Router>
+     </AppProvider>
 
   );
   

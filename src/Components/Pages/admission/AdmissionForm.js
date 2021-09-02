@@ -8,9 +8,8 @@ import {useHistory} from "react-router-dom";
 
 
 const AdmissionForms = () => {
-    const history =useHistory()
+    const history = useHistory()
 
-    const [startDate, setStartDate] = useState(new Date());
     const [data, setData] = useState(
         {
             name: "",
@@ -50,8 +49,8 @@ const AdmissionForms = () => {
         e.preventDefault()
         console.log(data)
 
-    set(ref(realDb,"AdmissionForms/2021/"+data.entranceExamRollNo),data).then((history)=>{
-        history.push('/Fees')
+    set(ref(realDb,"AdmissionForms/2021/"+data.entranceExamRollNo+"/data/"),data).then(()=>{
+        history.push('/AdmissionDocumentUpload')
 
 
     })

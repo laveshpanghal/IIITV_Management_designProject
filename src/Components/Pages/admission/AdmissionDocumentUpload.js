@@ -3,19 +3,18 @@ import "../Styles/AdmissionForm.css"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import realDb from "../../../index";
-import {set} from "firebase/database";
-import {uploadBytes, getStorage, ref,on} from "firebase/storage";
-
-
-
+import {set, ref as RefDb} from "firebase/database";
+import {getStorage, ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
 import {useHistory} from "react-router-dom";
-import {getDownloadURL} from "firebase/storage";
+import {useApp} from "../../../Context/AppContext";
+import {child} from "firebase/database";
 
 const fileInput = React.createRef();
 
 
 const AdmissionDocumentUpload = () => {
 
+    const {renderToastError} = useApp()
     const history = useHistory()
     const handleback = (history) => {
         history("/AdmissionForm")
@@ -37,8 +36,8 @@ const AdmissionDocumentUpload = () => {
     function removeDocObj(id) {
         initialdocs.forEach((doc) => {
             if (doc.name === id) {
-                console.log(doc)
-                console.log(initialdocs.indexOf(doc))
+                // console.log(doc)
+                // console.log(initialdocs.indexOf(doc))
                 initialdocs.splice(initialdocs.indexOf(doc), 1)
             }
 
@@ -58,39 +57,52 @@ const AdmissionDocumentUpload = () => {
             })
 
 
-        console.log(initialdocs)
+        // console.log(initialdocs)
 
     }
 
     const storage = getStorage();
 
 
-    const handleUploadDocsButton = (e) => {
+    const handleUploadDocsButton = async (e) => {
 
         e.preventDefault()
-        initialdocs.forEach((doc) => {
+        await initialdocs.forEach((doc) => {
             const storageRef = ref(storage, "/AdmissionFormDocs/testId/" + doc.name)
-            const uploadTask = uploadBytes(storageRef, doc.file).then((snapshot) => {
+            const uploadTask = uploadBytesResumable(storageRef, doc.file)
 
-                history.push("/AdmissionFees")
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                        case 'paused':
+                            console.log('Upload is paused');
+                            break;
+                        case 'running':
+                            console.log('Upload is running');
+                            break;
+                    }
+                },
+                (error) => {
+                    // Handle unsuccessful uploads
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                        console.log('File available at', downloadURL);
+                        set(RefDb(realDb, "AdmissionForms/2021/54354135/documents/" + doc.name), downloadURL).then((history) => {
 
-            })
-            // uploadTask.task.on("state_changed",(snapshot)=>{},(error)=>{}, () => {
-            //     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            //         console.log(downloadURL)
-            //     });
-            //
-            // });
+
+                        })
+
+
+                    });
+                }
+            );
+
 
         })
-
-
-
-        // set(ref(realDb,"AdmissionForms/2021/"+data.entranceExamRollNo),data).then((history)=>{
-        //
-        //
-        //
-        // })
+        history.push('/AdmissionFees')
 
 
     }
