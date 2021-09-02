@@ -15,6 +15,7 @@ import Login from "./Login/Login";
 import AdmissionForms from "./Components/Pages/admission/AdmissionForm";
 import AdmissionDocumentUpload from "./Components/Pages/admission/AdmissionDocumentUpload";
 import AdmissionFees from "./Components/Pages/admission/AdmissionFees";
+import AdminDashboard from "./Components/Pages/admin/AdminDashboard";
 
 
 
@@ -24,6 +25,7 @@ function App() {
      <AppProvider>
     <Router>
     <NavbarCustom />
+      <Route path ="/Admin" exact component={AdminDashboard}/>
       <Route path ="/AdmissionForm" exact component={AdmissionForms}/>
       <Route path ="/AdmissionFees" exact component={AdmissionFees}/>
       <Route path ="/AdmissionDocumentUpload" exact component={AdmissionDocumentUpload}/>
