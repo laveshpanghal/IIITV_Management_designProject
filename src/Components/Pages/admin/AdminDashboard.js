@@ -1,14 +1,18 @@
 import React, {useState} from "react";
 import "../Styles/Admindash.css"
-//dsghsd
+import {child, get} from "firebase/database";
+import realDb from "../../../index";
+
 const AdminDashboard=()=> {
+
+
 
   return (
       <div id="content">
           <nav id="nav1">
               <a href="#page1">
                   <div>
-                      <img src="user.png" alt="" />
+                      <img href="https://firebasestorage.googleapis.com/v0/b/iiitv-198b6.appspot.com/o/ContentImages%2FIIITV_Logo.jpg?alt=media&token=fbcc68ab-82f5-498f-a669-0f6bd0227809" alt="" />
                       <p>Admin name</p>
                       <p> Role</p>
                       <p>last-login</p>
@@ -22,6 +26,8 @@ const AdminDashboard=()=> {
               <div id="page2" className="page">
                   <h1>Role Request</h1>
                   <p>Role Request content</p>
+
+
               </div>
               <div id="page3" className="page">
                   <h1>Student Admission Request</h1>

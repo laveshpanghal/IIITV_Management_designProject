@@ -86,13 +86,13 @@ const AdmissionFees = () => {
 
                     <span hidden={payOnline}>
 
-                    <label htmlFor="dateOfPayment"><b>Date of payment </b></label>
+                    <label htmlFor="dop"><b>Date of payment </b></label>
                     <br/>
                     <input
                         type="date"
                         required
                         placeholder="select Date of payment"
-                        name="dateOfPayment"
+                        name="dop"
                         onChange={(e) => onChange(e)}
                     />
                     <br/><br/>
