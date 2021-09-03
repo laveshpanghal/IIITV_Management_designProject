@@ -24,7 +24,7 @@ const AdmissionForms = () => {
             mothersMobileNo: "",
             personalMobileNo: "",
             emailAddress: "",
-            entranceExamRollNo: "",
+            entranceExamRollNo: rollNo,
             branch: "computerScience",
             yearOfPassing12: "",
             yearOfPassing10: "",
@@ -146,8 +146,8 @@ const AdmissionForms = () => {
                     />
                     <br/><br/>
                     <label htmlFor="Eroll"><b>Entrance Exam Roll Number</b></label>
-                    <input type="text" placeholder={rollNo} disabled name="entranceExamRollNo" required
-                           onChange={onChange}
+                    <input type="text" placeholder={rollNo} value={rollNo} disabled name="entranceExamRollNo" required
+
                           />
                     <br/>
                     <label htmlFor="branch"><b>Branch</b></label>

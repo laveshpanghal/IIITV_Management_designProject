@@ -89,7 +89,7 @@ const AdmissionDocumentUpload = () => {
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                         console.log('File available at', downloadURL);
-                        set(RefDb(realDb, "AdmissionForms/2021/54354135/documents/" + doc.name), downloadURL).then((history) => {
+                        set(RefDb(realDb, "AdmissionForms/2021/"+rollNo+"/documents/" + doc.name), downloadURL).then((history) => {
 
 
                         })
