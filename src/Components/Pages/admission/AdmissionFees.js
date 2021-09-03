@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
-import { getDatabase, ref, child, get } from "firebase/database";
+import { getDatabase, ref, set,child, get } from "firebase/database";
 import {useHistory} from "react-router-dom";
+import realDb from "../../../index";
+import {useApp} from "../../../Context/AppContext";
+
 
 
 
 const AdmissionFees = () => {
+    const{rollNo}= useApp();
     const RealDb = ref(getDatabase())
     const history = useHistory()
 
@@ -32,6 +36,7 @@ const AdmissionFees = () => {
             amount: "Male",
             paymentId: ""
 
+
         }
     )
 
@@ -42,40 +47,25 @@ const AdmissionFees = () => {
             [e.target.name]: e.target.value,
         }));
     }
+    const handleFeesSubmit=(e)=>{
+            e.preventDefault()
+            console.log(data)
 
-    // function verify(e) {
-    //
-    //     e.preventDefault()
-    //
-    //     var applicantEnrollmentNo = document.getElementById("enrollmentInput").value;
-    //     console.log(applicantEnrollmentNo)
-    //     if (applicantEnrollmentNo === "") {
-    //
-    //         alert("Enrollment no should not be blank");
-    //
-    //     } else {
-    //
-    //
-    //         get(child(RealDb, `counsellingEnrollment/2021/${applicantEnrollmentNo}/status`)).then((snapshot) => {
-    //             if (snapshot.exists()) {
-    //
-    //                 if(snapshot.val()==="verified")
-    //                 {
-    //                     history.push("/AdmissionForm")
-    //
-    //                 }
-    //
-    //             } else {
-    //                 alert("Not eligible for admission")
-    //                 console.log("No data available");
-    //             }
-    //         }).catch((error) => {
-    //             console.error(error);
-    //         });
-    //
-    //
-    //     }
-    // }
+            set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/FeesData/"),data).then(()=>{
+                set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/Status"),"Pending").then(()=>{
+                    alert('Admission form request submitted.Please wait for document and payment verification')
+                    history.push('/')
+                })
+
+
+
+            })
+
+
+
+
+    }
+
 
 
     return (
@@ -89,8 +79,9 @@ const AdmissionFees = () => {
                     <label htmlFor="feesTypeSelect"><b>Please select any one of provided </b></label>
                     <br/>
                     <select name="feesTypeSelect" id="feesTypeSelect" required onChange={onFeesTypeSelectChange}>
+                        <option value="PaidAlready" selected>Paid fees</option>
                         <option value="PayFees">Pay fees</option>
-                        <option value="PaidAlready">Paid fees</option>
+
                     </select><br/><br/><hr/><br/><br/>
 
                     <span hidden={payOnline}>
@@ -136,7 +127,7 @@ const AdmissionFees = () => {
             </form>
 
             <div className="d-flex my-5">
-                <button className="btn btn-outline-success w-30 solid text-center mx-4"
+                <button className="btn btn-outline-success w-30 solid text-center mx-4" onClick={handleFeesSubmit}
                 >Done
                 </button>
 

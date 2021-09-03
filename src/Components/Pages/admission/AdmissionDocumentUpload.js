@@ -67,7 +67,7 @@ const AdmissionDocumentUpload = () => {
 
         e.preventDefault()
         await initialdocs.forEach((doc) => {
-            const storageRef = ref(storage, "/AdmissionFormDocs/" +rollNo+"/"+doc.name)
+            const storageRef = ref(storage, "/AdmissionFormDocs/2021/" +rollNo+"/"+doc.name)
             const uploadTask = uploadBytesResumable(storageRef, doc.file)
 
             uploadTask.on('state_changed',
