@@ -2,12 +2,15 @@ import React, {useState} from 'react';
 import "../../Login/login.css"
 import { getDatabase, ref, child, get } from "firebase/database";
 import {useHistory} from "react-router-dom";
-
+import {useApp} from "../../Context/AppContext";
 
 
 const Admission = () => {
     const RealDb = ref(getDatabase())
     const history = useHistory()
+    const{setRollNo}= useApp();
+    const{rollNo}= useApp();
+
 
     function verify(e) {
 
@@ -27,6 +30,7 @@ const Admission = () => {
 
                     if(snapshot.val()==="verified")
                     {
+                        setRollNo(applicantEnrollmentNo)
                         history.push("/AdmissionForm")
 
                     }

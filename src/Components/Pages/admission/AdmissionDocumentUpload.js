@@ -12,6 +12,7 @@ const fileInput = React.createRef();
 
 const AdmissionDocumentUpload = () => {
 
+    const{rollNo}= useApp();
     const {renderToastError} = useApp()
     const history = useHistory()
     const handleback = (history) => {
@@ -66,7 +67,7 @@ const AdmissionDocumentUpload = () => {
 
         e.preventDefault()
         await initialdocs.forEach((doc) => {
-            const storageRef = ref(storage, "/AdmissionFormDocs/testId/" + doc.name)
+            const storageRef = ref(storage, "/AdmissionFormDocs/" +rollNo+"/"+doc.name)
             const uploadTask = uploadBytesResumable(storageRef, doc.file)
 
             uploadTask.on('state_changed',

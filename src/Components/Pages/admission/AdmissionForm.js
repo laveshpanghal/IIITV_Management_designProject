@@ -3,9 +3,11 @@ import "../Styles/AdmissionForm.css"
 import realDb from "../../../index";
 import {ref,set} from "firebase/database";
 import {useHistory} from "react-router-dom";
+import {useApp} from "../../../Context/AppContext";
 
 
 const AdmissionForms = () => {
+    const{rollNo}= useApp();
     const history = useHistory()
 
     const [data, setData] = useState(
@@ -144,8 +146,9 @@ const AdmissionForms = () => {
                     />
                     <br/><br/>
                     <label htmlFor="Eroll"><b>Entrance Exam Roll Number</b></label>
-                    <input type="text" placeholder="Enter roll no" name="entranceExamRollNo" required
-                           onChange={onChange}/>
+                    <input type="text" placeholder={rollNo} disabled name="entranceExamRollNo" required
+                           onChange={onChange}
+                          />
                     <br/>
                     <label htmlFor="branch"><b>Branch</b></label>
                     <br/>
