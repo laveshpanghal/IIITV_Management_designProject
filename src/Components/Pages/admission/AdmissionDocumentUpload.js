@@ -17,7 +17,6 @@ const AdmissionDocumentUpload = () => {
     const history = useHistory()
     const handleback = (history) => {
         history("/AdmissionForm")
-
     }
     const{degree}=useApp();
     const{setDegree}=useApp();

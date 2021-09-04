@@ -2,6 +2,10 @@ import React, {useState} from "react";
 import "../Styles/Admindash.css"
 import {child, get} from "firebase/database";
 import realDb from "../../../index";
+import ReactDOM from "react-dom";
+import App from "../../../App";
+import Admission from "../Admission";
+import AdmissionReq from "./AdmissionReq";
 
 const AdminDashboard=()=> {
 
@@ -31,7 +35,11 @@ const AdminDashboard=()=> {
               </div>
               <div id="page3" className="page">
                   <h1>Student Admission Request</h1>
-                  <p>Student Admission Request page </p>
+
+                  <React.StrictMode>
+                      <AdmissionReq />
+                  </React.StrictMode>
+
               </div>
               <div id="page4" className="page">
                   <h1>Course Faculty Request</h1>

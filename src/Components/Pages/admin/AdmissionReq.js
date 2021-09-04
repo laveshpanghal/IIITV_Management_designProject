@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "../Styles/Admindash.css"
-import {child, get,ref,onChildAdded, onChildChanged, onChildRemoved} from "firebase/database";
+import {child, get,ref,onChildAdded, onChildChanged, onChildRemoved,onValue} from "firebase/database";
 import realDb from "../../../index";
 import {useParams, useHistory} from "react-router-dom";
 
 const AdmissionReq=()=> {
-    const {id} = useParams();
+    const {key} = useParams();
     const reqElement = {
 
         Name:"",
@@ -15,40 +15,66 @@ const AdmissionReq=()=> {
 
 
     }
-
-    function addReqElement(data){
-
-        if(data.child("Status").equals("Pending")){
-            reqElement.Name= data.child("data/name").value
-            reqElement.RollNo= data.child("data/entranceExamRollNo").value
-            reqElement.Dop= data.child("FeesData/dop").value
-            reqElement.Degree= data.child("data/").value
+    function addReqElement(key,data){
 
 
 
+         if(data.Status === "Pending"){
+            reqElement.Name= data.data.name
+            reqElement.RollNo= data.data.entranceExamRollNo
+            reqElement.Dop= data.FeesData.dop
+            reqElement.Degree= data.Course
+             const theDiv = document.getElementById("ggwp");
+             theDiv.innerHTML +=  "<br>"+"<br>"+"<div class='d-flex justify-content-between' >"+
+                                 "<p>"+""+"</p>"+
+                                 "<p>"+reqElement.Name+"</p>"
+                                 +"<p>"+reqElement.RollNo+"</p>"
+                                +"<p>"+reqElement.Dop+"</p>"
+                                +"<p>"+reqElement.Degree+"</p>"+"<br>"
+                 +"</div>"
 
+         }
 
-        }
+        console.log(reqElement)
+
 
 
     }
 
-    const commentsRef = ref(realDb, "AdmissionForms/2021/" );
-    onChildAdded(commentsRef, (data) => {
-        addReqElement( data);
-    });
+useEffect(()=>{ const commentsRef = ref(realDb, "AdmissionForms/2021/" );
+    onValue(commentsRef, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childKey = childSnapshot.key;
+            const childData = childSnapshot.val();
+            addReqElement(childKey,childData)
+            // ...
+        });
+    }, {
+        onlyOnce: true
+    });},[])
 
-    onChildChanged(commentsRef, (data) => {
 
-    });
 
-    onChildRemoved(commentsRef, (data) => {
 
-    });
+
+
+
+    // onChildAdded(commentsRef, (data) => {
+    //     addReqElement( data.value);
+    // });
+    //
+    // onChildChanged(commentsRef, (data) => {
+    //
+    // });
+    //
+    // onChildRemoved(commentsRef, (data) => {
+    //
+    // });
 
 
         return (
-            <div></div>
+            <div id="ggwp"></div>
+
         )
     }
 

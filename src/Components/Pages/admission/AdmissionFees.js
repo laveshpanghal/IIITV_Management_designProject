@@ -15,7 +15,6 @@ const AdmissionFees = () => {
 
     const handleback = (history) => {
         history("/AdmissionForm")
-
     }
 
     const [payOnline, setPayOnline] = useState(false);
@@ -32,7 +31,7 @@ const AdmissionFees = () => {
 
     const [data, setData] = useState(
         {
-            paymentType: "",
+            paymentType: "dd",
             dop: "",
             amount: "Male",
             paymentId: ""
@@ -106,7 +105,7 @@ const AdmissionFees = () => {
                     <label htmlFor="paymentType"><b>Payment type</b></label>
                     <br/>
                     <select name="paymentType" id="paymentType" required onChange={(e) => onChange(e)}>
-                        <option value="dd">Demand Draft</option>
+                        <option value="dd" selected>Demand Draft</option>
                         <option value="online">Online mode</option>
                     </select>
                     <br/>
