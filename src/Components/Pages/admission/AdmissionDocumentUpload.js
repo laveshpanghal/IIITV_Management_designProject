@@ -19,10 +19,15 @@ const AdmissionDocumentUpload = () => {
         history("/AdmissionForm")
 
     }
-
+    const{degree}=useApp();
+    const{setDegree}=useApp();
     const [extraFields, setExtraField] = useState(false);
     const onDegreeSelectChange = (e) => {
-        if (e.target.value === "NoExtraFields") {
+
+        setDegree(e.target.value);
+        console.log(degree);
+
+        if (e.target.value === "B.Tech") {
             setExtraField(false)
         } else {
             setExtraField(true)
@@ -91,10 +96,7 @@ const AdmissionDocumentUpload = () => {
                         console.log('File available at', downloadURL);
                         set(RefDb(realDb, "AdmissionForms/2021/"+rollNo+"/documents/" + doc.name), downloadURL).then((history) => {
 
-
                         })
-
-
                     });
                 }
             );
@@ -118,9 +120,9 @@ const AdmissionDocumentUpload = () => {
                     <br/><br/>
                     <label htmlFor="degreeSelect"><b>Please select any one of provided </b></label>
                     <br/>
-                    <select name="degreeSelect" id="degreeSelect" required onChange={onDegreeSelectChange}>
-                        <option value="NoExtraFields">B.Tech</option>
-                        <option value="MtechExtraFields">M.Tech</option>
+                    <select name="degreeSelect" id="degreeSelect" required  onChange={ onDegreeSelectChange}>
+                        <option value="B.Tech" selected>B.Tech</option>
+                        <option value="M.tech">M.Tech</option>
                     </select><br/><br/>
                     <h2>Admission document upload</h2>
                     <p>Please upload the correct document which is uploaded during counselling and JEE

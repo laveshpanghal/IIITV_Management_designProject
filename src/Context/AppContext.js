@@ -15,6 +15,7 @@ function useApp() {
 
 function AppProvider({children}) {
     const [rollNo, setRollNo] = useState("404");
+    const [degree, setDegree] = useState("404")
 
 
     function renderToastError(text) {
@@ -55,7 +56,7 @@ function AppProvider({children}) {
     //           pauseOnHover
     //       />
 
-    const value = {rollNo,setRollNo,renderToast,renderToastError};
+    const value = {rollNo,setRollNo,degree,setDegree,renderToast,renderToastError};
     return <AppContext.Provider value={value}>
         {children}
     </AppContext.Provider>;

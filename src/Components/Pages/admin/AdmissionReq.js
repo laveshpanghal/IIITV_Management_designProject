@@ -8,6 +8,11 @@ const AdmissionReq=()=> {
     const {id} = useParams();
     const reqElement = {
 
+        Name:"",
+        RollNo:"",
+        DoP:"",
+
+
     }
 
     function addReqElement(data){
