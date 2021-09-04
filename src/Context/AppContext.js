@@ -15,7 +15,7 @@ function useApp() {
 
 function AppProvider({children}) {
     const [rollNo, setRollNo] = useState("404");
-    const [degree, setDegree] = useState("404")
+    const [degree, setDegree] = useState("B.Tech")
 
 
     function renderToastError(text) {

@@ -50,12 +50,13 @@ const AdmissionFees = () => {
     }
     const handleFeesSubmit=(e)=>{
             e.preventDefault()
-            console.log(data)
 
             set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/FeesData/"),data).then(()=>{
-                set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/"),{"Status":"Pending","Course":degree}).then(()=>{
-                    alert('Admission form request submitted.Please wait for document and payment verification')
-                    history.push('/')
+                set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/Status"),"Pending").then(()=>{
+                    set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/Course"),degree).then(()=> {
+                        alert('Admission form request submitted.Please wait for document and payment verification')
+                        history.push('/')
+                    })
                 })
 
 

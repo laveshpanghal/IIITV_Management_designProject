@@ -10,7 +10,8 @@ const AdmissionReq=()=> {
 
         Name:"",
         RollNo:"",
-        DoP:"",
+        Dop:"",
+        Degree:"",
 
 
     }
@@ -18,6 +19,13 @@ const AdmissionReq=()=> {
     function addReqElement(data){
 
         if(data.child("Status").equals("Pending")){
+            reqElement.Name= data.child("data/name").value
+            reqElement.RollNo= data.child("data/entranceExamRollNo").value
+            reqElement.Dop= data.child("FeesData/dop").value
+            reqElement.Degree= data.child("data/").value
+
+
+
 
 
         }
@@ -27,7 +35,7 @@ const AdmissionReq=()=> {
 
     const commentsRef = ref(realDb, "AdmissionForms/2021/" );
     onChildAdded(commentsRef, (data) => {
-        addReqElement( data.key, data.val().text, data.val().author);
+        addReqElement( data);
     });
 
     onChildChanged(commentsRef, (data) => {
