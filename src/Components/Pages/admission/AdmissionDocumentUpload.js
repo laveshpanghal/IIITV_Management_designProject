@@ -100,8 +100,8 @@ const AdmissionDocumentUpload = () => {
                         console.log('File available at', doc.name,downloadURL);
 
                         const datais= {
-
-                           [doc.name]:downloadURL,
+                            "documentName" : doc.name,
+                            "downloadURL":downloadURL,
                             "verified":false
                         }
                         console.log(datais)
