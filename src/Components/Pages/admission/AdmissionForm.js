@@ -4,11 +4,15 @@ import realDb from "../../../index";
 import {ref,set} from "firebase/database";
 import {useHistory} from "react-router-dom";
 import {useApp} from "../../../Context/AppContext";
+import "firebase/firestore";
+import firebase from "firebase/compat";
 
 
 const AdmissionForms = () => {
     const{rollNo}= useApp();
     const history = useHistory()
+    const firestoreDb = firebase.firestore()
+    const[documents, setDocument]=useState([])
 
     const [data, setData] = useState(
         {
@@ -49,9 +53,8 @@ const AdmissionForms = () => {
         e.preventDefault()
         console.log(data)
 
-    set(ref(realDb,"AdmissionForms/2021/"+data.entranceExamRollNo+"/data/"),data).then(()=>{
+firestoreDb.collection("AdmissionForms2021").doc(rollNo).set({data,documents,"status":"pending","Course":""}).then(()=>{
         history.push('/AdmissionDocumentUpload')
-
 
     })
 

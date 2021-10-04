@@ -6,11 +6,14 @@ import {getStorage, ref, uploadBytesResumable, getDownloadURL} from "firebase/st
 import {useHistory} from "react-router-dom";
 import {useApp} from "../../../Context/AppContext";
 import {child} from "firebase/database";
+import firebase from "firebase/compat";
 
 const fileInput = React.createRef();
 
 
 const AdmissionDocumentUpload = () => {
+    const [data,setData]=useState({})
+    const firestoreDb = firebase.firestore()
 
     const{rollNo}= useApp();
     const {renderToastError} = useApp()
@@ -83,26 +86,42 @@ const AdmissionDocumentUpload = () => {
                             console.log('Upload is paused');
                             break;
                         case 'running':
-                            console.log('Upload is running');
+                            console.log('Upload is running',);
                             break;
                     }
                 },
                 (error) => {
+
                     // Handle unsuccessful uploads
                 },
-                () => {
+               () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        console.log('File available at', downloadURL);
-                        set(RefDb(realDb, "AdmissionForms/2021/"+rollNo+"/documents/" + doc.name), downloadURL).then((history) => {
 
-                        })
+                        console.log('File available at', doc.name,downloadURL);
+
+                        const datais= {
+
+                           [doc.name]:downloadURL,
+                            "verified":false
+                        }
+                        console.log(datais)
+
+
+                         firestoreDb.collection("AdmissionForms2021").doc(rollNo).update({
+                             documents:firebase.firestore.FieldValue.arrayUnion(datais)
+                         })
+                        // set(RefDb(realDb, "AdmissionForms/2021/"+rollNo+"/documents/" + doc.name), downloadURL).then((history) => {
+                        //
+                        // })
                     });
                 }
             );
 
 
         })
+
         history.push('/AdmissionFees')
+
 
 
     }

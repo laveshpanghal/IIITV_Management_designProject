@@ -3,11 +3,13 @@ import { getDatabase, ref, set,child, get } from "firebase/database";
 import {useHistory} from "react-router-dom";
 import realDb from "../../../index";
 import {useApp} from "../../../Context/AppContext";
+import firebase from "firebase/compat";
 
 
 
 
 const AdmissionFees = () => {
+    const firestoreDb = firebase.firestore()
     const{rollNo}= useApp();
     const{degree}=useApp();
     const RealDb = ref(getDatabase())
@@ -29,7 +31,7 @@ const AdmissionFees = () => {
 
     }
 
-    const [data, setData] = useState(
+    const [feesData, setFeesData] = useState(
         {
             paymentType: "dd",
             dop: "",
@@ -42,25 +44,27 @@ const AdmissionFees = () => {
 
     function onChange(e) {
         e.persist();
-        setData(() => ({
-            ...data,
+        setFeesData(() => ({
+            ...feesData,
             [e.target.name]: e.target.value,
         }));
     }
     const handleFeesSubmit=(e)=>{
             e.preventDefault()
 
-            set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/FeesData/"),data).then(()=>{
-                set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/Status"),"Pending").then(()=>{
-                    set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/Course"),degree).then(()=> {
+        firestoreDb.collection("AdmissionForms2021").doc(rollNo).update({feesData, Course:degree
+        })
+            // .then(()=>{
+            //         set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/Course"),degree)
+                        .then(()=> {
                         alert('Admission form request submitted.Please wait for document and payment verification')
                         history.push('/')
                     })
-                })
 
 
 
-            })
+
+
 
 
 
