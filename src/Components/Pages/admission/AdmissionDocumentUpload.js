@@ -74,7 +74,7 @@ const AdmissionDocumentUpload = () => {
 
         e.preventDefault()
         await initialdocs.forEach((doc) => {
-            const storageRef = ref(storage, "/AdmissionFormDocs/2021/" +rollNo+"/"+doc.name)
+            const storageRef = ref(storage, "/AdmissionFormDocs/2021/" +rollNo+"/"+doc.name+".pdf")
             const uploadTask = uploadBytesResumable(storageRef, doc.file)
 
             uploadTask.on('state_changed',
@@ -106,6 +106,7 @@ const AdmissionDocumentUpload = () => {
                         }
                         console.log(datais)
 
+                        firestoreDb.collection("AdmissionForms2021").doc(rollNo).collection("Documents").doc(doc.name).set({...datais})
 
                          firestoreDb.collection("AdmissionForms2021").doc(rollNo).update({
                              documents:firebase.firestore.FieldValue.arrayUnion(datais)

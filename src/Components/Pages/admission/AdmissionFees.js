@@ -15,6 +15,10 @@ const AdmissionFees = () => {
     const RealDb = ref(getDatabase())
     const history = useHistory()
 
+
+
+
+
     const handleback = (history) => {
         history("/AdmissionForm")
     }

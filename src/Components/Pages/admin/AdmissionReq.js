@@ -49,7 +49,7 @@ const AdmissionReq = () => {
                   </span>
                                     <span onClick={()=>{history.push(`/Admin/${value.data().data.entranceExamRollNo}`)}}
 
-                                        className="px-3 py-1 bg-gray-600 text-gray-100 text-sm font-bold rounded hover:bg-gray-500"
+                                        className="px-3 py-1 bg-gray-600 text-gray-100 text-sm font-bold rounded hover:bg-gray-500 cursor-pointer"
                                     >
                                         Verify
                                     </span>

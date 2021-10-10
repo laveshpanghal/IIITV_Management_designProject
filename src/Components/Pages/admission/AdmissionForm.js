@@ -12,7 +12,7 @@ const AdmissionForms = () => {
     const{rollNo}= useApp();
     const history = useHistory()
     const firestoreDb = firebase.firestore()
-    const[documents, setDocument]=useState([])
+    const[documents, setDocument]=useState({})
 
     const [data, setData] = useState(
         {
