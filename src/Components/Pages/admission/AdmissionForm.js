@@ -81,6 +81,7 @@ firestoreDb.collection("AdmissionForms2021").doc(rollNo).set({data,documents,"st
                     <input
                         type="date"
                         required
+                        min="1995-01-01" max="2006-12-31"
                         placeholder="select Date of birth"
                         name="dob"
                         onChange={(e) => onChange(e)}
@@ -124,25 +125,27 @@ firestoreDb.collection("AdmissionForms2021").doc(rollNo).set({data,documents,"st
                            onChange={onChange}/>
                     <label htmlFor="fphone"><b>Father's Mobile</b></label>
                     <br/>
-                    <input type="tel" id="fphone" name="fathersMobileNo" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
+                    <input type="tel" size='10' placeholder="Enter mobile no without country code" id="fphone" name="fathersMobileNo" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
                            onChange={onChange}/>
                     <br/>
                     <label htmlFor="mphone"><b>Mother's Mobile</b></label>
                     <br/>
-                    <input type="tel" id="mphone" name="mothersMobileNo" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
+                    <input type="tel" id="mphone" size='10' name="mothersMobileNo" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
                            onChange={onChange}/>
                     <br/>
                     <label htmlFor="phone"><b>Mobile(self)</b></label>
                     <br/>
-                    <input type="tel" id="phone" name="personalMobileNo" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
+                    <input type="tel" id="phone" name="personalMobileNo" size='10' pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
                            onChange={onChange}/> <br/><br/>
-                    <label htmlFor="email"><b>Email</b></label>
+                    <label htmlFor="email"  type="email"
+                           pattern=".+@globex\.com" required><b>Email</b></label>
                     <input type="text" placeholder="Enter Email" name="emailAddress" required onChange={onChange}/>
                     <label htmlFor="passYear"><b>Passing year </b></label>
                     <br/>
                     <input
                         type="date"
                         required
+                        min="2021-01-01" max="2021-12-31"
                         placeholder="select Date of birth"
                         name="yearOfPassingJEE"
                         onChange={(e) => onChange(e)}
@@ -165,6 +168,7 @@ firestoreDb.collection("AdmissionForms2021").doc(rollNo).set({data,documents,"st
                     <input
                         type="date"
                         required
+                        min="2017-01-01" max="2019-12-31"
                         placeholder="select Date of birth"
                         name="yearOfPassing10"
                         onChange={(e) => onChange(e)}/>
@@ -174,6 +178,7 @@ firestoreDb.collection("AdmissionForms2021").doc(rollNo).set({data,documents,"st
                     <input
                         type="date"
                         required
+                        min="2019-01-01" max="2021-12-31"
                         placeholder="select Date of birth"
                         name="yearOfPassing12"
                         onChange={(e) => onChange(e)}
