@@ -114,9 +114,12 @@ const VerifyDoc = ({}) => {
 
             { events && events.length ? (
                 <div className="mx-auto">
-                    <span onClick={()=>{history.push(`/Admin/VerifyDoc/${id}/docs/verify`)}}>
-                        view all
-                    </span>
+                    <div className="text-center justify-around pb-5">
+                        <h2>View all documents at once</h2>
+                        <button onClick={()=>{history.push(`/Admin/VerifyDoc/${id}/docs/verify`)}}
+                                className="p-2 pl-5 pr-5 w-48 transition-colors duration-700 transform bg-indigo-500 hover:bg-blue-400 text-gray-100 text-lg rounded-lg focus:border-4 border-indigo-300">view All
+                        </button>
+                    </div>
                     {events.map((value, key) => {
                         return (
                             <div className="flex flex-col">
