@@ -18,6 +18,8 @@ import AdmissionFees from "./Components/Pages/admission/AdmissionFees";
 import AdminDashboard from "./Components/Pages/admin/AdminDashboard";
 import GetStudent from "./Components/Pages/admin/GetStudent";
 import VerifyDoc from "./Components/Pages/admin/VerifyDoc";
+import AdminSignup from "./Components/Pages/admin/AdminSignup";
+import AdminLogin from "./Components/Pages/admin/AdminLogin";
 
 
 
@@ -34,6 +36,7 @@ function App() {
       <Route path="/SignUp" exact component={SignUp}/>
       <Route  path='/Admin/VerifyDoc/:id' exact component={VerifyDoc} />
       <Route  path='/Admin/:id' exact component={GetStudent} />
+      <Route path="/AdminSignup" exact component={AdminSignup}/>
 
 
     <Switch>
@@ -42,7 +45,7 @@ function App() {
       <Route path='/Students' component={Students} />
       <Route path='/Faculty' component={Faculty} />
       <Route path='/Fees' component={Fees} />
-      <Route path='/Admin' component={Admin} />
+      <Route path='/AdminLogin' component={AdminLogin} />
       <Route path='/Login'  component={Login} />
     </Switch>
   </Router>
