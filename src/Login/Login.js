@@ -71,7 +71,7 @@ const Login = () => {
     <div className="col-sm-10 offset-sm-1 text-center">
 
         <div action="./" className="sign-in-form align-center">
-          <img src="https://firebasestorage.googleapis.com/v0/b/iiitv-198b6.appspot.com/o/ContentImages%2FIIITV_Logo.jpg?alt=media&token=fbcc68ab-82f5-498f-a669-0f6bd0227809" style={{height: '120px', width: '110px',margin:'80px'}} alt="" />
+          <img className="mx-auto" src="https://firebasestorage.googleapis.com/v0/b/iiitv-198b6.appspot.com/o/ContentImages%2FIIITV_Logo.jpg?alt=media&token=fbcc68ab-82f5-498f-a669-0f6bd0227809" style={{height: '120px', width: '110px',margin:'80px'}} alt="" />
           <h2 className="title">IIIT Vadodara Sign in</h2>
           <div className="input-field">
             <i className="fas fa-user" />

@@ -60,7 +60,7 @@ return (
 		<NavLink to='/Faculty' >
 			Faculty
 		</NavLink>
-		<NavLink to='/Admin' >
+		<NavLink to='/AdminLogin' >
 			Admin
 		</NavLink>
 		<NavLink to='/Fees' >
