@@ -151,7 +151,7 @@ const AdmissionDocumentUpload = () => {
                     <label htmlFor="docBtechMarksheet"><b>B.Tech Marksheet</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docBtechMarksheet"
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docBtechMarksheet"
                                onChange={onDocsChange}/>
                     </div>
                     <br/>
@@ -159,7 +159,7 @@ const AdmissionDocumentUpload = () => {
                     <label htmlFor="docDegreeCertificate"><b>B.Tech Degree Certificate</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docDegreeCertificate"
+                        <input type="file" className="custom-file-input"accept='application/pdf' id="docDegreeCertificate"
                                onChange={onDocsChange}/>
                     </div>
                     <br/>
@@ -167,7 +167,7 @@ const AdmissionDocumentUpload = () => {
                     <label htmlFor="docGateScorecard"><b>GATE Scorecard</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docGateScorecard" onChange={onDocsChange}/>
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docGateScorecard" onChange={onDocsChange}/>
                     </div>
                          <br/>
                         </span>
@@ -176,88 +176,88 @@ const AdmissionDocumentUpload = () => {
                     <label htmlFor="doc10Marksheet"><b>10th Marksheet</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="doc10Marksheet" onChange={onDocsChange}
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="doc10Marksheet" onChange={onDocsChange}
                                ref={fileInput}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="doc12Marksheet"><b>12th Marksheet</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="doc12Marksheet" onChange={onDocsChange}/>
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="doc12Marksheet" onChange={onDocsChange}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="docEntranceExamAdmitCard"><b>Entrance Exam Admit card</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docEntranceExamAdmitCard"
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docEntranceExamAdmitCard"
                                onChange={onDocsChange}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="docEntranceResult"><b>Entrance Exam Result pdf</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docEntranceResult"
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docEntranceResult"
                                onChange={onDocsChange}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="docAadhaarCard"><b>Aadhaar card</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docAadhaarCard" onChange={onDocsChange}/>
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docAadhaarCard" onChange={onDocsChange}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="docAntiRaggingCertificate"><b>Anti Ragging Certificate</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docAntiRaggingCertificate"
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docAntiRaggingCertificate"
                                onChange={onDocsChange}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="docTransferCertificate"><b>Transfer Certificate</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docTransferCertificate"
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docTransferCertificate"
                                onChange={onDocsChange}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="docDomicileCertificate"><b>Domicile Certificate</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docDomicileCertificate"
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docDomicileCertificate"
                                onChange={onDocsChange}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="docIncomeCertificate"><b>Income Certificate</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docIncomeCertificate"
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docIncomeCertificate"
                                onChange={onDocsChange}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="docCasteCertificate"><b>Caste Certificate</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docCasteCertificate"
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docCasteCertificate"
                                onChange={onDocsChange}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="docPassportSizeImage"><b>Passport Size Image</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docPassportSizeImage"
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docPassportSizeImage"
                                onChange={onDocsChange}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="docSelfSignature"><b>Self Signature</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docSelfSignature" onChange={onDocsChange}/>
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docSelfSignature" onChange={onDocsChange}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="docFathersSignature"><b>Father's Signature</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" id="docFathersSignature"
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docFathersSignature"
                                onChange={onDocsChange}/>
                     </div>
 
