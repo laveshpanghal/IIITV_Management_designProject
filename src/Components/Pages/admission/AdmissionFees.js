@@ -40,7 +40,8 @@ const AdmissionFees = () => {
             paymentType: "dd",
             dop: "",
             amount: "Male",
-            paymentId: ""
+            paymentId: "",
+            verified: false
 
 
         }

@@ -69,6 +69,13 @@ const VerifyDoc = ({}) => {
 
     return (
         <div className="h-full w-full">
+            <div className="px-4 py-4 sm:px-6 d-flex justify-content-between ">
+                <h3 className="text-lg leading-6 font-medium text-gray-900">
+                    Go to Documents page for action(Verify/Reject)
+                </h3>
+                <span className='btn btn-secondary w-20 '  onClick={(e)=>{history.push(`/Admin/VerifyDoc/${id}`)}}>Back</span>
+            </div>
+
         {events ? (
 
                 <div className="container mx-auto sm:mt-20 w-full h-full">

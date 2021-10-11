@@ -119,6 +119,12 @@ const VerifyDoc = ({}) => {
                         <button onClick={()=>{history.push(`/Admin/VerifyDoc/${id}/docs/verify`)}}
                                 className="p-2 pl-5 pr-5 w-48 transition-colors duration-700 transform bg-indigo-500 hover:bg-blue-400 text-gray-100 text-lg rounded-lg focus:border-4 border-indigo-300">view All
                         </button>
+                        <div className="px-4 py-4 sm:px-6 d-flex justify-content-between ">
+                            <h3 className="text-lg leading-6 font-medium text-gray-900">
+                               Document Verification
+                            </h3>
+                            <span className='btn btn-secondary w-20 '  onClick={(e)=>{history.push(`/Admin/VerifyFees/${id}`)}}>next</span>
+                        </div>
                     </div>
                     {events.map((value, key) => {
                         return (

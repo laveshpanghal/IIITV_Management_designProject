@@ -15,6 +15,9 @@ const Alldocs = ({}) => {
         events.map((value,key)=>{
             firestoreDb.collection("AdmissionForms2021").doc(id).collection("Documents").doc(value.data().documentName).update({
                 "verified":true
+            }).then(()=>{
+                history.push(`/Admin/VerifyFees/${id}`)
+
             })
 
         })
@@ -29,24 +32,6 @@ const Alldocs = ({}) => {
 
 
 
-
-// const handleVerify = ()=>{
-//
-//
-//     const convertArrayToObject = (array, key) =>
-//         array.reduce(
-//             (obj, item) => ({
-//                 ...obj,
-//                 [item[key]]: item
-//             }),
-//             {}
-//         );
-//
-//     const document = convertArrayToObject(temp,temp.documentName)
-//
-//     firestoreDb.collection("AdmissionForms2021").doc(id).update({document
-//     }).then()
-// }
 
 
 
@@ -74,54 +59,6 @@ const Alldocs = ({}) => {
     }, []);
 
 
-
-    // const handelVerify = (value)=>{
-    //
-    //     if(value.data().verified===false){
-    //         firestoreDb.collection("AdmissionForms2021").doc(id).collection("Documents").doc(value.data().documentName).update({
-    //             "verified":true
-    //
-    //         }).then(
-    //             (res)=>{
-    //                 window.location.reload()
-    //                 setTemp(false)
-    //
-    //                 console.log(res)
-    //
-    //             }
-    //         )
-    //
-    //
-    //
-    //     }
-    //
-    //     else{
-    //         firestoreDb.collection("AdmissionForms2021").doc(id).collection("Documents").doc(value.data().documentName).update({
-    //             "verified":false
-    //
-    //         }).then(
-    //             (res)=>{
-    //                 window.location.reload()
-    //
-    //                 console.log(res)
-    //
-    //             }
-    //         )
-    //
-    //     }
-    //
-    //
-    //
-    //
-    //
-    // }
-
-
-// if(temp!==null){
-//
-//     handleVerify()
-//
-// }
 
 
 

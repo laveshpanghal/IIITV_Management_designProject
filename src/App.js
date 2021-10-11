@@ -21,10 +21,11 @@ import VerifyDoc from "./Components/Pages/admin/VerifyDoc";
 
 import GetDoc from "./Components/Pages/admin/GetDoc";
 import Alldocs from "./Components/Pages/admin/Alldocs";
-
+import FeesVerify from "./Components/Pages/admin/FeesVerify";
 import AdminSignup from "./Components/Pages/admin/AdminSignup";
 import AdminLogin from "./Components/Pages/admin/AdminLogin";
-
+import FinalAdmissionStatus from "./Components/Pages/admin/FinalAdmissionStatus";
+import EnrollStatus from "./Components/Pages/admin/EnrollStatus";
 
 
 
@@ -43,11 +44,12 @@ function App() {
       <Route path='/Admin/VerifyDoc/:id' exact component={VerifyDoc} />
       <Route path='/Admin/VerifyDoc/:id/docs/verify' exact component={Alldocs} />
       <Route path='/Admin/VerifyDoc/:id/:docName' exact component={GetDoc} />
+      <Route path='/Admin/VerifyFees/:id' exact component={FeesVerify} />
+      <Route path='/Admin/FinalVerification/:id' exact component={FinalAdmissionStatus} />
+      <Route path='/Admin/EnrollStatus/:id' exact component={EnrollStatus} />
       <Route path='/Admin/:id' exact component={GetStudent} />
-
-      <Route  path='/Admin/VerifyDoc/:id' exact component={VerifyDoc} />
-      <Route  path='/Admin/:id' exact component={GetStudent} />
       <Route path="/AdminSignup" exact component={AdminSignup}/>
+
 
 
     <Switch>
