@@ -41,7 +41,7 @@ const FinalAdmissionStatus = ({}) => {
 
     const handleVerify = ()=>{
         firestoreDb.collection("AdmissionForms2021").doc(id).update({
-            "status":"Accepted"
+            "status":"accepted"
 
         }).then(
             (res)=>{
@@ -52,7 +52,7 @@ const FinalAdmissionStatus = ({}) => {
 
     const handleReject = ()=>{
         firestoreDb.collection("AdmissionForms2021").doc(id).update({
-            "status":"Rejected"
+            "status":"rejected"
 
         }).then(
             (res)=>{
