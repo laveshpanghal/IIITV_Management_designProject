@@ -17,7 +17,7 @@ const EnrollStatus = ({}) => {
 
         firestoreDb.collection("AdmissionForms2021").doc(id).get().then((res) => {
             setEvents(res.data());
-            if(res.data().status==="verified"){
+            if(res.data().status==="accepted"){
 
                 setTemp(true)
 

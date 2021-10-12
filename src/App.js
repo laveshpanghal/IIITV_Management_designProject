@@ -26,6 +26,7 @@ import AdminSignup from "./Components/Pages/admin/AdminSignup";
 import AdminLogin from "./Components/Pages/admin/AdminLogin";
 import FinalAdmissionStatus from "./Components/Pages/admin/FinalAdmissionStatus";
 import EnrollStatus from "./Components/Pages/admin/EnrollStatus";
+import StudentAdmissionDashboard from "./Components/Pages/admission/StudentAdmissionDashboard";
 
 
 
@@ -37,6 +38,7 @@ function App() {
     <NavbarCustom />
       <Route path ="/Admin" exact component={AdminDashboard}/>
       <Route path ="/AdmissionForm" exact component={AdmissionForms}/>
+      <Route path ="/StudentAdmissionDashboard" exact component={StudentAdmissionDashboard}/>
       <Route path ="/AdmissionFees" exact component={AdmissionFees}/>
       <Route path ="/AdmissionDocumentUpload" exact component={AdmissionDocumentUpload}/>
       <Route path="/SignUp" exact component={SignUp}/>

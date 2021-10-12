@@ -31,7 +31,7 @@ const Admission = () => {
                     if(snapshot.val()==="verified")
                     {
                         setRollNo(applicantEnrollmentNo)
-                        history.push("/AdmissionForm")
+                        history.push("/StudentAdmissionDashboard")
 
                     }
 

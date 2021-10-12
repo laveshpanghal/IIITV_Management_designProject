@@ -21,7 +21,7 @@ const FinalAdmissionStatus = ({}) => {
 
             firestoreDb.collection("AdmissionForms2021").doc(id).collection("Documents").where("verified","==",true).get().then(
                 (res)=>{
-                    if(res.docs.length===12){
+                    if(res.docs.length===13){
 
                         setTemp('Verified')
 
@@ -40,6 +40,7 @@ const FinalAdmissionStatus = ({}) => {
     }
 
     const handleVerify = ()=>{
+        console.log(id)
         firestoreDb.collection("AdmissionForms2021").doc(id).update({
             "status":"accepted"
 
