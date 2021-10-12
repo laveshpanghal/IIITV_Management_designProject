@@ -47,13 +47,76 @@ const AdmissionForms = () => {
     }
 
 
-
     const handleAdmissionFormSubmit = (e) => {
 
         e.preventDefault()
         console.log(data)
 
-firestoreDb.collection("AdmissionForms2021").doc(rollNo).set({data,documents,"status":"pending","Course":""}).then(()=>{
+
+        if (data.name === ""){
+            alert("Name field is empty.")
+            return;
+        }
+        if (data.dob === ""){
+            alert("Date of birth field is empty.")
+            return;
+        }
+        if (data.parmanentAddress === ""){
+            alert("Address field is empty.")
+            return;
+        }
+        if (data.adharCardNo === ""){
+            alert("Aadhar No field is empty.")
+            return;
+        }
+        if (data.fathersName === ""){
+            alert("Father's name field is empty.")
+            return;
+        }
+        if (data.mothersName === ""){
+            alert("Mother's name field is empty.")
+            return;
+        }
+        if (data.fathersMobileNo === ""){
+            alert("Father's mobile no field is empty.")
+            return;
+        }
+        if (data.mothersMobileNo === ""){
+            alert("Mother's mobile no field is empty.")
+            return;
+        }
+        if (data.personalMobileNo === ""){
+            alert("Personal mobile no field is empty.")
+            return;
+        }
+        if (data.emailAddress === ""){
+            alert("Email field is empty.")
+            return;
+        }
+
+        if (data.yearOfPassing10 === ""){
+            alert("Year of passing 10 field is empty.")
+            return;
+        }
+        if (data.yearOfPassing12 === ""){
+            alert("Year of passing 12 field is empty.")
+            return;
+        }
+        if (data.fathersOccupation === ""){
+            alert("Father's occupation field is empty.")
+            return;
+        }
+        if (data.mothersOccupation === ""){
+            alert("Mother's occupation field is empty.")
+            return;
+        }
+        if (data.yearOfPassingJEE === ""){
+            alert("Year of passing JEE field is empty.")
+            return;
+        }
+
+
+        firestoreDb.collection("AdmissionForms2021").doc(rollNo).set({data,documents,"status":"pending","Course":""}).then(()=>{
         history.push('/AdmissionDocumentUpload')
 
     })
@@ -112,7 +175,7 @@ firestoreDb.collection("AdmissionForms2021").doc(rollNo).set({data,documents,"st
                     <br/>
                     <label htmlFor="aadhar"><b>Aadhar Number</b></label>
                     <br/>
-                    <input type="number" placeholder="Enter Aadhar Number" name="adharCardNo" required
+                    <input type="number" size="12" placeholder="Enter Aadhar Number" name="adharCardNo" required
                            onChange={onChange}/>
                     <br/><br/>
                     <label htmlFor="fname"><b>Father Name</b></label>

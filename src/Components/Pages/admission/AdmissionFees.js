@@ -14,9 +14,11 @@ const AdmissionFees = () => {
     const{degree}=useApp();
     const RealDb = ref(getDatabase())
     const history = useHistory()
-
-
-
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+    const currentDate = yyyy+ '-' +mm+ '-' +dd;
 
 
     const handleback = (history) => {
@@ -56,6 +58,16 @@ const AdmissionFees = () => {
     }
     const handleFeesSubmit=(e)=>{
             e.preventDefault()
+
+        if (feesData.dop === ""){
+            alert("Date of payment field is empty.")
+            return;
+        }
+        if (feesData.paymentId === ""){
+            alert("Payment Id field is empty.")
+            return;
+        }
+
 
         firestoreDb.collection("AdmissionForms2021").doc(rollNo).update({feesData, Course:degree
         })
@@ -101,6 +113,7 @@ const AdmissionFees = () => {
                     <input
                         type="date"
                         required
+                        min="2021-06-01" max={currentDate}
                         placeholder="select Date of payment"
                         name="dop"
                         onChange={(e) => onChange(e)}

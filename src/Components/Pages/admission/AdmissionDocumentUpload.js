@@ -56,6 +56,12 @@ const AdmissionDocumentUpload = () => {
         e.persist();
         removeDocObj(e.target.id)
 
+        if (fileInput.current.files[0].size > 500*1024){
+            alert("Pdf size must be less than 500KB and Image size must be less than 50KB.");
+            e.target.value = null;
+            return;
+        }
+
         initialdocs.push(
             {
                 "name": e.target.id,
@@ -71,6 +77,11 @@ const AdmissionDocumentUpload = () => {
 
 
     const handleUploadDocsButton = async (e) => {
+
+        if (initialdocs.length !== 13){
+            alert("Some of the files were missing.")
+            return;
+        }
 
         e.preventDefault()
         await initialdocs.forEach((doc) => {
@@ -135,8 +146,11 @@ const AdmissionDocumentUpload = () => {
                 <div className="container d-flex-vertical">
                     <br/>
                     <br/>
-                    <h2>Admission document upload</h2>
+                    <h1>Admission document upload</h1>
+                    <br/>
+                    <p className="text-info">Files to be uploaded are in .pdf format with size less than 500KB and images should be in .png or .jpg or .jpeg format with size less than 50KB.</p>
                     <br/><br/>
+
                     <label htmlFor="degreeSelect"><b>Please select any one of provided </b></label>
                     <br/>
                     <select name="degreeSelect" id="degreeSelect" required  onChange={ onDegreeSelectChange}>
