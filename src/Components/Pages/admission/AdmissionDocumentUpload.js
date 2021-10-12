@@ -62,6 +62,13 @@ const AdmissionDocumentUpload = () => {
             return;
         }
 
+        //console.log(fileInput.current.files[0].name)
+        if (fileInput.current.files[0].name.split('.').pop() !== 'pdf' && fileInput.current.files[0].name.split('.').pop() !== 'PDF' && fileInput.current.files[0].name.split('.').pop() !== 'jpg' && fileInput.current.files[0].name.split('.').pop() !== 'JPG' && fileInput.current.files[0].name.split('.').pop() !== 'jpeg' && fileInput.current.files[0].name.split('.').pop() !== 'JPEG' && fileInput.current.files[0].name.split('.').pop() !== 'png' && fileInput.current.files[0].name.split('.').pop() !== 'PNG'){
+            alert("File format must be pdf or png or jpg or jpeg");
+            e.target.value = null;
+            return;
+        }
+
         initialdocs.push(
             {
                 "name": e.target.id,
@@ -78,7 +85,7 @@ const AdmissionDocumentUpload = () => {
 
     const handleUploadDocsButton = async (e) => {
 
-        if (initialdocs.length !== 13){
+        if (initialdocs.length !== 14 || initialdocs.length !== 16){
             alert("Some of the files were missing.")
             return;
         }
