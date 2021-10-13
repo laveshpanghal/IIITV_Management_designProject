@@ -21,8 +21,8 @@ const AdmissionFees = () => {
     const currentDate = yyyy+ '-' +mm+ '-' +dd;
 
 
-    const handleback = (history) => {
-        history("/AdmissionForm")
+    const handleback = () => {
+        history.push("/AdmissionForm")
     }
 
     const [payOnline, setPayOnline] = useState(false);
