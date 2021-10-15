@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "../Styles/AdmissionForm.css"
 import realDb from "../../../index";
 import {set, ref as RefDb} from "firebase/database";
@@ -24,19 +24,15 @@ const AdmissionDocumentUpload = () => {
     const{degree}=useApp();
     const{setDegree}=useApp();
     const [extraFields, setExtraField] = useState(false);
-    const onDegreeSelectChange = (e) => {
+    useEffect(()=>{
 
-        setDegree(e.target.value);
-        console.log(degree);
-
-        if (e.target.value === "B.Tech") {
+        if (degree === "B.Tech") {
             setExtraField(false)
         } else {
             setExtraField(true)
         }
 
-
-    }
+    },[])
     const initialdocs = []
 
     function removeDocObj(id) {
@@ -85,9 +81,23 @@ const AdmissionDocumentUpload = () => {
 
     const handleUploadDocsButton = async (e) => {
 
-        if (initialdocs.length !== 14 || initialdocs.length !== 16){
-            alert("Some of the files were missing.")
-            return;
+        if(degree==="B.Tech"){
+            if (initialdocs.length !== 13 ){
+                {
+                    console.log(initialdocs.length)}
+                alert("Some of the files were missing.")
+                return;
+            }
+        }
+
+        if(degree==="M.Tech"){
+
+            if (initialdocs.length !== 16 ){
+                {
+                    console.log(initialdocs.length)}
+                alert("Some of the files were missing.")
+                return;
+            }
         }
 
         e.preventDefault()
@@ -160,10 +170,10 @@ const AdmissionDocumentUpload = () => {
 
                     <label htmlFor="degreeSelect"><b>Please select any one of provided </b></label>
                     <br/>
-                    <select name="degreeSelect" id="degreeSelect" required  onChange={ onDegreeSelectChange}>
-                        <option value="B.Tech" selected>B.Tech</option>
-                        <option value="M.tech">M.Tech</option>
-                    </select><br/><br/>
+                    <label htmlFor="degreeSelect"><b>Upload Documents for </b></label>
+                    <input type="text" placeholder={degree} value={degree} disabled name="degreeSelect" required
+                    />
+                    <br/><br/>
                     <h2>Admission document upload</h2>
                     <p>Please upload the correct document which is uploaded during counselling and JEE
                         application.</p>

@@ -19,7 +19,7 @@ const SignUp = () => {
         const auth = getAuth();
 
 
-        if (userName != null && userEmail != null && userPass != null && userConfPass != null && userPass === userPass) {
+        if (userName != null && userEmail != null && userPass != null && userConfPass != null && userPass === userConfPass) {
 
             createUserWithEmailAndPassword(auth, userEmail, userPass).then((userCredential) => {
 

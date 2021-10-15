@@ -11,9 +11,13 @@ import firebase from "firebase/compat";
 const AdmissionForms = () => {
     const{rollNo}= useApp();
     const history = useHistory()
+    const{degree}=useApp();
+    const{setDegree}=useApp();
     const firestoreDb = firebase.firestore()
     const[documents, setDocument]=useState({})
-
+    const[Course ,setCourse] = useState({
+        Course:'B.Tech'
+    })
     const [data, setData] = useState(
         {
             name: "",
@@ -44,6 +48,17 @@ const AdmissionForms = () => {
             ...data,
             [e.target.name]: e.target.value,
         }));
+    }
+    function onDegreeSelectChange(e) {
+        e.persist();
+        setCourse(
+            {
+                [e.target.name]: e.target.value,
+            }
+        )
+        console.log(degree)
+        setDegree(e.target.value)
+
     }
 
 
@@ -116,7 +131,7 @@ const AdmissionForms = () => {
         }
 
 
-        firestoreDb.collection("AdmissionForms2021").doc(rollNo).set({data,documents,"status":"pending","Course":""}).then(()=>{
+        firestoreDb.collection("AdmissionForms2021").doc(rollNo).set({data,"status":"pending",...Course}).then(()=>{
         history.push('/AdmissionDocumentUpload')
 
     })
@@ -219,6 +234,12 @@ const AdmissionForms = () => {
 
                           />
                     <br/>
+                    <label htmlFor="degreeSelect"><b>Please select any one of provided </b></label>
+                    <br/>
+                    <select name="Course" id="degreeSelect" required  onChange={(e)=>{ onDegreeSelectChange(e)}}>
+                        <option value="B.Tech" selected>B.Tech</option>
+                        <option value="M.Tech">M.Tech</option>
+                    </select><br/><br/>
                     <label htmlFor="branch"><b>Branch</b></label>
                     <br/>
                     <select name="branch" id="branch" required onChange={(e) => onChange(e)}>
