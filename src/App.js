@@ -27,6 +27,7 @@ import AdminLogin from "./Components/Pages/admin/AdminLogin";
 import FinalAdmissionStatus from "./Components/Pages/admin/FinalAdmissionStatus";
 import EnrollStatus from "./Components/Pages/admin/EnrollStatus";
 import StudentAdmissionDashboard from "./Components/Pages/admission/StudentAdmissionDashboard";
+import StudentAdmissionChanges from "./Components/Pages/admission/StudentAdmissionChanges";
 
 
 
@@ -39,6 +40,7 @@ function App() {
       <Route path ="/Admin" exact component={AdminDashboard}/>
       <Route path ="/AdmissionForm" exact component={AdmissionForms}/>
       <Route path ="/StudentAdmissionDashboard" exact component={StudentAdmissionDashboard}/>
+      <Route exact path ="/StudentAdmissionDashboard/makeChanges" exact component={StudentAdmissionChanges}/>
       <Route path ="/AdmissionFees" exact component={AdmissionFees}/>
       <Route path ="/AdmissionDocumentUpload" exact component={AdmissionDocumentUpload}/>
       <Route path="/SignUp" exact component={SignUp}/>

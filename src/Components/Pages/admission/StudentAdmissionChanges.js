@@ -5,7 +5,7 @@ import firebase from "firebase/compat";
 import {useParams, useHistory, useLocation} from "react-router-dom";
 import {useApp} from "../../../Context/AppContext";
 
-const StudentAdmissionDashboard = ({}) => {
+const StudentAdmissionChanges= ({}) => {
 
     const [events, setEvents] = useState(null);
     const [temp, setTemp] = useState('uploaded for verification ');
@@ -54,7 +54,13 @@ const StudentAdmissionDashboard = ({}) => {
 
     }
 
+    const handleChangeUploads = ()=>
 
+    {
+
+        history.push('/StudentAdmissionDashboard/makeChanges')
+        console.log('ok')
+    }
 
 
 
@@ -66,7 +72,6 @@ const StudentAdmissionDashboard = ({}) => {
 
 
     return (<div>
-
 
             {events ? (
                     <div>
@@ -80,58 +85,6 @@ const StudentAdmissionDashboard = ({}) => {
                             </p>
                         </div>
                         <div className="container flex  flex-row ... mx-auto w-full items-center justify-center mt-12">
-                            <div className="bg-purple-200 max-w-2xl shadow overflow-hidden sm:rounded-lg  mt-0  ">
-
-
-                                <div className="border-t border-gray-200">
-                                    <dl>
-                                        <div className="bg-purple-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt className="text-sm font-medium text-gray-500">
-                                                Roll No :
-                                            </dt>
-                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {rollNo==='404'? ('please verify your roll No '):(rollNo)}
-                                            </dd>
-                                        </div>
-                                        <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt className="text-sm font-medium text-gray-500">
-                                                Degree :
-                                            </dt>
-                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {events.Course? events.Course : "Fill Admission Form"}
-                                            </dd>
-                                        </div>
-                                        <div className="bg-purple-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt className="text-sm font-medium text-gray-500">
-                                                Document Status :
-                                            </dt>
-                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {temp1 ==='uploaded' ? ( temp)
-                                                    : (temp1)
-                                                }
-                                            </dd>
-                                        </div>
-                                        <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt className="text-sm font-medium text-gray-500">
-                                                Fees Status :
-                                            </dt>
-                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                { events.feesData ? ( events.feesData.verified ? "Verified" : "details uploaded for verification")
-                                                    : ("Not-filled")
-                                                }
-                                            </dd>
-                                        </div>
-                                        <div className="bg-purple-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt className="text-sm font-medium text-gray-500">
-                                                Enrollment Status :
-                                            </dt>
-                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {events.status}
-                                            </dd>
-                                        </div>
-                                    </dl>
-                                </div>
-                            </div>
 
 
                             <ul className="flex flex-col ml-12">
@@ -150,11 +103,14 @@ const StudentAdmissionDashboard = ({}) => {
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                            Deadline Time
+                                            Make Changes
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
 
-                                            events.data?(alert('form already submitted')):(history.push('/AdmissionForm'))
+                                           alert('Previous Form data will be deleted')
+                                            history.push('/AdmissionForm')
+
+
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
@@ -182,11 +138,12 @@ const StudentAdmissionDashboard = ({}) => {
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                            Deadline Time
+                                            Make Changes
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
 
-                                            temp1==='uploaded'?(alert('Documents already uploaded')):(history.push('/AdmissionDocumentUpload'))
+                                           alert('uploaded documents will be lost')
+                                            history.push('/AdmissionDocumentUpload')
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
@@ -216,11 +173,13 @@ const StudentAdmissionDashboard = ({}) => {
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                            Deadline Time
+                                            Make Changes
                                         </div>
                                         <span className="w-24 text-right flex justify-end" onClick={() => {
 
-                                            events.feesData?(alert('Details already uploaded')):(history.push('/AdmissionFees'))
+                                           alert('Details uploaded will be lost')
+
+                                            history.push('/AdmissionFees')
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
@@ -241,17 +200,17 @@ const StudentAdmissionDashboard = ({}) => {
                                         </div>
                                         <div className="flex-1 pl-1 md:mr-16">
                                             <div className="font-medium dark:text-white">
-                                                Make Changes
+                                               Go to Admission Dashboard
                                             </div>
                                             <div className="text-gray-600 dark:text-gray-200 text-sm">
-                                                change uploaded documents or details
+                                                Go back to your dashboard
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
                                             until permitted
                                         </div>
                                         <span className="w-24 text-right flex justify-end" onClick={()=>(
-                                            history.push('/StudentAdmissionDashboard/makeChanges')
+                                           history.push('/StudentAdmissionDashboard')
                                         )}>
                                 <svg width="12" fill="currentColor" height="12"
                                      className="hover:text-gray-800 dark:hover:text-white dark:text-gray-200 text-gray-500"
@@ -284,7 +243,7 @@ const StudentAdmissionDashboard = ({}) => {
     );
 };
 
-export default StudentAdmissionDashboard;
+export default StudentAdmissionChanges;
 
 
 
