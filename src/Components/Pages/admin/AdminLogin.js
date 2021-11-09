@@ -9,6 +9,12 @@ import {useApp} from "../../../Context/AppContext";
 const AdminLogin = () => {
     const{SetHiddenCheck}= useApp();
     const RealDb = ref(getDatabase())
+
+    const{adminUrl}= useApp();
+    const{admissionURL}= useApp();
+    const{SetAdminUrl}= useApp();
+    const{SetAdmissionURL}= useApp();
+
     const history = useHistory()
     function login() {
 
@@ -63,6 +69,7 @@ const AdminLogin = () => {
 
                     history.push("/Admin")
                     SetHiddenCheck(false)
+                    SetAdminUrl('/Admin')
 
                 }else {
                     alert("You are not admin")

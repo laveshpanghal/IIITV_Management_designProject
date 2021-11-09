@@ -14,6 +14,11 @@ import {useApp} from "../Context/AppContext";
 const Login = () => {
     const{SetHiddenCheck}= useApp();
     const history = useHistory()
+    const{adminUrl}= useApp();
+    const{admissionURL}= useApp();
+    const{SetAdminUrl}= useApp();
+    const{SetAdmissionURL}= useApp();
+
     function login() {
 
 
@@ -34,6 +39,7 @@ const Login = () => {
 
                     history.push('/Admission');
                     SetHiddenCheck(false)
+                    SetAdmissionURL('/Admission')
 
                 // ReactDOM.render(
                 //     <React.StrictMode>

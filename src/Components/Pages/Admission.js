@@ -40,7 +40,7 @@ const Admission = () => {
                             }
                             else{
                                 firestoreDb.collection("AdmissionForms2021").doc(`${applicantEnrollmentNo}`).set({
-                                    "status":"pending"
+                                    "status":"Not-filled"
 
                                 }).then(
                                     ()=>{

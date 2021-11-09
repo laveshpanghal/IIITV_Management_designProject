@@ -20,21 +20,24 @@ const NavbarCustom = () => {
     const auth = getAuth();
     const{hiddenCheck}= useApp();
     const{SetHiddenCheck}= useApp();
+    const{adminUrl}= useApp();
+    const{admissionURL}= useApp();
+    const{SetAdminUrl}= useApp();
+    const{SetAdmissionURL}= useApp();
 
-    const [adminURL,SetAdminURL] = useState('/Admin')
+
+
 
 
     useEffect(()=>{
+        console.log(auth)
         if(auth.currentUser===null){
             SetHiddenCheck(true)
-            SetAdminURL('/AdminLogin')
         }
     },[auth])
 
 
 
-const adminUrl = (auth.currentUser === null ? ('/AdminLogin'):("/admin"))
-    const admissionURL = (auth.currentUser === null ? ('/Login'):("/Admission"))
 
 
 
@@ -45,6 +48,9 @@ const adminUrl = (auth.currentUser === null ? ('/AdminLogin'):("/admin"))
         const auth = getAuth();
         signOut(auth).then(() => {
             console.log('logout')
+            SetAdminUrl('/adminLogin')
+            SetAdmissionURL('/Login')
+
 
         }).catch((error) => {
             alert(error)

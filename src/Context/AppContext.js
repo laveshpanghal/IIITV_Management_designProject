@@ -17,7 +17,8 @@ function AppProvider({children}) {
     const [rollNo, setRollNo] = useState("404");
     const [degree, setDegree] = useState("B.Tech")
     const [hiddenCheck,SetHiddenCheck] = useState(false)
-
+    const [adminUrl,SetAdminUrl] = useState("/adminLogin")
+    const [admissionURL,SetAdmissionURL] = useState("/Login")
 
 
     function renderToastError(text) {
@@ -58,7 +59,7 @@ function AppProvider({children}) {
     //           pauseOnHover
     //       />
 
-    const value = {rollNo,setRollNo,degree,hiddenCheck,SetHiddenCheck,setDegree,renderToast,renderToastError};
+    const value = {rollNo,setRollNo,degree,hiddenCheck,SetHiddenCheck,setDegree,renderToast,renderToastError,adminUrl,SetAdminUrl,admissionURL,SetAdmissionURL};
     return <AppContext.Provider value={value}>
         {children}
     </AppContext.Provider>;

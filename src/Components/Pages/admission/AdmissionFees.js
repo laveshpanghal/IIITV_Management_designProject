@@ -69,7 +69,7 @@ const AdmissionFees = () => {
         }
 
 
-        firestoreDb.collection("AdmissionForms2021").doc(rollNo).update({feesData, Course:degree
+        firestoreDb.collection("AdmissionForms2021").doc(rollNo).update({feesData, Course:degree,
         })
             // .then(()=>{
             //         set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/Course"),degree)
