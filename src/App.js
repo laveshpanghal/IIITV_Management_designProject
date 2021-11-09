@@ -28,6 +28,9 @@ import FinalAdmissionStatus from "./Components/Pages/admin/FinalAdmissionStatus"
 import EnrollStatus from "./Components/Pages/admin/EnrollStatus";
 import StudentAdmissionDashboard from "./Components/Pages/admission/StudentAdmissionDashboard";
 import StudentAdmissionChanges from "./Components/Pages/admission/StudentAdmissionChanges";
+import FacultyDash from "./Components/Pages/Faculty/FacultyDash";
+import FacultyLogin from "./Components/Pages/Faculty/FacultyLogin";
+import FacultySignUp from "./Components/Pages/Faculty/FacultySignUp";
 
 
 
@@ -53,14 +56,15 @@ function App() {
       <Route path='/Admin/EnrollStatus/:id' exact component={EnrollStatus} />
       <Route path='/Admin/:id' exact component={GetStudent} />
       <Route path="/AdminSignup" exact component={AdminSignup}/>
-
+      <Route path='/FacultyDash' exact component={FacultyDash} />
+      <Route path='/FacultySignUp' component={FacultySignUp} />
 
 
     <Switch>
       <Route path='/' exact component={Home} />
       <Route path='/Admission' component={Admission} />
       <Route path='/Students' component={Students} />
-      <Route path='/Faculty' component={Faculty} />
+      <Route path='/FacultyLogin' component={FacultyLogin} />
       <Route path='/Fees' component={Fees} />
       <Route path='/AdminLogin' component={AdminLogin} />
       <Route path='/Login'  component={Login} />

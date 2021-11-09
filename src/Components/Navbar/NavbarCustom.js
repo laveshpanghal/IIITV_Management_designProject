@@ -48,7 +48,7 @@ const NavbarCustom = () => {
                     <a className="navbar-brand" href="/">
                         <img
                             src="https://firebasestorage.googleapis.com/v0/b/iiitv-198b6.appspot.com/o/ContentImages%2FIIITV_Logo.jpg?alt=media&token=fbcc68ab-82f5-498f-a669-0f6bd0227809"
-                            width="60" height="80%" className="d-inline-block align-center" alt=""/>
+                            width="60" height="80%" className="d-inline-block align-center rounded-circle" alt=""/>
                         &emsp; IIIT Vadodara
                     </a>
 
@@ -58,7 +58,7 @@ const NavbarCustom = () => {
                     <NavLink to='/Students'>
                         Students
                     </NavLink>
-                    <NavLink to='/Faculty'>
+                    <NavLink to='/FacultyLogin'>
                         Faculty
                     </NavLink>
                     <NavLink to='/AdminLogin'>

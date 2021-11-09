@@ -13,11 +13,11 @@ const AdminDashboard=()=> {
 
 
   return (
-      <div id="content">
-          <nav id="nav1">
+      <div id="content" className="h-screen">
+          <nav id="nav1" className="h-full">
               <a href="#page1">
-                  <div>
-                      <img src="https://firebasestorage.googleapis.com/v0/b/iiitv-198b6.appspot.com/o/ContentImages%2FIIITV_Logo.jpg?alt=media&token=fbcc68ab-82f5-498f-a669-0f6bd0227809" alt="" />
+                  <div className="text-center">
+                      <img className="mx-auto my-2 rounded-circle" src="https://firebasestorage.googleapis.com/v0/b/iiitv-198b6.appspot.com/o/ContentImages%2FIIITV_Logo.jpg?alt=media&token=fbcc68ab-82f5-498f-a669-0f6bd0227809" alt="" />
                       <p>Admin name</p>
                       <p> Role</p>
                       <p>last-login</p>
