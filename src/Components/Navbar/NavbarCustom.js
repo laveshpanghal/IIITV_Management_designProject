@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-Nav,
-NavLink,
-Bars,
-NavMenu,
-NavBtn,
-NavBtnLink,
+    Nav,
+    NavLink,
+    Bars,
+    NavMenu,
+    NavBtn,
+    NavBtnLink,
 } from './NavBarElementsCustom';
 import {useHistory} from "react-router-dom";
 import ReactDOM from 'react-dom';
@@ -14,72 +14,74 @@ import Login from "../../Login/Login";
 import App from "../../App";
 
 
-
 const NavbarCustom = () => {
 
-	const history = useHistory()
+    const history = useHistory()
 
-	function logout() {
-		//alert("Logout Successfully")
-		const auth = getAuth();
-		signOut(auth).then(() => {
-			console.log(auth)
+    function logout() {
+        //alert("Logout Successfully")
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            console.log(auth)
 
-			history.push("/Login")
-			// ReactDOM.render(
-			//   <React.StrictMode>
-			//     <Login />
-			//   </React.StrictMode>,
-			//   document.getElementById('root')
-			// );
-		}).catch((error) => {
-			alert(error)
-		});
+            history.push("/Login")
+            // ReactDOM.render(
+            //   <React.StrictMode>
+            //     <Login />
+            //   </React.StrictMode>,
+            //   document.getElementById('root')
+            // );
+        }).catch((error) => {
+            alert(error)
+        });
 
-	}
+    }
 
 
-return (
-	<>
-	<Nav className="d-flex">
-		<Bars />
+    return (
+        <>
+            <Nav className="d-flex">
+                <Bars/>
 
-		<NavMenu>
+                <NavMenu>
 
-        <a className="navbar-brand" href="/">
-        <img src="https://firebasestorage.googleapis.com/v0/b/iiitv-198b6.appspot.com/o/ContentImages%2FIIITV_Logo.jpg?alt=media&token=fbcc68ab-82f5-498f-a669-0f6bd0227809" width="60" height="80%" className="d-inline-block align-center" alt=""/>
-        &emsp; IIIT Vadodara
-        </a>
+                    <a className="navbar-brand" href="/">
+                        <img
+                            src="https://firebasestorage.googleapis.com/v0/b/iiitv-198b6.appspot.com/o/ContentImages%2FIIITV_Logo.jpg?alt=media&token=fbcc68ab-82f5-498f-a669-0f6bd0227809"
+                            width="60" height="80%" className="d-inline-block align-center" alt=""/>
+                        &emsp; IIIT Vadodara
+                    </a>
 
-		<NavLink to='/Login' >
-			Admission
-		</NavLink>
-		<NavLink to='/Students' >
-			Students
-		</NavLink>
-		<NavLink to='/Faculty' >
-			Faculty
-		</NavLink>
-		<NavLink to='/Admin' >
-			Admin
-		</NavLink>
-		<NavLink to='/Fees' >
-			Fees
-		</NavLink>
+                    <NavLink to='/Login'>
+                        Admission
+                    </NavLink>
+                    <NavLink to='/Students'>
+                        Students
+                    </NavLink>
+                    <NavLink to='/Faculty'>
+                        Faculty
+                    </NavLink>
+                    <NavLink to='/AdminLogin'>
+                        Admin
+                    </NavLink>
+                    <NavLink to='/Fees'>
+                        Fees
+                    </NavLink>
 
-        <form className="d-flex h-100">
-            <input className="form-control mx-auto h-50 my-auto" type="search" placeholder="Search" aria-label="Search"/>
-            &emsp;
-            <button className="btn btn-outline-success h-50 my-auto" onClick={logout} type="submit">Logout</button>
-        </form>
+                    <form className="d-flex h-100">
+                        <input className="form-control mx-auto h-50 my-auto" type="search" placeholder="Search"
+                               aria-label="Search"/>
+                        &emsp;
+                        <button className="btn btn-outline-success h-50 my-auto" onClick={logout} type="submit">Logout
+                        </button>
+                    </form>
 
-		</NavMenu>
+                </NavMenu>
 
-        
-		
-	</Nav>
-	</>
-);
+
+            </Nav>
+        </>
+    );
 };
 
 export default NavbarCustom;

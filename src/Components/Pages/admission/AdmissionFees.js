@@ -3,18 +3,26 @@ import { getDatabase, ref, set,child, get } from "firebase/database";
 import {useHistory} from "react-router-dom";
 import realDb from "../../../index";
 import {useApp} from "../../../Context/AppContext";
+import firebase from "firebase/compat";
 
 
 
 
 const AdmissionFees = () => {
+    const firestoreDb = firebase.firestore()
     const{rollNo}= useApp();
     const{degree}=useApp();
     const RealDb = ref(getDatabase())
     const history = useHistory()
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+    const currentDate = yyyy+ '-' +mm+ '-' +dd;
 
-    const handleback = (history) => {
-        history("/AdmissionForm")
+
+    const handleback = () => {
+        history.push("/AdmissionForm")
     }
 
     const [payOnline, setPayOnline] = useState(false);
@@ -29,12 +37,13 @@ const AdmissionFees = () => {
 
     }
 
-    const [data, setData] = useState(
+    const [feesData, setFeesData] = useState(
         {
             paymentType: "dd",
             dop: "",
             amount: "Male",
-            paymentId: ""
+            paymentId: "",
+            verified: false
 
 
         }
@@ -42,25 +51,37 @@ const AdmissionFees = () => {
 
     function onChange(e) {
         e.persist();
-        setData(() => ({
-            ...data,
+        setFeesData(() => ({
+            ...feesData,
             [e.target.name]: e.target.value,
         }));
     }
     const handleFeesSubmit=(e)=>{
             e.preventDefault()
 
-            set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/FeesData/"),data).then(()=>{
-                set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/Status"),"Pending").then(()=>{
-                    set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/Course"),degree).then(()=> {
+        if (feesData.dop === ""){
+            alert("Date of payment field is empty.")
+            return;
+        }
+        if (feesData.paymentId === ""){
+            alert("Payment Id field is empty.")
+            return;
+        }
+
+
+        firestoreDb.collection("AdmissionForms2021").doc(rollNo).update({feesData, Course:degree
+        })
+            // .then(()=>{
+            //         set(ref(realDb,"AdmissionForms/2021/"+rollNo+"/Course"),degree)
+                        .then(()=> {
                         alert('Admission form request submitted.Please wait for document and payment verification')
                         history.push('/')
                     })
-                })
 
 
 
-            })
+
+
 
 
 
@@ -92,6 +113,7 @@ const AdmissionFees = () => {
                     <input
                         type="date"
                         required
+                        min="2021-06-01" max={currentDate}
                         placeholder="select Date of payment"
                         name="dop"
                         onChange={(e) => onChange(e)}

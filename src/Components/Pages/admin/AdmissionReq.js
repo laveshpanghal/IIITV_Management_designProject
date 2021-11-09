@@ -1,81 +1,112 @@
 import React, {useEffect, useState} from "react";
 import "../Styles/Admindash.css"
-import {child, get,ref,onChildAdded, onChildChanged, onChildRemoved,onValue} from "firebase/database";
-import realDb from "../../../index";
 import {useParams, useHistory} from "react-router-dom";
+import firestore from "firebase/compat";
+import firebase from "firebase/compat";
+import {useApp} from "../../../Context/AppContext";
 
-const AdmissionReq=()=> {
-    const {key} = useParams();
-    const reqElement = {
-
-        Name:"",
-        RollNo:"",
-        Dop:"",
-        Degree:"",
-
-
-    }
-    function addReqElement(key,data){
+const AdmissionReq = () => {
+    const firestoreDb = firebase.firestore()
+    const history = useHistory();
+    const [events, setEvents] = useState(null);
+    const [loading, setLoading] = useState(false);
 
 
+    useEffect(() => {
+        fetchEvents();
+    }, []);
 
-         if(data.Status === "Pending"){
-            reqElement.Name= data.data.name
-            reqElement.RollNo= data.data.entranceExamRollNo
-            reqElement.Dop= data.FeesData.dop
-            reqElement.Degree= data.Course
-             const theDiv = document.getElementById("ggwp");
-             theDiv.innerHTML +=  "<br>"+"<br>"+"<div class='d-flex justify-content-between' >"+
-                                 "<p>"+""+"</p>"+
-                                 "<p>"+reqElement.Name+"</p>"
-                                 +"<p>"+reqElement.RollNo+"</p>"
-                                +"<p>"+reqElement.Dop+"</p>"
-                                +"<p>"+reqElement.Degree+"</p>"+"<br>"
-                 +"</div>"
+    function fetchEvents() {
+        setLoading(true);
 
-         }
+        firestoreDb.collection("AdmissionForms2021").where("status", "==", "pending").get().then((res) => {
+            const events = res.docs;
+            setEvents(events);
+            console.log(events)
+            setLoading(false);
 
-        console.log(reqElement)
-
+        })
+            .catch((err) => {
+                throw err
+            });
 
 
     }
 
-useEffect(()=>{ const commentsRef = ref(realDb, "AdmissionForms/2021/" );
-    onValue(commentsRef, (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-            const childKey = childSnapshot.key;
-            const childData = childSnapshot.val();
-            addReqElement(childKey,childData)
-            // ...
-        });
-    }, {
-        onlyOnce: true
-    });},[])
+    return (
+        <div className="container mx-auto sm:mt-20">
+
+            {!loading && events && events.length ? (
+                <div className="mx-auto">
+                    {events.map((value, key) => {
+                        return (
+                            <div
+                                className="w-full sm:w-2/3 mx-auto px-8 py-4 bg-white rounded-lg shadow-md mt-3.5"
+                                key={key}
+                            >
+                                <div className="flex justify-between items-center">
+                  <span className="font-light text-gray-600 text-sm">
+                    {value.data().Course}
+                  </span>
+                                    <span onClick={()=>{history.push(`/Admin/${value.data().data.entranceExamRollNo}`)}}
+
+                                        className="px-3 py-1 bg-gray-600 text-gray-100 text-sm font-bold rounded hover:bg-gray-500 cursor-pointer"
+                                    >
+                                        Verify
+                                    </span>
+
+                                </div>
+
+                                <div className="mt-2">
+                                        {value.data().data.name
+                                            ? value.data().data.name
+                                            : "Name??404"}
+                                    <p className="mt-2 text-gray-600">
+                                        {value.data().data.entranceExamRollNo
+                                            ? value.data().data.entranceExamRollNo
+                                            :"Roll no?? 404"}
+                                    </p>
+                                </div>
+
+                                <div className="flex justify-between items-center mt-4">
+                                    <div>
+                                        <h6 className="text-gray-600 hover:underline font-bold">
+                                            {value.data().data.branch ? value.data().data.branch : "404"}
+                                        </h6>
+                                        <h6
+                                            className="text-gray-600 hover:underline"
+
+                                        >
+                                            {value.data().status ? value.data().status : "404"}
+                                        </h6>
+                                    </div>
+
+                                    <div className="flex items-center">
+                                        <div className="flex flex-col items-start">
+                                            <a className="text-gray-700 text-sm font-bold cursor-pointer">
+                                                {value.data().name ? value.data().name : ""}
+                                            </a>
+                                            <span className="text-gray-700 text-xs cursor-pointer">
+                        {value.data().contact ? value.data().contact : ""}
+                      </span>
+                                            <span className="text-gray-700 text-xs cursor-pointer">
+                        {value.data().email ? value.data().email : ""}
+                      </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            ) : (
+                <div>
+                    No Events
+                </div>
+            )}
+        </div>
+    );
+};
 
 
-
-
-
-
-
-    // onChildAdded(commentsRef, (data) => {
-    //     addReqElement( data.value);
-    // });
-    //
-    // onChildChanged(commentsRef, (data) => {
-    //
-    // });
-    //
-    // onChildRemoved(commentsRef, (data) => {
-    //
-    // });
-
-
-        return (
-            <div id="ggwp"></div>
-
-        )
-    }
-
-    export default AdmissionReq;
+export default AdmissionReq;

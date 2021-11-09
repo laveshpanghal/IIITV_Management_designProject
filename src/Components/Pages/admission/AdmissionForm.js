@@ -4,12 +4,20 @@ import realDb from "../../../index";
 import {ref,set} from "firebase/database";
 import {useHistory} from "react-router-dom";
 import {useApp} from "../../../Context/AppContext";
+import "firebase/firestore";
+import firebase from "firebase/compat";
 
 
 const AdmissionForms = () => {
     const{rollNo}= useApp();
     const history = useHistory()
-
+    const{degree}=useApp();
+    const{setDegree}=useApp();
+    const firestoreDb = firebase.firestore()
+    const[documents, setDocument]=useState({})
+    const[Course ,setCourse] = useState({
+        Course:'B.Tech'
+    })
     const [data, setData] = useState(
         {
             name: "",
@@ -34,6 +42,10 @@ const AdmissionForms = () => {
         }
     )
 
+
+
+
+
     function onChange(e) {
         e.persist();
         setData(() => ({
@@ -41,7 +53,17 @@ const AdmissionForms = () => {
             [e.target.name]: e.target.value,
         }));
     }
+    function onDegreeSelectChange(e) {
+        e.persist();
+        setCourse(
+            {
+                [e.target.name]: e.target.value,
+            }
+        )
+        console.log(degree)
+        setDegree(e.target.value)
 
+    }
 
 
     const handleAdmissionFormSubmit = (e) => {
@@ -49,9 +71,72 @@ const AdmissionForms = () => {
         e.preventDefault()
         console.log(data)
 
-    set(ref(realDb,"AdmissionForms/2021/"+data.entranceExamRollNo+"/data/"),data).then(()=>{
-        history.push('/AdmissionDocumentUpload')
 
+        if (data.name === ""){
+            alert("Name field is empty.")
+            return;
+        }
+        if (data.dob === ""){
+            alert("Date of birth field is empty.")
+            return;
+        }
+        if (data.parmanentAddress === ""){
+            alert("Address field is empty.")
+            return;
+        }
+        if (data.adharCardNo === ""){
+            alert("Aadhar No field is empty.")
+            return;
+        }
+        if (data.fathersName === ""){
+            alert("Father's name field is empty.")
+            return;
+        }
+        if (data.mothersName === ""){
+            alert("Mother's name field is empty.")
+            return;
+        }
+        if (data.fathersMobileNo === ""){
+            alert("Father's mobile no field is empty.")
+            return;
+        }
+        if (data.mothersMobileNo === ""){
+            alert("Mother's mobile no field is empty.")
+            return;
+        }
+        if (data.personalMobileNo === ""){
+            alert("Personal mobile no field is empty.")
+            return;
+        }
+        if (data.emailAddress === ""){
+            alert("Email field is empty.")
+            return;
+        }
+
+        if (data.yearOfPassing10 === ""){
+            alert("Year of passing 10 field is empty.")
+            return;
+        }
+        if (data.yearOfPassing12 === ""){
+            alert("Year of passing 12 field is empty.")
+            return;
+        }
+        if (data.fathersOccupation === ""){
+            alert("Father's occupation field is empty.")
+            return;
+        }
+        if (data.mothersOccupation === ""){
+            alert("Mother's occupation field is empty.")
+            return;
+        }
+        if (data.yearOfPassingJEE === ""){
+            alert("Year of passing JEE field is empty.")
+            return;
+        }
+
+
+        firestoreDb.collection("AdmissionForms2021").doc(rollNo).set({data,"status":"pending",...Course}).then(()=>{
+        history.push('/AdmissionDocumentUpload')
 
     })
 
@@ -78,6 +163,7 @@ const AdmissionForms = () => {
                     <input
                         type="date"
                         required
+                        min="1995-01-01" max="2006-12-31"
                         placeholder="select Date of birth"
                         name="dob"
                         onChange={(e) => onChange(e)}
@@ -108,7 +194,7 @@ const AdmissionForms = () => {
                     <br/>
                     <label htmlFor="aadhar"><b>Aadhar Number</b></label>
                     <br/>
-                    <input type="number" placeholder="Enter Aadhar Number" name="adharCardNo" required
+                    <input type="number" size="12" placeholder="Enter Aadhar Number" name="adharCardNo" required
                            onChange={onChange}/>
                     <br/><br/>
                     <label htmlFor="fname"><b>Father Name</b></label>
@@ -121,25 +207,27 @@ const AdmissionForms = () => {
                            onChange={onChange}/>
                     <label htmlFor="fphone"><b>Father's Mobile</b></label>
                     <br/>
-                    <input type="tel" id="fphone" name="fathersMobileNo" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
+                    <input type="tel" size='10' placeholder="Enter mobile no without country code" id="fphone" name="fathersMobileNo" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
                            onChange={onChange}/>
                     <br/>
                     <label htmlFor="mphone"><b>Mother's Mobile</b></label>
                     <br/>
-                    <input type="tel" id="mphone" name="mothersMobileNo" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
+                    <input type="tel" id="mphone" size='10' name="mothersMobileNo" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
                            onChange={onChange}/>
                     <br/>
                     <label htmlFor="phone"><b>Mobile(self)</b></label>
                     <br/>
-                    <input type="tel" id="phone" name="personalMobileNo" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
+                    <input type="tel" id="phone" name="personalMobileNo" size='10' pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required
                            onChange={onChange}/> <br/><br/>
-                    <label htmlFor="email"><b>Email</b></label>
+                    <label htmlFor="email"  type="email"
+                           pattern=".+@globex\.com" required><b>Email</b></label>
                     <input type="text" placeholder="Enter Email" name="emailAddress" required onChange={onChange}/>
                     <label htmlFor="passYear"><b>Passing year </b></label>
                     <br/>
                     <input
                         type="date"
                         required
+                        min="2021-01-01" max="2021-12-31"
                         placeholder="select Date of birth"
                         name="yearOfPassingJEE"
                         onChange={(e) => onChange(e)}
@@ -150,6 +238,12 @@ const AdmissionForms = () => {
 
                           />
                     <br/>
+                    <label htmlFor="degreeSelect"><b>Please select any one of provided </b></label>
+                    <br/>
+                    <select name="Course" id="degreeSelect" required  onChange={(e)=>{ onDegreeSelectChange(e)}}>
+                        <option value="B.Tech" selected>B.Tech</option>
+                        <option value="M.Tech">M.Tech</option>
+                    </select><br/><br/>
                     <label htmlFor="branch"><b>Branch</b></label>
                     <br/>
                     <select name="branch" id="branch" required onChange={(e) => onChange(e)}>
@@ -162,6 +256,7 @@ const AdmissionForms = () => {
                     <input
                         type="date"
                         required
+                        min="2017-01-01" max="2019-12-31"
                         placeholder="select Date of birth"
                         name="yearOfPassing10"
                         onChange={(e) => onChange(e)}/>
@@ -171,6 +266,7 @@ const AdmissionForms = () => {
                     <input
                         type="date"
                         required
+                        min="2019-01-01" max="2021-12-31"
                         placeholder="select Date of birth"
                         name="yearOfPassing12"
                         onChange={(e) => onChange(e)}

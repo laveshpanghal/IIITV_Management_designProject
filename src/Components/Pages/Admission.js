@@ -3,14 +3,14 @@ import "../../Login/login.css"
 import { getDatabase, ref, child, get } from "firebase/database";
 import {useHistory} from "react-router-dom";
 import {useApp} from "../../Context/AppContext";
-
+import firebase from "firebase/compat";
 
 const Admission = () => {
     const RealDb = ref(getDatabase())
     const history = useHistory()
     const{setRollNo}= useApp();
     const{rollNo}= useApp();
-
+    const firestoreDb = firebase.firestore()
 
     function verify(e) {
 
@@ -30,8 +30,28 @@ const Admission = () => {
 
                     if(snapshot.val()==="verified")
                     {
-                        setRollNo(applicantEnrollmentNo)
-                        history.push("/AdmissionForm")
+
+
+                        firestoreDb.collection("AdmissionForms2021").doc(`${applicantEnrollmentNo}`).get().then((res)=>{
+                            if(res.exists){
+                                setRollNo(applicantEnrollmentNo)
+                                history.push("/StudentAdmissionDashboard")
+                                return
+                            }
+                            else{
+                                firestoreDb.collection("AdmissionForms2021").doc(`${applicantEnrollmentNo}`).set({
+                                    "status":"pending"
+
+                                }).then(
+                                    ()=>{
+                                        setRollNo(applicantEnrollmentNo)
+                                        history.push("/StudentAdmissionDashboard")
+                                    }
+                                )
+
+                            }
+                        })
+
 
                     }
 
