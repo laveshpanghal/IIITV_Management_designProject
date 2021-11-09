@@ -17,7 +17,7 @@ const StudentAdmissionDashboard = ({}) => {
 
 
 
-    function fetchEvents() {
+     function fetchEvents() {
 
         firestoreDb.collection("AdmissionForms2021").doc(rollNo).get().then((res) => {
             setEvents(res.data());

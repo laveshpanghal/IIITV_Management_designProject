@@ -100,10 +100,25 @@ const AdmissionDocumentUpload = () => {
             }
         }
 
+        const fileType = (doc)=>{
+            console.log(doc.name)
+
+            if(doc.name==='docSelfSignature'||doc.name==='docFathersSignature'||doc.name==='docPassportSizeImage'){
+                return '.jpg'
+
+            }
+            else {
+                return '.pdf'
+            }
+
+
+        }
+
         e.preventDefault()
         await initialdocs.forEach((doc) => {
-            const storageRef = ref(storage, "/AdmissionFormDocs/2021/" +rollNo+"/"+doc.name+".pdf")
+            const storageRef = ref(storage, "/AdmissionFormDocs/2021/" +rollNo+"/"+doc.name+ fileType(doc))
             const uploadTask = uploadBytesResumable(storageRef, doc.file)
+            console.log(doc.file.type)
 
             uploadTask.on('state_changed',
                 (snapshot) => {
@@ -190,7 +205,7 @@ const AdmissionDocumentUpload = () => {
                     <label htmlFor="docDegreeCertificate"><b>B.Tech Degree Certificate</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input"accept='application/pdf' id="docDegreeCertificate"
+                        <input type="file" className="custom-file-input" accept='application/pdf' id="docDegreeCertificate"
                                onChange={onDocsChange}/>
                     </div>
                     <br/>
@@ -275,20 +290,20 @@ const AdmissionDocumentUpload = () => {
                     <label htmlFor="docPassportSizeImage"><b>Passport Size Image</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" accept='application/pdf' id="docPassportSizeImage"
+                        <input type="file" className="custom-file-input" accept='image/jpeg' id="docPassportSizeImage"
                                onChange={onDocsChange}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="docSelfSignature"><b>Self Signature</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" accept='application/pdf' id="docSelfSignature" onChange={onDocsChange}/>
+                        <input type="file" className="custom-file-input" accept='image/jpeg' id="docSelfSignature" onChange={onDocsChange}/>
                     </div>
                     <br/><br/>
                     <label htmlFor="docFathersSignature"><b>Father's Signature</b></label>
                     <br/>
                     <div className="custom-file">
-                        <input type="file" className="custom-file-input" accept='application/pdf' id="docFathersSignature"
+                        <input type="file" className="custom-file-input" accept='image/jpeg' id="docFathersSignature"
                                onChange={onDocsChange}/>
                     </div>
 

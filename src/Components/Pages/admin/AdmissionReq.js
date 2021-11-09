@@ -22,6 +22,7 @@ const AdmissionReq = () => {
         firestoreDb.collection("AdmissionForms2021").where("status", "==", "pending").get().then((res) => {
             const events = res.docs;
             setEvents(events);
+            console.log(events)
             setLoading(false);
 
         })
