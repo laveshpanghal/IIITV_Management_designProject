@@ -16,6 +16,7 @@ import AdmissionForms from "./Components/Pages/admission/AdmissionForm";
 import AdmissionDocumentUpload from "./Components/Pages/admission/AdmissionDocumentUpload";
 import AdmissionFees from "./Components/Pages/admission/AdmissionFees";
 import AdminDashboard from "./Components/Pages/admin/AdminDashboard";
+import CourseSel from './Components/Pages/students/CourseSel';
 
 
 
@@ -38,6 +39,7 @@ function App() {
       <Route path='/Fees' component={Fees} />
       <Route path='/Admin' component={Admin} />
       <Route path='/Login'  component={Login} />
+      <Route path='/Course-Selection'  component={CourseSel} />
     </Switch>
   </Router>
      </AppProvider>
