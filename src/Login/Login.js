@@ -7,10 +7,12 @@ import {useHistory} from "react-router-dom";
 import SignUp from "../Components/SignUP/SignUp";
 import Admission from "../Components/Pages/Admission";
 import NavbarCustom from "../Components/Navbar/NavbarCustom";
+import {useApp} from "../Context/AppContext";
 //document.getElementById('sign_in_btn').addEventListener('click', login, false);
 
 
 const Login = () => {
+    const{SetHiddenCheck}= useApp();
     const history = useHistory()
     function login() {
 
@@ -31,6 +33,7 @@ const Login = () => {
 
 
                     history.push('/Admission');
+                    SetHiddenCheck(false)
 
                 // ReactDOM.render(
                 //     <React.StrictMode>

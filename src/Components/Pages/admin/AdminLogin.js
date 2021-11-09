@@ -3,9 +3,11 @@ import React from 'react';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {useHistory} from "react-router-dom";
 import { getDatabase, ref, child, get } from "firebase/database";
+import {useApp} from "../../../Context/AppContext";
 
 
 const AdminLogin = () => {
+    const{SetHiddenCheck}= useApp();
     const RealDb = ref(getDatabase())
     const history = useHistory()
     function login() {
@@ -60,6 +62,7 @@ const AdminLogin = () => {
                 {
 
                     history.push("/Admin")
+                    SetHiddenCheck(false)
 
                 }else {
                     alert("You are not admin")

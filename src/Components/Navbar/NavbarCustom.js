@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Nav,
     NavLink,
@@ -12,9 +12,31 @@ import ReactDOM from 'react-dom';
 import {signOut, getAuth} from "firebase/auth";
 import Login from "../../Login/Login";
 import App from "../../App";
+import firebase from "firebase/compat";
+import {useApp} from "../../Context/AppContext";
 
 
 const NavbarCustom = () => {
+    const auth = getAuth();
+    const{hiddenCheck}= useApp();
+    const{SetHiddenCheck}= useApp();
+
+    const [adminURL,SetAdminURL] = useState('/Admin')
+
+
+    useEffect(()=>{
+        if(auth.currentUser===null){
+            SetHiddenCheck(true)
+            SetAdminURL('/AdminLogin')
+        }
+    },[auth])
+
+
+
+const adminUrl = (auth.currentUser === null ? ('/AdminLogin'):("/admin"))
+    const admissionURL = (auth.currentUser === null ? ('/Login'):("/Admission"))
+
+
 
     const history = useHistory()
 
@@ -22,19 +44,12 @@ const NavbarCustom = () => {
         //alert("Logout Successfully")
         const auth = getAuth();
         signOut(auth).then(() => {
-            console.log(auth)
+            console.log('logout')
 
-            history.push("/Login")
-            // ReactDOM.render(
-            //   <React.StrictMode>
-            //     <Login />
-            //   </React.StrictMode>,
-            //   document.getElementById('root')
-            // );
         }).catch((error) => {
             alert(error)
         });
-
+        history.push("/")
     }
 
 
@@ -52,7 +67,7 @@ const NavbarCustom = () => {
                         &emsp; IIIT Vadodara
                     </a>
 
-                    <NavLink to='/Login'>
+                    <NavLink to={admissionURL}>
                         Admission
                     </NavLink>
                     <NavLink to='/Students'>
@@ -61,7 +76,7 @@ const NavbarCustom = () => {
                     <NavLink to='/FacultyLogin'>
                         Faculty
                     </NavLink>
-                    <NavLink to='/AdminLogin'>
+                    <NavLink to={adminUrl}>
                         Admin
                     </NavLink>
                     <NavLink to='/Fees'>
@@ -72,7 +87,7 @@ const NavbarCustom = () => {
                         <input className="form-control mx-auto h-50 my-auto" type="search" placeholder="Search"
                                aria-label="Search"/>
                         &emsp;
-                        <button className="btn btn-outline-success h-50 my-auto" onClick={logout} type="submit">Logout
+                        <button hidden={hiddenCheck} className="btn btn-outline-success h-50 my-auto" onClick={logout} type="submit">Logout
                         </button>
                     </form>
 
