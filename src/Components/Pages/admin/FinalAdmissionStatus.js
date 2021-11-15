@@ -45,8 +45,17 @@ const FinalAdmissionStatus = ({}) => {
             "status":"accepted"
 
         }).then(
+
+
             (res)=>{
-                history.push(`/Admin/EnrollStatus/${id}`)
+
+                firestoreDb.collection('Students2021').doc().set({   "Name":events.data.name,
+                    "Course":events.Course,
+                    "Branch":events.data.branch,
+                    "AdmissionFormId":id}).then(()=>{history.push(`/Admin/EnrollStatus/${id}`)})
+
+
+
             }
         )
     }

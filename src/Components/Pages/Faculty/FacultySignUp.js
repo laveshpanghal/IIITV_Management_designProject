@@ -1,6 +1,7 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
 import {getAuth, createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
+import firebase from "firebase/compat";
 
 
 
@@ -15,7 +16,7 @@ const FacultySignup = () => {
         var userConfPass = document.getElementById("passwordC").value;
 
         const auth = getAuth();
-
+        const firestoreDb = firebase.firestore()
 
         if (userName != null && userEmail != null && userPass != null && userConfPass != null && userPass === userPass) {
 
@@ -24,7 +25,11 @@ const FacultySignup = () => {
                 updateProfile(auth.currentUser, {
                     displayName: userName
                 }).then(() => {
-                    history.push("/FacultyDash")
+
+
+
+                    firestoreDb.collection('Faculty').doc().set({"Name":userName,"Email":userEmail,"Status":"pending","FacultyId":auth.currentUser.uid}).then(()=>{ history.push("/facultyRedirect")})
+
 
                 }).catch((error) => {
                     // An error occurred

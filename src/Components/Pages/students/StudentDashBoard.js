@@ -5,45 +5,25 @@ import firebase from "firebase/compat";
 import {useParams, useHistory, useLocation} from "react-router-dom";
 import {useApp} from "../../../Context/AppContext";
 
-const StudentAdmissionDashboard = ({}) => {
+const StudentDashBoard = ({}) => {
 
     const [events, setEvents] = useState(null);
     const [temp, setTemp] = useState('uploaded for verification ');
     const [temp1, setTemp1] = useState('not-uploaded yet')
     const firestoreDb = firebase.firestore()
     const{rollNo}= useApp();
+
     const history = useHistory();
 
 
 
 
-     function fetchEvents() {
-
-        firestoreDb.collection("AdmissionForms2021").doc(rollNo).get().then((res) => {
-            setEvents(res.data());
-
-            firestoreDb.collection("AdmissionForms2021").doc(rollNo).collection("Documents").get().then(
-
-                (res)=>{
-                    console.log(res)
-                    if(!res.empty){
-                        setTemp1('uploaded')
-                    }
-                }
-            )
+    function fetchEvents() {
 
 
-
-            firestoreDb.collection("AdmissionForms2021").doc(rollNo).collection("Documents").where("verified","==",true).get().then(
-                (res)=>{
-                    if(res.docs.length===13){
-
-                        setTemp('Verified')
-
-                    }
-
-                }
-            )
+        firestoreDb.collection("Students2021").where("AdmissionFormId","==",rollNo).get().then((res) => {
+            console.log(res)
+            setEvents(res.docs[0]);
 
         })
             .catch((err) => {
@@ -53,8 +33,6 @@ const StudentAdmissionDashboard = ({}) => {
         console.log(events, "ok")
 
     }
-
-
 
 
 
@@ -73,10 +51,10 @@ const StudentAdmissionDashboard = ({}) => {
 
                         <div className="px-4 py-5 sm:px-6 w-full border dark:bg-gray-800 bg-white shadow mb-2 rounded-md">
                             <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
-                                Admission Dashboard
+                                Student Dashboard
                             </h3>
                             <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-200">
-                                {firebase.auth().currentUser.displayName}
+                                {events.data().Name}
                             </p>
                         </div>
                         <div className="container flex  flex-row ... mx-auto w-full items-center justify-center mt-12">
@@ -98,37 +76,28 @@ const StudentAdmissionDashboard = ({}) => {
                                                 Degree :
                                             </dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {events.Course? events.Course : "Fill Admission Form"}
+                                                {events.data().Course? events.data().Course : "Fill Admission Form"}
                                             </dd>
                                         </div>
                                         <div className="bg-purple-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt className="text-sm font-medium text-gray-500">
-                                                Document Status :
+                                               Branch :
                                             </dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {temp1 ==='uploaded' ? ( temp)
-                                                    : (temp1)
-                                                }
+                                                {events.data().Branch? events.data().Branch : "Fill Admission Form"}
                                             </dd>
                                         </div>
                                         <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt className="text-sm font-medium text-gray-500">
-                                                Fees Status :
+                                                My Courses :
                                             </dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                { events.feesData ? ( events.feesData.verified ? "Verified" : "details uploaded for verification")
+                                                { events.data().enrolledCourses ? ( 'View')
                                                     : ("Not-filled")
                                                 }
                                             </dd>
                                         </div>
-                                        <div className="bg-purple-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt className="text-sm font-medium text-gray-500">
-                                                Enrollment Status :
-                                            </dt>
-                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {events.status}
-                                            </dd>
-                                        </div>
+
                                     </dl>
                                 </div>
                             </div>
@@ -142,11 +111,11 @@ const StudentAdmissionDashboard = ({}) => {
                                         </div>
                                         <div className="flex-1 pl-1 md:mr-16">
                                             <div className="font-medium dark:text-white">
-                                                Admission Form
+                                                Enroll For Courses
                                             </div>
                                             <div className="text-gray-600 dark:text-gray-200 text-sm">
 
-                                                {events.data? "Completed" : "Fill Now" }
+                                                {events.data().enrolledCourses? "Completed" : "Fill Now" }
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
@@ -154,7 +123,7 @@ const StudentAdmissionDashboard = ({}) => {
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
 
-                                            events.data?(alert('form already submitted')):(history.push('/AdmissionForm'))
+                                            events.data().enrolledCourses?(alert('form already submitted')):(history.push('/studentCourses'))
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
@@ -175,18 +144,18 @@ const StudentAdmissionDashboard = ({}) => {
                                         </div>
                                         <div className="flex-1 pl-1 md:mr-16">
                                             <div className="font-medium dark:text-white">
-                                                Documents upload
+                                                Academic Calender
                                             </div>
                                             <div className="text-gray-600 dark:text-gray-200 text-sm">
-                                                {temp1==='uploaded'? "Uploaded" : "Upload Now" }
+                                                 Sem Name
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                            Deadline Time
+                                            View
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
 
-                                            temp1==='uploaded'?(alert('Documents already uploaded')):(history.push('/AdmissionDocumentUpload'))
+                                            (history.push('/'))
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
@@ -210,17 +179,15 @@ const StudentAdmissionDashboard = ({}) => {
                                                 Fee Details
                                             </div>
                                             <div className="text-gray-600 dark:text-gray-200 text-sm">
-                                                { events.feesData ? ( events.feesData.verified ? "Verified" : "Details uploaded ")
-                                                    : ("Upload details")
-                                                }
+                                             Manage fee related queries
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                            Deadline Time
+                                           View
                                         </div>
                                         <span className="w-24 text-right flex justify-end" onClick={() => {
 
-                                            events.feesData?(alert('Details already uploaded')):(history.push('/AdmissionFees'))
+                                            (history.push('/Fees'))
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
@@ -234,65 +201,7 @@ const StudentAdmissionDashboard = ({}) => {
                                     </div>
                                 </li>
 
-                                {events.status==='accepted'? (  <li className="border-gray-400  flex flex-row mb-2"  onClick={()=>(
-                                    history.push('/studentDashBoard')
-                                )}>
-                                    <div
-                                        className="transition bg-blue-100 animate-bounce duration-500 mt-4 shadow ease-in-out transform hover:-translate-y-1 hover:shadow-lg select-none cursor-pointer bg-white dark:bg-gray-800 rounded-md flex flex-1 items-center p-4">
-                                        <div className="flex flex-col w-10 h-10 justify-center items-center mr-4">
 
-                                        </div>
-                                        <div className="flex-1 pl-1 md:mr-16">
-                                            <div className="font-medium dark:text-white">
-                                               Student Dashboard
-                                            </div>
-                                            <div className="text-gray-600 dark:text-gray-200 text-sm">
-                                                accepted
-                                            </div>
-                                        </div>
-                                        <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                         Student Dashboard
-                                        </div>
-                                        <span className="w-24 text-right flex justify-end">
-                                <svg width="12" fill="currentColor" height="12"
-                                     className="hover:text-gray-800 dark:hover:text-white dark:text-gray-200 text-gray-500"
-                                     viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z">
-                                    </path>
-                                </svg>
-                            </span>
-                                    </div>
-                                </li>):(  <li className="border-gray-400 flex flex-row mb-2">
-                                    <div
-                                        className="transition duration-500 shadow ease-in-out transform hover:-translate-y-1 hover:shadow-lg select-none cursor-pointer bg-white dark:bg-gray-800 rounded-md flex flex-1 items-center p-4">
-                                        <div className="flex flex-col w-10 h-10 justify-center items-center mr-4">
-
-                                        </div>
-                                        <div className="flex-1 pl-1 md:mr-16">
-                                            <div className="font-medium dark:text-white">
-                                                Make Changes
-                                            </div>
-                                            <div className="text-gray-600 dark:text-gray-200 text-sm">
-                                                change uploaded documents or details
-                                            </div>
-                                        </div>
-                                        <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                            until permitted
-                                        </div>
-                                        <span className="w-24 text-right flex justify-end" onClick={()=>(
-                                            history.push('/StudentAdmissionDashboard/makeChanges')
-                                        )}>
-                                <svg width="12" fill="currentColor" height="12"
-                                     className="hover:text-gray-800 dark:hover:text-white dark:text-gray-200 text-gray-500"
-                                     viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z">
-                                    </path>
-                                </svg>
-                            </span>
-                                    </div>
-                                </li>)}
 
                             </ul>
                         </div>
@@ -315,7 +224,7 @@ const StudentAdmissionDashboard = ({}) => {
     );
 };
 
-export default StudentAdmissionDashboard;
+export default StudentDashBoard;
 
 
 

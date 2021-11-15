@@ -6,6 +6,8 @@ import ReactDOM from "react-dom";
 import App from "../../../App";
 import Admission from "../Admission";
 import AdmissionReq from "./AdmissionReq";
+import Faculty from "../Faculty";
+import FacultyReq from "./FacultyReq";
 
 const AdminDashboard=()=> {
 
@@ -23,17 +25,11 @@ const AdminDashboard=()=> {
                       <p>last-login</p>
                   </div>
               </a><hr />
-              <a href="#page2">Role Request</a><hr />
               <a href="#page3">Student Admission Request</a><hr />
               <a href="#page4">Course Faculty Request</a><hr />
           </nav>
           <main>
-              <div id="page2" className="page">
-                  <h1>Role Request</h1>
-                  <p>Role Request content</p>
 
-
-              </div>
               <div id="page3" className="page">
                   <h1>Student Admission Request</h1>
 
@@ -44,7 +40,9 @@ const AdminDashboard=()=> {
               </div>
               <div id="page4" className="page">
                   <h1>Course Faculty Request</h1>
-                  <p>Course Faculty Request page</p>
+                  <React.StrictMode>
+                      <FacultyReq/>
+                  </React.StrictMode>
               </div>
               <div id="page1" className="page default">
                   <h1>Admin page</h1>

@@ -6,7 +6,7 @@ import NavbarCustom from './Components/Navbar/NavbarCustom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './Components/Pages';
 import Admission from './Components/Pages/Admission';
-import Students from './Components/Pages/Students';
+import Students from './Components/Pages/students/Students';
 import Admin from './Components/Pages/Admin';
 import Faculty from './Components/Pages/Faculty';
 import Fees from './Components/Pages/Fees';
@@ -31,6 +31,9 @@ import StudentAdmissionChanges from "./Components/Pages/admission/StudentAdmissi
 import FacultyDash from "./Components/Pages/Faculty/FacultyDash";
 import FacultyLogin from "./Components/Pages/Faculty/FacultyLogin";
 import FacultySignUp from "./Components/Pages/Faculty/FacultySignUp";
+import CourseSel from "./Components/Pages/students/CourseSel";
+import StudentDashBoard from "./Components/Pages/students/StudentDashBoard";
+import FacultyRedirect from "./Components/Pages/Faculty/FacultyRedirect";
 
 
 
@@ -40,7 +43,19 @@ function App() {
      <AppProvider>
     <Router>
     <NavbarCustom />
+
+
+    <Switch>
+      <Route path='/' exact component={Home} />
+      <Route path='/Admission' component={Admission} />
+      <Route path='/Students' component={Students} />
+      <Route path='/FacultyLogin' component={FacultyLogin} />
+      <Route path='/Fees' component={Fees} />
+      <Route path='/AdminLogin' component={AdminLogin} />
+      <Route path='/Login'  component={Login} />
       <Route path ="/Admin" exact component={AdminDashboard}/>
+
+
       <Route path ="/AdmissionForm" exact component={AdmissionForms}/>
       <Route path ="/StudentAdmissionDashboard" exact component={StudentAdmissionDashboard}/>
       <Route exact path ="/StudentAdmissionDashboard/makeChanges" exact component={StudentAdmissionChanges}/>
@@ -58,16 +73,11 @@ function App() {
       <Route path="/AdminSignup" exact component={AdminSignup}/>
       <Route path='/FacultyDash' exact component={FacultyDash} />
       <Route path='/FacultySignUp' component={FacultySignUp} />
+      <Route path='/studentCourses' component={CourseSel} />
+      <Route path='/studentDashBoard' component={StudentDashBoard} />
+      <Route path='/facultyRedirect' component={FacultyRedirect} />
 
 
-    <Switch>
-      <Route path='/' exact component={Home} />
-      <Route path='/Admission' component={Admission} />
-      <Route path='/Students' component={Students} />
-      <Route path='/FacultyLogin' component={FacultyLogin} />
-      <Route path='/Fees' component={Fees} />
-      <Route path='/AdminLogin' component={AdminLogin} />
-      <Route path='/Login'  component={Login} />
     </Switch>
   </Router>
      </AppProvider>
