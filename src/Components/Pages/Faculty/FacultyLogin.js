@@ -3,11 +3,13 @@ import React from 'react';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {useHistory} from "react-router-dom";
 import { getDatabase, ref, child, get } from "firebase/database";
+import firebase from "firebase/compat";
 
 
 const FacultyLogin = () => {
     const RealDb = ref(getDatabase())
     const history = useHistory()
+    const firestoreDb = firebase.firestore()
     function login() {
 
 
@@ -52,21 +54,12 @@ const FacultyLogin = () => {
     }
 
     function checkAdminStatus(email){
+        firestoreDb.collection('Faculty').where("Email","==",email).get().then((snapshot) => {
+            if (!(snapshot.empty)) {
 
-        get(child(RealDb, `Faculty/1`)).then((snapshot) => {
-            if (snapshot.exists()) {
-
-                if(snapshot.val()===email)
-                {
-
-                    history.push("/FacultyDash")
-
-                }else {
-                    alert("You are not faculty")
-                    console.log("not faculty");
-                    history.push("/")
-                }
-
+                console.log(snapshot)
+                console.log(!(snapshot.empty))
+                    history.push("/facultyRedirect")
             } else {
                 alert("You are not faculty")
                 console.log("No data available");
@@ -110,7 +103,8 @@ const FacultyLogin = () => {
                                     lineHeight:'1',
                                     fontWeight: '600',
                                     fontSize: '1.1rem',
-                                    color: '#333'
+                                    color: '#333',
+                                    padding:"6px",
                                 }}   type="password" placeholder="Password" id="passwordS" />
                             </div>
                             <button  className="btn-submit solid text-center" id="sign_in_btn" onClick={login} >Login</button>

@@ -120,7 +120,8 @@ const AdminLogin = () => {
                                     lineHeight:'1',
                                     fontWeight: '600',
                                     fontSize: '1.1rem',
-                                    color: '#333'
+                                    color: '#333',
+                                    padding:'6px',
                                 }}   type="password" placeholder="Password" id="passwordS" />
                             </div>
                             <button  className="btn-submit solid text-center" id="sign_in_btn" onClick={login} >Login</button>

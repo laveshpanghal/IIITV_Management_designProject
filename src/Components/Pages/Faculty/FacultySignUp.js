@@ -14,11 +14,12 @@ const FacultySignup = () => {
         var userEmail = document.getElementById("emailS").value;
         var userPass = document.getElementById("passwordS").value;
         var userConfPass = document.getElementById("passwordC").value;
-
+        var userRole = document.getElementById("Role").value
         const auth = getAuth();
         const firestoreDb = firebase.firestore()
 
-        if (userName != null && userEmail != null && userPass != null && userConfPass != null && userPass === userPass) {
+
+        if (userName != null && userEmail != null && userPass != null && userConfPass != null && userPass === userConfPass) {
 
             createUserWithEmailAndPassword(auth, userEmail, userPass).then((userCredential) => {
 
@@ -28,7 +29,7 @@ const FacultySignup = () => {
 
 
 
-                    firestoreDb.collection('Faculty').doc().set({"Name":userName,"Email":userEmail,"Status":"pending","FacultyId":auth.currentUser.uid}).then(()=>{ history.push("/facultyRedirect")})
+                    firestoreDb.collection('Faculty').doc().set({"Name":userName,"Email":userEmail,"Status":"pending","FacultyId":auth.currentUser.uid,"Role":userRole}).then(()=>{ history.push("/facultyRedirect")})
 
 
                 }).catch((error) => {
@@ -67,7 +68,8 @@ const FacultySignup = () => {
                                 lineHeight:'1',
                                 fontWeight: '600',
                                 fontSize: '1.1rem',
-                                color: '#333'
+                                color: '#333',
+                                padding:"12px",
                             }} type="text" placeholder="User Name" id="Name"/>
                         </div>
                         <div className="input-field">
@@ -79,10 +81,27 @@ const FacultySignup = () => {
                                 lineHeight:'1',
                                 fontWeight: '600',
                                 fontSize: '1.1rem',
-                                color: '#333'
-                            }} type="email" placeholder="User Email" id="emailS"/>
+                                color: '#333',
+                                padding:"12px",
+                            }} type="email" placeholder=" User Email" id="emailS"/>
                         </div>
-
+                        <div className="input-field">
+                            <i className="fas fa-user"/>
+                            <select className='cursor-pointer' style={{
+                                background:'none',
+                                outline: 'none',
+                                border: 'none',
+                                lineHeight:'1',
+                                fontWeight: '600',
+                                fontSize: '1.1rem',
+                                color: '#333',
+                                padding:"12px",
+                            }} id="Role">
+                                <option className='cursor-pointer'>Course faculty</option>
+                                <option>Grade Master</option>
+                                <option>Course Master</option>
+                            </select>
+                        </div>
                         <div className="input-field">
                             <i className="fas fa-lock"/>
                             <input style={{
@@ -92,7 +111,8 @@ const FacultySignup = () => {
                                 lineHeight:'1',
                                 fontWeight: '600',
                                 fontSize: '1.1rem',
-                                color: '#333'
+                                color: '#333',
+                                padding:"12px",
                             }} type="password" placeholder="Password" id="passwordS"/>
                         </div>
                         <div className="input-field">
@@ -104,7 +124,8 @@ const FacultySignup = () => {
                                 lineHeight:'1',
                                 fontWeight: '600',
                                 fontSize: '1.1rem',
-                                color: '#333'
+                                color: '#333',
+                                padding:"12px",
                             }} type="password" placeholder="Confirm Password" id="passwordC"/>
                         </div>
                         <div className="container text-center d-flex-vertical">

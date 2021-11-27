@@ -24,7 +24,7 @@ const FacultyRedirect = ({}) => {
 
 
         firestoreDb.collection("Faculty").where("FacultyId","==",auth.currentUser.uid).get().then((res) => {
-            console.log(res)
+            console.log(res.docs[0].data(),"jj")
             setEvents(res.docs[0]);
 
         })
@@ -59,11 +59,11 @@ const FacultyRedirect = ({}) => {
                                 className="container mx-auto px-6 md:px-12 relative z-10 flex items-center py-32 xl:py-40">
                                 <div className="w-full font-mono flex flex-col items-center relative z-10">
                                     <h1 className="font-extrabold text-5xl text-center text-white leading-tight mt-4">
-                                        {events.data().Status==="pending"?('Your Request Is under Review'):(events.data().status==="Approved" ? ('Request Approved'):('Request Has been Denied Please Contact Admin')) }
+                                        {events.data().Status==="pending"?('Your Request Is under Review'):(events.data().Status==="Approved" ? ('Request Approved'):('Request Has been Denied Please Contact Admin')) }
                                     </h1>
                                     <p className="font-extrabold text-8xl my-44 text-white animate-bounce">
                                         {events.data().Status==="pending"?(<button
-                                            className="p-2 pl-5 pr-5 bg-transparent border-2 border-yellow-500 text-yellow-500 text-lg rounded-lg hover:bg-yellow-500 hover:text-gray-100 focus:border-4 focus:border-yellow-300" onClick={()=>{history.push('/')}}>Go Back</button>):(events.data().status==="Approved" ? (
+                                            className="p-2 pl-5 pr-5 bg-transparent border-2 border-yellow-500 text-yellow-500 text-lg rounded-lg hover:bg-yellow-500 hover:text-gray-100 focus:border-4 focus:border-yellow-300" onClick={()=>{history.push('/')}}>Go Back</button>):(events.data().Status==="Approved" ? (
                                             <button
                                                 className="p-2 pl-5 pr-5 bg-transparent border-2 border-yellow-500 text-yellow-500 text-lg rounded-lg hover:bg-yellow-500 hover:text-gray-100 focus:border-4 focus:border-yellow-300" onClick={()=>{history.push('/FacultyDash')}}>Faculty Dashboard</button>):(
                                             <button
