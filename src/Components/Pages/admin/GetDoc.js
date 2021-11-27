@@ -73,7 +73,7 @@ const VerifyDoc = ({}) => {
                 <h3 className="text-lg leading-6 font-medium text-gray-900">
                     Go to Documents page for action(Verify/Reject)
                 </h3>
-                <span className='btn btn-secondary w-20 '  onClick={(e)=>{history.push(`/Admin/VerifyDoc/${id}`)}}>Back</span>
+                <span className='btn btn-secondary w-20 '  onClick={(e)=>{history.goBack()}}>Back</span>
             </div>
 
         {events ? (

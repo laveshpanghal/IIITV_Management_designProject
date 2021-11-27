@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import firebase from "firebase/compat";
-import GradeMaster from "./GradeMaster";
 import ViewGradeCard from "../../Reusable/ViewGradeCard";
 import ViewAllGradeCards from "../../Reusable/ViewAllGradeCards";
 import {useHistory} from "react-router-dom";
 
-const GradeCardVeiwMaster = () => {
+const GradeCardViewStudent = () => {
     const firestoreDb = firebase.firestore()
     const[hidden,setHidden] = useState(true);
 
@@ -17,8 +16,8 @@ const GradeCardVeiwMaster = () => {
         <div className="container "
         >
             <div className="flex justify-between">
-                <button className=' w-1/4 hover:bg-gray-200 rounded' onClick={()=>{history.goBack()}}>
-                   Back to student fetch
+                <button className=' w-1/4 hover:bg-gray-200 rounded' onClick={()=>{history.push('/studentDashBoard')}}>
+                    Back to DashBoard
                 </button>
                 <button className=' w-1/4 hover:bg-gray-200 rounded' onClick={()=>{setHidden(!hidden)}}>
                     {hidden ? ('view all grade cards'):('view table form')}
@@ -34,4 +33,4 @@ const GradeCardVeiwMaster = () => {
     );
 };
 
-export default GradeCardVeiwMaster;
+export default GradeCardViewStudent;

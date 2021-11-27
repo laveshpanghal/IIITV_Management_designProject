@@ -174,12 +174,10 @@ const AddAcademicCalender = ({}) => {
     }
 
 
-
-
-
-
     return (
         <div>
+            <div className='flex justify-end pt-12 pr-12'>  <div className='btn btn-secondary w-20 '  onClick={(e)=>{history.goBack()}}>Back</div></div>
+
 
 
             <div className=" items-center justify-center px-5 py-8 lg:px-20" hidden={!isNotloading}>
@@ -202,6 +200,7 @@ const AddAcademicCalender = ({}) => {
                         <button className="w-full py-3 text-base text-white transition duration-500 ease-in-out transhtmlForm bg-blue-600 border-blue-600 rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:bg-blue-800 " onClick={(e)=>{upload(e).then()}}
                         > Add Academic Calender </button>
                     </div>
+
                     <hr className="my-4 border-gray-200"/>
 
 

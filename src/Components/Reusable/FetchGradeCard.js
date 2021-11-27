@@ -48,7 +48,7 @@ const FetchGradeCard = () => {
                                 {docName} Grade Card
                             </h1></div>
 
-                            <div><span className='bg-black border-gray-400 btn btn-primary' onClick={()=>{history.push(`/GradeMaster/ViewGradeCard/${id}`)}}>Back</span></div>
+                            <div><span className='bg-black border-gray-400 btn btn-primary' onClick={()=>{history.goBack()}}>Back</span></div>
                         </div>
                         <iframe id='docs' className='w-full h-screen'
                                 src={events.downloadUrl}
