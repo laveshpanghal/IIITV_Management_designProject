@@ -1,57 +1,76 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const CourseSel = () => {
+  const [inputList, setInputList] = useState([{ firstName: "", lastName: "" }]);
+ 
+  // handle input change
+  const handleInputChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...inputList];
+    list[index][name] = value;
+    setInputList(list);
+  };
+ 
+  // handle click event of the Remove button
+  const handleRemoveClick = index => {
+    const list = [...inputList];
+    list.splice(index, 1);
+     setInputList(list);
+  };
+ 
+  // handle click event of the Add button
+  const handleAddClick = () => {
+    setInputList([...inputList, { firstName: "", lastName: "" }]);
+  };
 return (
-	<div className="container d-flex-vertical justify-content-center px-auto" >
-	<form className="  w-75" style={{ }}>
-        <h3 className=" fw-bold">Course Selection form</h3>
-  <div  className="form-group ">
-    <label className="fw-bold" for="Roll">Roll No </label>
-    <input type="email" className="form-control w-50" id="Roll" placeholder="201951049"/>
-  </div>
-  <div className="form-group ">
-    <label className="fw-bold" for="Batch">Batch</label>
-    <select className="form-control  w-50 " id="Batch">
-      <option>2018-19</option>
-      <option>2019-20</option>
-      <option>2020-21</option>
-    </select>
-    <label className="fw-bold" for="Branch">Branch</label>
-    <select className="form-control w-50" id="Branch">
-      <option>CS</option>
-      <option>IT</option>
-    </select>
-    
-  </div>
-  <div class="form-check">
-  <h5 className="fw-bold" style={{marginTop:'15px'}}> Select Course </h5>
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-  <label class="form-check-label" for="flexCheckDefault">
-    Operating System
-  </label><br/>
-  <input class="form-check-input" type="checkbox" value="" id="id-1"/>
-  <label class="form-check-label" for="id-1">
-    Database Management System
-  </label><br/>
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-  <label class="form-check-label" for="flexCheckDefault">
-    Cloud Computing
-  </label><br/>
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-  <label class="form-check-label" for="flexCheckDefault">
-    Information Retrieval
-  </label><br/>
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-  <label class="form-check-label" for="flexCheckDefault">
-    Software Engineering
-  </label>
-  </div>
-  <div className="d-flex justify-content-center" >
-  <button style={{width :'150px'}} type="submit" className="btn btn-primary ">Submit</button>
-</div>
-</form>
-	</div>
+	<div className='container d-flex-vertical justify-content-center px-auto w-50'>
+    <p class="h5 ">Select Semester</p>
+    <select className="form-select" aria-label="Default select example">
+  <option selected>Sem-1</option>
+  <option value="1">Sem-2</option>
+  <option value="2">Sem-3</option>
+  <option value="3">Sem-4</option>
+  <option value="4">Sem-5</option>
+  <option value="5">Sem-6</option>
+  <option value="6">Sem-7</option>
+  <option value="7">Sem-8</option>
+</select>
+      {inputList.map((x, i) => {
+        return (
+          <div className="container d-flex justify-content-center px-auto w-50 ">
+             <label className='m-10 my-auto' for="exampleInputEmail1"> Name</label>
+            <input
+             className="p-3 m-10 "
+              name="firstName"
+   placeholder="Enter course Name"
+              value={x.firstName}
+              onChange={e => handleInputChange(e, i)}
+            />
+              <label className='m-10 my-auto' for="exampleInputEmail1"> Code</label>
+            <input
+              className="p-3 m-10"
+              name="lastName"
+   placeholder="Enter course code"
+              value={x.lastName}
+              onChange={e => handleInputChange(e, i)}
+            />
+            <div className="">
+              {inputList.length !== 1 && <button
+               className="btn btn-primary mb-2 mt-10" 
+                onClick={() => handleRemoveClick(i)}>Remove</button>}
+              {inputList.length - 1 === i && <button  className="btn btn-primary mb-2 p-3 " onClick={handleAddClick}>Add</button>}
+            </div>
+          </div>
+        );
+      })}
+
+<button type="button" class="btn btn-outline-dark" >Submit</button>
+    </div>
 );
 };
 
 export default CourseSel;
+
+
+
+ 
