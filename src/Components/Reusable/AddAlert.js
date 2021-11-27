@@ -67,8 +67,7 @@ else{
 
     return (<div className='pt-12'>
 
-
-
+            <div className='flex justify-content-end mr-6'><span className='bg-black border-gray-400 btn btn-primary' onClick={()=>{history.goBack()}}>Back</span></div>
 
 
             <div className=" bg-gray-100 rounded-lg shadow sm:max-w-md sm:w-full sm:mx-auto sm:overflow-hidden">

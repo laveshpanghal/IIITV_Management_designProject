@@ -79,19 +79,19 @@ const FacultyMaster = ({events}) => {
                                         </div>
                                         <div className="flex-1 pl-1 md:mr-16">
                                             <div className="font-medium dark:text-white">
-                                                Approve Student Courses
+                                                Assign Course Code to faculties
                                             </div>
                                             <div className="text-gray-600 dark:text-gray-200 text-sm">
-                                                Fetch Student
+                                                Fetch list
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                            Approve Courses
+                                          Assign Course code
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
 
-                                            alert('push to fetch student component')
-                                            // (history.push('/studentCourses'))
+
+                                            (history.push('/FacultyCourseCode'))
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
@@ -112,14 +112,14 @@ const FacultyMaster = ({events}) => {
                                         </div>
                                         <div className="flex-1 pl-1 md:mr-16">
                                             <div className="font-medium dark:text-white">
-                                                Add Course Descriptions
+                                                Approve Articles
                                             </div>
                                             <div className="text-gray-600 dark:text-gray-200 text-sm">
-
+                                                Faculty articles
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                            upload now
+                                            view
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
                                             alert('push to Course desc upload')
@@ -155,10 +155,7 @@ const FacultyMaster = ({events}) => {
                                             add alert
                                         </div>
                                         <span className="w-24 text-right flex justify-end" onClick={() => {
-
-
-
-
+                                            history.push('/AddAlert')
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
                                      className="hover:text-gray-800 dark:hover:text-white dark:text-gray-200 text-gray-500"

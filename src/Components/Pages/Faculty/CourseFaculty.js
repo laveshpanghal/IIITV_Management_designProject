@@ -122,9 +122,9 @@ const CourseFaculty = ({events}) => {
                                             visible on article feed
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
-                                            alert('push to article format page')
 
-                                            // (history.push('/'))
+
+                                             (history.push('/AddArticle'))
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"

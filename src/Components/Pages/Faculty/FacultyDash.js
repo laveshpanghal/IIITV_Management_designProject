@@ -3,6 +3,7 @@ import firebase from "firebase/compat";
 import GradeMaster from "./GradeMaster";
 import CourseMaster from "./CourseMaster";
 import CourseFaculty from "./CourseFaculty";
+import FacultyMaster from "./FacultyMaster";
 
 const FacultyDash = () => {
     const firestoreDb = firebase.firestore()
@@ -34,7 +35,18 @@ const FacultyDash = () => {
                             <CourseMaster events={events}/>
 
                         </div>):(<div>
-                            <CourseFaculty events={events}/>
+
+                            {
+
+                                ((role==='Faculty Master')?(<div>
+                                    <FacultyMaster events={events}/>
+
+                                </div>):(<div>
+                                    <CourseFaculty events={events} />
+                                </div>))
+
+                            }
+
                         </div>))
 
                     }

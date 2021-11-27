@@ -100,6 +100,7 @@ const FacultySignup = () => {
                                 <option className='cursor-pointer'>Course faculty</option>
                                 <option>Grade Master</option>
                                 <option>Course Master</option>
+                                <option>Faculty Master</option>
                             </select>
                         </div>
                         <div className="input-field">
