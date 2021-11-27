@@ -34,6 +34,9 @@ import FacultySignUp from "./Components/Pages/Faculty/FacultySignUp";
 import CourseSel from "./Components/Pages/students/CourseSel";
 import StudentDashBoard from "./Components/Pages/students/StudentDashBoard";
 import FacultyRedirect from "./Components/Pages/Faculty/FacultyRedirect";
+import FetchstudentSearch from "./Components/Reusable/FetchstudentSearch";
+import GradeMasterStudentFetch from "./Components/Pages/Faculty/GradeMasterStudentFetch";
+import AddGradeCard from "./Components/Pages/Faculty/AddGradeCard";
 
 
 
@@ -76,6 +79,9 @@ function App() {
       <Route path='/studentCourses' component={CourseSel} />
       <Route path='/studentDashBoard' component={StudentDashBoard} />
       <Route path='/facultyRedirect' component={FacultyRedirect} />
+      <Route path='/GradeMasterStudentSearch' component={GradeMasterStudentFetch} />
+      <Route path='/AddGradeCard/:id' exact component={AddGradeCard} />
+
 
 
     </Switch>

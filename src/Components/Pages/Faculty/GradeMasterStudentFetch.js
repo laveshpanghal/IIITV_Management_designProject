@@ -4,15 +4,47 @@ import firestoreDb from "../index";
 import firebase from "firebase/compat";
 import {useParams, useHistory, useLocation} from "react-router-dom";
 import {useApp} from "../../../Context/AppContext";
+import FetchstudentSearch from "../../Reusable/FetchstudentSearch";
 
-const GradeMaster = ({events}) => {
+const GradeMasterStudentFetch = ({}) => {
 
+    const [events, setEvents] = useState(null);
     const [temp, setTemp] = useState('uploaded for verification ');
     const [temp1, setTemp1] = useState('not-uploaded yet')
     const firestoreDb = firebase.firestore()
-    const{rollNo}= useApp();
 
     const history = useHistory();
+    const[roll,setRoll]=useState()
+
+
+
+
+
+    function onChange(e) {
+        e.persist();
+        setRoll(e.target.value)
+    }
+
+    function fetchEvents() {
+        console.log(roll)
+
+        firestoreDb.collection("Students2021").where("AdmissionFormId","==",roll).get().then((res) => {
+            console.log(res)
+            setEvents(res.docs[0]);
+
+        })
+            .catch((err) => {
+                throw err
+            });
+
+        console.log(events, "ok")
+
+    }
+
+
+
+
+
 
     return (<div>
 
@@ -22,10 +54,10 @@ const GradeMaster = ({events}) => {
 
                         <div className="px-4 py-5 sm:px-6 w-full border dark:bg-gray-800 bg-white shadow mb-2 rounded-md">
                             <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
-                              Faculty Dashboard
+                                GradeMaster Dashboard
                             </h3>
                             <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-200">
-                                {events.Name}
+                                student search
                             </p>
                         </div>
                         <div className="container flex  flex-row ... mx-auto w-full items-center justify-center mt-12">
@@ -34,38 +66,40 @@ const GradeMaster = ({events}) => {
 
                                 <div className="border-t border-gray-200">
                                     <dl>
-                                        <div className="bg-purple-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt className="text-sm font-medium text-gray-500">
-                                                Name :
-                                            </dt>
-                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {events.Name?(events.Name):('404')}
-                                            </dd>
-                                        </div>
                                         <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt className="text-sm font-medium text-gray-500">
-                                                Role :
+                                                Name:
                                             </dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {events.Role?(events.Role):('404')}
+                                                {events.data().Name}
                                             </dd>
                                         </div>
                                         <div className="bg-purple-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt className="text-sm font-medium text-gray-500">
-                                                Email :
+                                                Roll No :
                                             </dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                 {events.Email? events.Email : "404"}
+                                                {roll}
                                             </dd>
                                         </div>
                                         <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt className="text-sm font-medium text-gray-500">
-                                                Institute :
+                                                Degree :
                                             </dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                IIIT,Vadodara
+                                                {events.data().Course? events.data().Course : "Fill Admission Form"}
                                             </dd>
                                         </div>
+                                        <div className="bg-purple-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt className="text-sm font-medium text-gray-500">
+                                                Branch :
+                                            </dt>
+                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {events.data().Branch? events.data().Branch : "Fill Admission Form"}
+                                            </dd>
+                                        </div>
+
+
                                     </dl>
                                 </div>
                             </div>
@@ -79,17 +113,18 @@ const GradeMaster = ({events}) => {
                                         </div>
                                         <div className="flex-1 pl-1 md:mr-16">
                                             <div className="font-medium dark:text-white">
-                                                Add Student Grades
+                                               Add Grades
                                             </div>
                                             <div className="text-gray-600 dark:text-gray-200 text-sm">
-                                                Fetch Student
+                                              present and previous grades
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                            upload grade cards
+                                         add
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
-                                             (history.push('/GradeMasterStudentSearch'))
+
+                                            (history.push(`/AddGradeCard/${roll}`))
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
@@ -110,17 +145,16 @@ const GradeMaster = ({events}) => {
                                         </div>
                                         <div className="flex-1 pl-1 md:mr-16">
                                             <div className="font-medium dark:text-white">
-                                               upload academic calendar
+                                                View uploaded grade cards
                                             </div>
                                             <div className="text-gray-600 dark:text-gray-200 text-sm">
-
+                                                grade cards
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                            upload now
+                                            View
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
-                                            alert('push to academic calendar upload model')
 
                                             // (history.push('/'))
 
@@ -135,39 +169,7 @@ const GradeMaster = ({events}) => {
                             </span>
                                     </div>
                                 </li>
-                                <li className="border-gray-400 flex flex-row mb-2">
-                                    <div
-                                        className="transition duration-500 shadow ease-in-out transform hover:-translate-y-1 hover:shadow-lg select-none cursor-pointer bg-white dark:bg-gray-800 rounded-md flex flex-1 items-center p-4">
-                                        <div className="flex flex-col w-10 h-10 justify-center items-center mr-4">
 
-                                        </div>
-                                        <div className="flex-1 pl-1 md:mr-16">
-                                            <div className="font-medium dark:text-white">
-                                                Send alert to a student
-                                            </div>
-                                            <div className="text-gray-600 dark:text-gray-200 text-sm">
-                                                send alerts to student dashboard
-                                            </div>
-                                        </div>
-                                        <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                            add alert
-                                        </div>
-                                        <span className="w-24 text-right flex justify-end" onClick={() => {
-                                            alert('push to alert manager component')
-
-                                            // (history.push('/Fees'))
-
-                                        }}>
-                                <svg width="12" fill="currentColor" height="12"
-                                     className="hover:text-gray-800 dark:hover:text-white dark:text-gray-200 text-gray-500"
-                                     viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z">
-                                    </path>
-                                </svg>
-                            </span>
-                                    </div>
-                                </li>
 
 
 
@@ -179,9 +181,7 @@ const GradeMaster = ({events}) => {
 
                     <div>
 
-                        <div className=" flex justify-center items-center">
-                            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-800 mt-20"></div>
-                        </div>
+                       <FetchstudentSearch onChange={onChange} onClick={fetchEvents}/>
                     </div>)
 
             }
@@ -192,7 +192,7 @@ const GradeMaster = ({events}) => {
     );
 };
 
-export default GradeMaster;
+export default GradeMasterStudentFetch;
 
 
 
