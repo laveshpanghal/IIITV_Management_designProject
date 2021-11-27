@@ -44,6 +44,7 @@ import FetchGradeCard from "./Components/Reusable/FetchGradeCard";
 import AddAcademicCalender from "./Components/Pages/Faculty/AddAcademicCalender";
 import GradeCardViewStudent from "./Components/Pages/students/GradeCardViewStudent";
 import StudentDocumentsAdmin from "./Components/Pages/admin/StudentDocumentsAdmin";
+import AddAlert from "./Components/Reusable/AddAlert";
 import AcademicCalenderViewStudent from "./Components/Pages/students/AcademicCalenderViewStudent";
 import FetchAcademicCalender from "./Components/Reusable/FetchAcademicCalender";
 
@@ -99,6 +100,7 @@ function App() {
       <Route path='/StudentLogin' component={StudentLogin} />
       <Route path='/StudentRegister' component={StudentRegister} />
       <Route path='/AddAcademicCalender' component={AddAcademicCalender} />
+      <Route path='/AddAlert' component={AddAlert} />
 
 
 

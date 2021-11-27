@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import firebase from "firebase/compat";
 import GradeMaster from "./GradeMaster";
+import CourseMaster from "./CourseMaster";
+import CourseFaculty from "./CourseFaculty";
 
 const FacultyDash = () => {
     const firestoreDb = firebase.firestore()
@@ -24,7 +26,20 @@ const FacultyDash = () => {
                 ((role==='Grade Master')?(<div>
                     <GradeMaster events={events}/>
 
-                </div>):(<div></div>))
+                </div>):(<div>
+
+                    {
+
+                        ((role==='Course Master')?(<div>
+                            <CourseMaster events={events}/>
+
+                        </div>):(<div>
+                            <CourseFaculty events={events}/>
+                        </div>))
+
+                    }
+
+                </div>))
 
 
             }

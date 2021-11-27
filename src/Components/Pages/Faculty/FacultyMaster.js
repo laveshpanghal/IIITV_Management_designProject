@@ -155,9 +155,9 @@ const FacultyMaster = ({events}) => {
                                             add alert
                                         </div>
                                         <span className="w-24 text-right flex justify-end" onClick={() => {
-                                            alert('push to alert manager component')
 
-                                            // (history.push('/Fees'))
+
+
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
