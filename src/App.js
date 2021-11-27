@@ -50,6 +50,7 @@ import FetchAcademicCalender from "./Components/Reusable/FetchAcademicCalender";
 import articleFeed from "./Components/Pages/Articles/ArticleFeed";
 import ArticleFeed from "./Components/Pages/Articles/ArticleFeed";
 import AddArticle from "./Components/Pages/Articles/AddArticle";
+import CourseReq from "./Components/Pages/students/CourseReq";
 
 
 
@@ -102,6 +103,7 @@ function App() {
       <Route path='/AcademicCalenderViewStudent/:docName' exact component={FetchAcademicCalender} />
       <Route path='/ViewGradeCard/:id/:docName' exact component={FetchGradeCard} />
       <Route path='/Admin/ViewStudentDocs/:id' exact component={StudentDocumentsAdmin} />
+      <Route path='/CourseReq' exact component={CourseReq} />
 
       <Route path='/StudentLogin' component={StudentLogin} />
       <Route path='/StudentRegister' component={StudentRegister} />
