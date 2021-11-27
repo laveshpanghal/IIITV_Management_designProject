@@ -41,6 +41,7 @@ import StudentLogin from "./Components/Pages/students/StudentLogin";
 import StudentRegister from "./Components/Pages/students/StudentRegister";
 import GradeCardVeiwMaster from "./Components/Pages/Faculty/GradeCardVeiwMaster";
 import FetchGradeCard from "./Components/Reusable/FetchGradeCard";
+import AddAcademicCalender from "./Components/Pages/Faculty/AddAcademicCalender";
 
 
 
@@ -91,6 +92,7 @@ function App() {
 
       <Route path='/StudentLogin' component={StudentLogin} />
       <Route path='/StudentRegister' component={StudentRegister} />
+      <Route path='/AddAcademicCalender' component={AddAcademicCalender} />
 
 
 

@@ -86,7 +86,7 @@ const GradeMaster = ({events}) => {
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                            upload grade cards
+                                            Upload grade cards
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
                                              (history.push('/GradeMasterStudentSearch'))
@@ -110,7 +110,7 @@ const GradeMaster = ({events}) => {
                                         </div>
                                         <div className="flex-1 pl-1 md:mr-16">
                                             <div className="font-medium dark:text-white">
-                                               upload academic calendar
+                                               Upload academic calendar
                                             </div>
                                             <div className="text-gray-600 dark:text-gray-200 text-sm">
 
@@ -120,9 +120,9 @@ const GradeMaster = ({events}) => {
                                             upload now
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
-                                            alert('push to academic calendar upload model')
+                                            //alert('push to academic calendar upload model')
 
-                                            // (history.push('/'))
+                                            history.push('/AddAcademicCalender');
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
