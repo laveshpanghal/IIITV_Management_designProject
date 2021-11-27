@@ -9,6 +9,7 @@ import AdmissionReq from "./AdmissionReq";
 import Faculty from "../Faculty";
 import FacultyReq from "./FacultyReq";
 import StudentInfoFetch from "./StudentInfoFetch";
+import AddAlert from "../../Reusable/AddAlert";
 
 const AdminDashboard=()=> {
 
@@ -29,6 +30,7 @@ const AdminDashboard=()=> {
               <a href="#page3">Student Admission Request</a><hr />
               <a href="#page4"> Faculty Request</a><hr />
               <a href="#page2">Fetch Student Information</a><hr />
+              <a href="#page5">Send Students Alert</a><hr />
           </nav>
           <main>
 
@@ -37,6 +39,14 @@ const AdminDashboard=()=> {
 
                   <React.StrictMode>
                       <AdmissionReq />
+                  </React.StrictMode>
+
+              </div>
+              <div id="page5" className="page">
+
+
+                  <React.StrictMode>
+                     <AddAlert/>
                   </React.StrictMode>
 
               </div>

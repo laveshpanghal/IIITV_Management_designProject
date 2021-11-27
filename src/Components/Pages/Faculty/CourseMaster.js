@@ -155,9 +155,8 @@ const CourseMaster = ({events}) => {
                                             add alert
                                         </div>
                                         <span className="w-24 text-right flex justify-end" onClick={() => {
-                                            alert('push to alert manager component')
 
-                                            // (history.push('/Fees'))
+                                            (history.push('/AddAlert'))
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"

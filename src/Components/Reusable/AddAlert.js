@@ -15,7 +15,8 @@ const AddAlert = () => {
     const history = useHistory();
 
 const handelAlert=()=>{
-    var alert = document.getElementById('alert').value
+    var alertText = document.getElementById('alert').value
+    var id = document.getElementById('roll').value
 if(hidden===true){
 
     firestoreDb.collection('Students2021').get().then((res)=>{
@@ -25,11 +26,33 @@ if(hidden===true){
             console.log(value.id)
 
             firestoreDb.collection('Students2021').doc(value.id).update({
-                "alert": alert
-            }).then(()=>{})
+                "alert": alertText
+            }).then(()=>{alert("alert sent to all students")
+            history.goBack();})
 
         })
 
+    })
+
+
+}
+else{
+
+    firestoreDb.collection('Students2021').where("AdmissionFormId", '==', id).get().then((doc) => {
+        firestoreDb.collection('Students2021').doc(doc.docs[0].id).update({
+
+            "alert": alertText
+
+        }).then((res) => {
+            alert(`alert sent to ${id}`)
+            history.goBack();
+
+        })
+            .catch((err) => {
+                throw err
+            });
+
+        console.log(events, "ok")
     })
 
 
