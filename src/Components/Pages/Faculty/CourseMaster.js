@@ -122,9 +122,9 @@ const CourseMaster = ({events}) => {
                                             upload now
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
-                                            alert('push to Course desc upload')
 
-                                            // (history.push('/'))
+
+                                             (history.push('/CourseMaster/CourseUpdate'))
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"

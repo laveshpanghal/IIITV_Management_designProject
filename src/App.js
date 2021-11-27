@@ -31,7 +31,7 @@ import StudentAdmissionChanges from "./Components/Pages/admission/StudentAdmissi
 import FacultyDash from "./Components/Pages/Faculty/FacultyDash";
 import FacultyLogin from "./Components/Pages/Faculty/FacultyLogin";
 import FacultySignUp from "./Components/Pages/Faculty/FacultySignUp";
-import CourseSel from "./Components/Pages/students/CourseSel";
+import CourseSel from "./Components/Pages/Faculty/CourseSel";
 import StudentDashBoard from "./Components/Pages/students/StudentDashBoard";
 import FacultyRedirect from "./Components/Pages/Faculty/FacultyRedirect";
 import FetchstudentSearch from "./Components/Reusable/FetchstudentSearch";
@@ -85,7 +85,8 @@ function App() {
       <Route path="/AdminSignup" exact component={AdminSignup}/>
       <Route path='/FacultyDash' exact component={FacultyDash} />
       <Route path='/FacultySignUp' component={FacultySignUp} />
-      <Route path='/studentCourses' component={CourseSel} />
+      <Route path='/studentCourses' component={''} />
+      <Route path='/CourseMaster/CourseUpdate' component={CourseSel} />
       <Route path='/studentDashBoard' component={StudentDashBoard} />
       <Route path='/facultyRedirect' component={FacultyRedirect} />
       <Route path='/GradeMasterStudentSearch' component={GradeMasterStudentFetch} />
