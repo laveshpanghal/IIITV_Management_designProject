@@ -16,18 +16,16 @@ const ArticleFeed = ({ }) => {
 
     function fetchArticle() {
 
-        firestoreDb.collection('Article').doc().get().then((res)=>{
+
+        firestoreDb.collection('Article').get().then((res)=>{
             setLoading(false);
-            setData(res);
-            console.log(res)
+            setData(res.docs);
+            console.log(res.docs[0].data())
 
         }).catch((err) => {
             console.log(err)
             });
     }
-
-
-
 
 
 
@@ -96,16 +94,16 @@ const ArticleFeed = ({ }) => {
                                 <div className="px-4 w-2/3" key={key}>
                                     <div>
                                         <Link
-                                            to={`/articles/${value.createdAt}/${key}`}
+                                            to={`/articles/${value.data().createdAt}/${key}`}
                                             className="text-base md:text-2xl text-gray-700 font-bold hover:text-gray-600 hover:underline"
                                         >
-                                            {value.title ? value.title : "Plastic Collection"}
+                                            {value.data().title ? value.data().title : "Plastic Collection"}
                                         </Link>
                                         <p className="text-xs lg:text-sm md:text-base text-gray-500 whitespace-pre-wrap overflow-ellipsis">
-                                            {value.liner ? value.liner : ""}
+                                            {value.data().liner ? value.data().liner : ""}
                                         </p>
                                         <p className="mt-2 text-xs lg:text-sm font-semibold md:text-base text-gray-500 whitespace-pre-wrap overflow-ellipsis">
-                                            {value.name ? `- ${value.name}` : ""}
+                                            {value.data().name ? `- ${value.data().name}` : ""}
                                         </p>
                                     </div>
 
