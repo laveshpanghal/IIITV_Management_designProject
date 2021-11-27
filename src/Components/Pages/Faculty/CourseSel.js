@@ -37,10 +37,10 @@ const CourseSel = () => {
         "CourseName":value.courseName,
         "Semester":sem
       }).then(()=>{
-        history.goBack()
+
       })
     })
-    alert("Course has been added successfully")
+
 
 
   }
@@ -88,7 +88,13 @@ return (
         );
       })}
 
-<button type="button" class="btn btn-outline-dark" onClick={()=>{uploadCourses()}} >Submit</button>
+<button type="button" className="btn btn-outline-dark" onClick={()=>{uploadCourses()
+  setTimeout(() => {
+    alert("Course has been added successfully")
+    history.goBack()
+  }, 2500)
+
+}} >Submit</button>
     </div>
 );
 };
