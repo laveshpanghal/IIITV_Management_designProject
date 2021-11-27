@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import firebase from "firebase/compat";
-import {useParams} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 
 const FetchGradeCard = () => {
     const firestoreDb = firebase.firestore()
     const[role,setRole] = useState();
     const[events,setEvents]=useState();
     const {id,docName} = useParams();
-
+    const history = useHistory();
 
     function fetchEvents() {
 
 
         firestoreDb.collection('Students2021').where("AdmissionFormId", '==', id).get().then((doc) => {
-            firestoreDb.collection('Students2021').doc(doc.docs[0].id).collection('Grades').get().then((res) => {
-                setEvents(res.docs);
+            firestoreDb.collection('Students2021').doc(doc.docs[0].id).collection('Grades').doc(docName).get().then((res) => {
+                setEvents(res.data());
                 console.log(res, "res")
 
             })
@@ -38,18 +38,20 @@ const FetchGradeCard = () => {
     return (
         <div className="container"
         >
+
             {events ? (
 
-                    <div className="container mx-auto sm:mt-20 w-full h-full">
-                        <div>
-                            <h1>
-                                {docName}
-                            </h1>
+                    <div className="container mx-auto sm:mt-20 w-full h-full pr-2">
+                        <div className='pb-6 font-bold text-xl flex flex-row justify-between'>
+                            <div> <h1>
+
+                                {docName} Grade Card
+                            </h1></div>
+
+                            <div><span className='bg-black border-gray-400 btn btn-primary' onClick={()=>{history.push(`/GradeMaster/ViewGradeCard/${id}`)}}>Back</span></div>
                         </div>
-                        <iframe id='docs'
-                                src={events}
-                                width="1400px"
-                                height="800px"
+                        <iframe id='docs' className='w-full h-screen'
+                                src={events.downloadUrl}
                                 frameBorder="0">
                         </iframe>
 

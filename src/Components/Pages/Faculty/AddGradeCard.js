@@ -159,7 +159,7 @@ const AddGradeCard = ({}) => {
 
 
             setTimeout(() => {
-                history.push('/')
+                history.push(`/GradeMaster/ViewGradeCard/${id}`)
 
             }, 4870)
 

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import firestoreDb from "../index";
 import firebase from "firebase/compat";
 import {useParams, useHistory,useLocation} from "react-router-dom";
 
@@ -20,8 +19,6 @@ const ViewAllGradeCards = ({}) => {
             firestoreDb.collection('Students2021').doc(doc.docs[0].id).collection('Grades').get().then((res) => {
                 setEvents(res.docs);
 
-
-                setTemp(res.docs)
 
                 console.log(res, "res")
 
@@ -52,7 +49,7 @@ const ViewAllGradeCards = ({}) => {
                         return (
                             <div className="flex flex-col pb-16 divide-dashed > * + *">
                                 <div>
-                                    <h1>
+                                    <h1 className='pb-6 font-bold text-xl'>
                                         {value.data().gradecardName}
                                     </h1>
                                 </div>
