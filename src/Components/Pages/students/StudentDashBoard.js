@@ -161,7 +161,8 @@ const StudentDashBoard = ({}) => {
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
 
-                                            (history.push('/'))
+                                            (history.push('/Student/AcademicCalenderViewStudent'))
+
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"

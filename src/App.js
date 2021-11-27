@@ -44,6 +44,8 @@ import FetchGradeCard from "./Components/Reusable/FetchGradeCard";
 import AddAcademicCalender from "./Components/Pages/Faculty/AddAcademicCalender";
 import GradeCardViewStudent from "./Components/Pages/students/GradeCardViewStudent";
 import StudentDocumentsAdmin from "./Components/Pages/admin/StudentDocumentsAdmin";
+import AcademicCalenderViewStudent from "./Components/Pages/students/AcademicCalenderViewStudent";
+import FetchAcademicCalender from "./Components/Reusable/FetchAcademicCalender";
 
 
 
@@ -89,6 +91,8 @@ function App() {
       <Route path='/AddGradeCard/:id' exact component={AddGradeCard} />
       <Route path='/GradeMaster/ViewGradeCard/:id' component={GradeCardVeiwMaster} />
       <Route path='/Student/ViewGradeCard/:id' component={GradeCardViewStudent} />
+      <Route path='/Student/AcademicCalenderViewStudent' component={AcademicCalenderViewStudent} />
+      <Route path='/AcademicCalenderViewStudent/:docName' exact component={FetchAcademicCalender} />
       <Route path='/ViewGradeCard/:id/:docName' exact component={FetchGradeCard} />
       <Route path='/Admin/ViewStudentDocs/:id' exact component={StudentDocumentsAdmin} />
 
