@@ -2,8 +2,12 @@ import React, {useEffect, useState} from "react";
 import firestoreDb from "../index";
 import firebase from "firebase/compat";
 import {useParams, useHistory, useLocation} from "react-router-dom";
+import{ init } from 'emailjs-com';
+import emailjs from 'emailjs-com';
 
 const FinalAdmissionStatus = ({}) => {
+
+    init("user_otDdHz3eX5AgBgHWoJGgb");
 
     const [events, setEvents] = useState(null);
     const [temp, setTemp] = useState('some docs not-verified');
@@ -39,6 +43,26 @@ const FinalAdmissionStatus = ({}) => {
 
     }
 
+    function sendEmail(fromName,toName,toEmail,email){
+
+        let message = "Your student portal email is "+toEmail+"\n Now you can register and login into student portal from \n https://iiitv-198b6.web.app/StudentLogin";
+
+        const templateParams = {
+            from_name: fromName,
+            to_name: toName,
+            message: message,
+            reply_to: email
+        };
+        emailjs.send('service_ygp44qj', 'template_qu85eds', templateParams, "user_otDdHz3eX5AgBgHWoJGgb")
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+                console.log('FAILED...', error);
+            });
+
+
+    }
+
     const handleVerify = ()=>{
         console.log(id)
         firestoreDb.collection("AdmissionForms2021").doc(id).update({
@@ -52,7 +76,10 @@ const FinalAdmissionStatus = ({}) => {
                 firestoreDb.collection('Students2021').doc().set({   "Name":events.data.name,
                     "Course":events.Course,
                     "Branch":events.data.branch,
-                    "AdmissionFormId":id}).then(()=>{history.push(`/Admin/EnrollStatus/${id}`)})
+                    "AdmissionFormId":id,
+                    "Email":id+"."+(events.data.name.replace(/\s/g, "")).toLowerCase()+"@iiitvadodara.ac.in"}).then(()=>{
+                    sendEmail("IIIT Vadodara",events.data.name,id+"."+(events.data.name.replace(/\s/g, "",)).toLowerCase()+"@iiitvadodara.ac.in",events.data.emailAddress);
+                        history.push(`/Admin/EnrollStatus/${id}`)})
 
 
 
