@@ -85,7 +85,7 @@ const AddGradeCard = ({}) => {
 
 
 
-        var gg = document.querySelector('input').value
+        var gg = document.getElementById('projectImage').value;
 
 
         if(gg===""||gg===undefined||gg===null){
@@ -139,8 +139,9 @@ const AddGradeCard = ({}) => {
                         }
                         console.log(datais)
                         firestoreDb.collection('Students2021').where("AdmissionFormId",'==',id).get().then((doc)=>{
-                           firestoreDb.collection('Students2021').doc(doc.docs[0].id).collection('Grades').doc().set({
-                               [data.name] : datais.downloadURL
+                           firestoreDb.collection('Students2021').doc(doc.docs[0].id).collection('Grades').doc(data.name).set({
+                               "downloadUrl" : datais.downloadURL,
+                               "gradecardName":data.name
 
 
                            })
@@ -189,7 +190,7 @@ const AddGradeCard = ({}) => {
                         <label htmlFor="name" className="text-base leading-7 text-blueGray-500 mb-5">Grade Card</label>
 
                         <p className="flex flex-wrap justify-center mb-3 text-base leading-7 text-blueGray-500">
-                            <input type="file" id='fileId' className=' flex-auto items-center text-center justify-center py-12 text-base text-blueGray-500 transition duration-500 ease-in-out transhtmlForm bg-white border border-dashed rounded-lg focus:border-blue-500 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2'  accept='application/pdf,' id="projectImage" onChange={onDocsChange}  ref={fileInput} required/>
+                            <input type="file"  className=' flex-auto items-center text-center justify-center py-12 text-base text-blueGray-500 transition duration-500 ease-in-out transhtmlForm bg-white border border-dashed rounded-lg focus:border-blue-500 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2'  accept='application/pdf,' id="projectImage" onChange={onDocsChange}  ref={fileInput} required/>
 
                         </p>
 

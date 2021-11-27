@@ -156,7 +156,7 @@ const GradeMasterStudentFetch = ({}) => {
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
 
-                                            // (history.push('/'))
+                                            history.push(`/GradeMaster/ViewGradeCard/${roll}`)
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"

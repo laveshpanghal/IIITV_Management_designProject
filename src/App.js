@@ -37,6 +37,8 @@ import FacultyRedirect from "./Components/Pages/Faculty/FacultyRedirect";
 import FetchstudentSearch from "./Components/Reusable/FetchstudentSearch";
 import GradeMasterStudentFetch from "./Components/Pages/Faculty/GradeMasterStudentFetch";
 import AddGradeCard from "./Components/Pages/Faculty/AddGradeCard";
+import GradeCardVeiwMaster from "./Components/Pages/Faculty/GradeCardVeiwMaster";
+import FetchGradeCard from "./Components/Reusable/FetchGradeCard";
 
 
 
@@ -81,6 +83,9 @@ function App() {
       <Route path='/facultyRedirect' component={FacultyRedirect} />
       <Route path='/GradeMasterStudentSearch' component={GradeMasterStudentFetch} />
       <Route path='/AddGradeCard/:id' exact component={AddGradeCard} />
+      <Route path='/GradeMaster/ViewGradeCard/:id' component={GradeCardVeiwMaster} />
+      <Route path='/ViewGradeCard/:id/:docName' exact component={FetchGradeCard} />
+
 
 
 

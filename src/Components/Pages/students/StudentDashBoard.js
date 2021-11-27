@@ -11,7 +11,6 @@ const StudentDashBoard = ({}) => {
     const [temp, setTemp] = useState('uploaded for verification ');
     const [temp1, setTemp1] = useState('not-uploaded yet')
     const firestoreDb = firebase.firestore()
-    const{rollNo}= useApp();
 
     const history = useHistory();
 
@@ -20,8 +19,8 @@ const StudentDashBoard = ({}) => {
 
     function fetchEvents() {
 
-
-        firestoreDb.collection("Students2021").where("AdmissionFormId","==",rollNo).get().then((res) => {
+        console.log(firebase.auth().currentUser.email)
+        firestoreDb.collection("Students2021").where("Email","==",firebase.auth().currentUser.email).get().then((res) => {
             console.log(res)
             setEvents(res.docs[0]);
 
@@ -68,7 +67,7 @@ const StudentDashBoard = ({}) => {
                                                 Roll No :
                                             </dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {rollNo==='404'? ('please verify your roll No '):(rollNo)}
+                                                {events.data().AdmissionFormId ? (events.data().AdmissionFormId):('please verify your roll No ')}
                                             </dd>
                                         </div>
                                         <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
