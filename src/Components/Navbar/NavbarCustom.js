@@ -76,7 +76,7 @@ const NavbarCustom = () => {
                     <NavLink to={admissionURL}>
                         Admission
                     </NavLink>
-                    <NavLink to='/Students'>
+                    <NavLink to='/StudentLogin'>
                         Students
                     </NavLink>
                     <NavLink to='/FacultyLogin'>
