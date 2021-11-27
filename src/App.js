@@ -9,7 +9,7 @@ import Admission from './Components/Pages/Admission';
 import Students from './Components/Pages/students/Students';
 import Admin from './Components/Pages/Admin';
 import Faculty from './Components/Pages/Faculty';
-import Fees from './Components/Pages/Fees';
+import Fees from './Components/Pages/Fees/Fees';
 import SignUp from "./Components/SignUP/SignUp";
 import Login from "./Login/Login";
 import AdmissionForms from "./Components/Pages/admission/AdmissionForm";
