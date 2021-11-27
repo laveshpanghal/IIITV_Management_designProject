@@ -47,6 +47,9 @@ import StudentDocumentsAdmin from "./Components/Pages/admin/StudentDocumentsAdmi
 import AddAlert from "./Components/Reusable/AddAlert";
 import AcademicCalenderViewStudent from "./Components/Pages/students/AcademicCalenderViewStudent";
 import FetchAcademicCalender from "./Components/Reusable/FetchAcademicCalender";
+import articleFeed from "./Components/Pages/Articles/ArticleFeed";
+import ArticleFeed from "./Components/Pages/Articles/ArticleFeed";
+import AddArticle from "./Components/Pages/Articles/AddArticle";
 
 
 
@@ -66,6 +69,8 @@ function App() {
       <Route path='/AdminLogin' component={AdminLogin} />
       <Route path='/Login'  component={Login} />
       <Route path ="/Admin" exact component={AdminDashboard}/>
+      <Route path ="/Article" exact component={ArticleFeed}/>
+
 
 
       <Route path ="/AdmissionForm" exact component={AdmissionForms}/>
@@ -102,6 +107,7 @@ function App() {
       <Route path='/StudentRegister' component={StudentRegister} />
       <Route path='/AddAcademicCalender' component={AddAcademicCalender} />
       <Route path='/AddAlert' component={AddAlert} />
+      <Route path='/AddArticle' component={AddArticle} />
 
 
 

@@ -10,6 +10,7 @@ import Faculty from "../Faculty";
 import FacultyReq from "./FacultyReq";
 import StudentInfoFetch from "./StudentInfoFetch";
 import AddAlert from "../../Reusable/AddAlert";
+import AddArticle from "../Articles/AddArticle";
 
 const AdminDashboard=()=> {
 
@@ -27,10 +28,11 @@ const AdminDashboard=()=> {
                       <p>last-login</p>
                   </div>
               </a><hr />
-              <a href="#page3">Student Admission Request</a><hr />
-              <a href="#page4"> Faculty Request</a><hr />
-              <a href="#page2">Fetch Student Information</a><hr />
-              <a href="#page5">Send Students Alert</a><hr />
+              <a href="#page3">Student Admission Request</a><hr/>
+              <a href="#page4"> Faculty Request</a><hr/>
+              <a href="#page2">Fetch Student Information</a><hr/>
+              <a href="#page5">Send Students Alert</a><hr/>
+              <a href="#page6">Add Article</a><hr/>
           </nav>
           <main>
 
@@ -39,6 +41,14 @@ const AdminDashboard=()=> {
 
                   <React.StrictMode>
                       <AdmissionReq />
+                  </React.StrictMode>
+
+              </div>
+              <div id="page6" className="page">
+                  <h1>Add Article</h1>
+
+                  <React.StrictMode>
+                      <AddArticle/>
                   </React.StrictMode>
 
               </div>

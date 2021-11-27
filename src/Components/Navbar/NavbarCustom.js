@@ -88,10 +88,11 @@ const NavbarCustom = () => {
                     <NavLink to='/Fees'>
                         Fees
                     </NavLink>
+                    <NavLink to='/Article'>
+                        Articles
+                    </NavLink>
 
                     <form className="d-flex h-100">
-                        <input className="form-control mx-auto h-50 my-auto" type="search" placeholder="Search"
-                               aria-label="Search"/>
                         &emsp;
                         <button hidden={hiddenCheck} className="btn btn-outline-success h-50 my-auto" onClick={logout} type="submit">Logout
                         </button>
