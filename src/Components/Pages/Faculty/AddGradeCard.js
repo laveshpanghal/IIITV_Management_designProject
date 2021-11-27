@@ -3,7 +3,8 @@ import {useHistory, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getStorage, ref, uploadBytesResumable, getDownloadURL} from "firebase/storage"
     ;
-import firestoreDb from "../index";
+import firebase from "firebase/compat";
+
 
 
 const AddGradeCard = ({}) => {
@@ -12,14 +13,12 @@ const AddGradeCard = ({}) => {
     const history = useHistory()
     const[events,setEvents] =  useState(null)
     const num = Math.floor(Math.random() * 1000) + 1;
-
+    const firestoreDb = firebase.firestore()
     const[isNotloading,setIsNotloading ] =useState(true)
+    const[userid,setUserid]=useState()
     const [data, setData] = useState(
         {
             name: "404",
-            description: "404",
-
-
         }
     )
 
@@ -55,7 +54,7 @@ const AddGradeCard = ({}) => {
 
 
 
-        if ( fileInput.current.files[0].name.split('.').pop() !== 'jpg' && fileInput.current.files[0].name.split('.').pop() !== 'JPG' && fileInput.current.files[0].name.split('.').pop() !== 'jpeg' && fileInput.current.files[0].name.split('.').pop() !== 'JPEG' && fileInput.current.files[0].name.split('.').pop() !== 'png' && fileInput.current.files[0].name.split('.').pop() !== 'PNG'){
+        if ( fileInput.current.files[0].name.split('.').pop() !== 'pdf' && fileInput.current.files[0].name.split('.').pop() !== 'JPG' && fileInput.current.files[0].name.split('.').pop() !== 'jpeg' && fileInput.current.files[0].name.split('.').pop() !== 'JPEG' && fileInput.current.files[0].name.split('.').pop() !== 'png' && fileInput.current.files[0].name.split('.').pop() !== 'PNG'){
             alert("File format must be pdf or png or jpg or jpeg");
             e.target.value = null;
             return;
@@ -87,32 +86,29 @@ const AddGradeCard = ({}) => {
 
 
         var gg = document.querySelector('input').value
-        var wp = document.querySelector('textarea').textLength
+
 
         if(gg===""||gg===undefined||gg===null){
 
 
 
-            alert('upload Project Image')
+            alert('upload  grade card')
             console.log(initialdocs.length,initialdocs)
             return
         }
         if(data.name==='404'|| data.name===""|| data.name===undefined||data.name===null){
 
-            alert('Title cant be empty')
+            alert('grade card name cant be empty')
             return
         }
-        if(wp<150||wp===undefined||wp===null){
-            alert('Description should be of minimum 150 length')
-            return
-        }
+
 
 
 
 
         try {
 
-            const storageRef = ref(storage, "/ProjectImages/"+data.name+num+"/" + "gg.jpg")
+            const storageRef = ref(storage, "/StudentGrades/"+id+"/"+data.name+".pdf")
             const uploadTask = uploadBytesResumable(storageRef, fileInput.current.files[0])
 
 
@@ -138,13 +134,18 @@ const AddGradeCard = ({}) => {
                         console.log('File available at',downloadURL);
 
                         const datais= {
-                            "documentName" : 'ProjectImage',
+                            "documentName" : data.name,
                             "downloadURL":downloadURL,
                         }
                         console.log(datais)
-                        firestoreDb.collection('projects').doc().set({...data,...datais}).then(()=>{
+                        firestoreDb.collection('Students2021').where("AdmissionFormId",'==',id).get().then((doc)=>{
+                           firestoreDb.collection('Students2021').doc(doc.docs[0].id).collection('Grades').doc().set({
+                               [data.name] : datais.downloadURL
 
+
+                           })
                         })
+
 
                     });
                 },
