@@ -55,6 +55,7 @@ import AddCourseCode from "./Components/Pages/Faculty/AddCourseCode";
 import CourseReq from "./Components/Pages/students/CourseReq";
 import GetArticle from "./Components/Pages/Articles/GetArticle";
 import StudentCourseRequests from "./Components/Pages/Faculty/StudentCourseRequests";
+import FacultyEnrolledStudents from "./Components/Pages/Faculty/FacultyEnrolledStudents";
 
 
 
@@ -112,6 +113,7 @@ function App() {
       <Route path='/CourseReq/:id' exact component={CourseReq} />
       <Route path='/articles/:userId/:articleId' exact component={GetArticle} />
       <Route path='/StudentCourseRequests' exact component={StudentCourseRequests} />
+      <Route path='/EnrolledStudents' exact component={FacultyEnrolledStudents} />
 
 
       <Route path='/StudentLogin' component={StudentLogin} />
