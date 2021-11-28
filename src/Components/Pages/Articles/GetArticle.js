@@ -193,8 +193,6 @@ const GetArticle = ({ }) => {
 
                             )}
                             <span className="w-6 ml-4">
-                                                            <div><span className='bg-black border-gray-400 btn ml-4 btn-primary' onClick={()=>{history.goBack()}}>Back</span></div>
-
 
               </span>
                         </div>

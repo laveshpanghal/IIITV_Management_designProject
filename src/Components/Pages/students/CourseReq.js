@@ -35,25 +35,19 @@ const CourseReq = () => {
     };
 
     function submitToUpload(){
-        //console.log(courses)
-        firestoreDb.collection('Students2021').where("AdmissionFormId",'==',id).get().then((doc)=>{
-            firestoreDb.collection('Students2021').doc(doc.docs[0].id).collection("Courses").doc().set({
-                "courses" : courses
 
-
-
-            }).then(()=>{
                 firestoreDb.collection('Students2021').where("AdmissionFormId",'==',id).get().then((doc)=>{
                     firestoreDb.collection('Students2021').doc(doc.docs[0].id).update({
-                        "courseApprovalStatus":"pending"
+                        "courseApprovalStatus":"pending",
+                        "Courses":courses
                     } )
                 }) .then(()=>{
                     alert("Course Request Sent")
                     history.goBack()
                 })
 
-            })
-        })
+
+
     }
 
     function checkSemesterStatus(sem){
