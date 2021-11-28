@@ -46,7 +46,8 @@ const StudentDashBoard = ({}) => {
                 "alert":""
             }).then(()=>{
                 alert('alert Deleted')
-                history.location.reload()
+                setShowModal(false)
+                window.location.reload()
             })
 
         })
