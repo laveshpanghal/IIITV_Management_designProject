@@ -107,7 +107,7 @@ function App() {
       <Route path='/Admin/ViewStudentDocs/:id' exact component={StudentDocumentsAdmin} />
       <Route path='/FacultyCourseCode' exact component={FacultyCourseCode} />
       <Route path='/FacultyCourseCode/:facultyName' component={AddCourseCode} />
-      <Route path='/CourseReq' exact component={CourseReq} />
+      <Route path='/CourseReq/:id' exact component={CourseReq} />
 
       <Route path='/StudentLogin' component={StudentLogin} />
       <Route path='/StudentRegister' component={StudentRegister} />

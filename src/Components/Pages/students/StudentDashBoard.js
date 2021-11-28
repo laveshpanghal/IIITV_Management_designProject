@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from "react";
 import firestoreDb from "../index";
 import firebase from "firebase/compat";
@@ -152,6 +153,7 @@ const StudentDashBoard = ({}) => {
                                         </li>
                                     </div>
                                 </div>
+
                             </div>
 
 
@@ -176,6 +178,7 @@ const StudentDashBoard = ({}) => {
                                         <span className="w-24 text-right flex justify-end" onClick={() => {
 
                                             events.data().enrolledCourses ? (alert('form already submitted')) : (history.push('/studentCourses'))
+                                            // history.push(`/CourseReq/${events.data().AdmissionFormId}`)
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
