@@ -9,7 +9,7 @@ import alertImage from "../../../caution.png"
 const StudentDashBoard = ({}) => {
 
     const [events, setEvents] = useState(null);
-    const [temp, setTemp] = useState('uploaded for verification ');
+    const [temp, setTemp] = useState(null);
     const [temp1, setTemp1] = useState('not-uploaded yet')
     const firestoreDb = firebase.firestore()
     const [showModal, setShowModal] = useState(false);
@@ -22,6 +22,10 @@ const StudentDashBoard = ({}) => {
         firestoreDb.collection("Students2021").where("Email", "==", firebase.auth().currentUser.email).get().then((res) => {
             console.log(res)
             setEvents(res.docs[0]);
+            firestoreDb.collection('Students2021').doc(res.docs[0].id)
+                .collection('Courses').get().then((data)=>{
+                    setTemp(data.docs)
+            })
 
         })
             .catch((err) => {
@@ -178,9 +182,9 @@ const StudentDashBoard = ({}) => {
                                         </div>
                                         <span className="w-24 text-right flex justify-end" onClick={() => {
 
-                                            events.data().enrolledCourses ? (alert('form already submitted')) : (history.push('/studentCourses'))
+                                            (temp.length<=0 ) ? history.push(`/CourseReq/${events.data().AdmissionFormId}`):(alert('form already submitted') )
                                             // history.push(`/CourseReq/${events.data().AdmissionFormId}`)
-
+                                            console.log(temp.length)
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
                                      className="hover:text-gray-800 dark:hover:text-white dark:text-gray-200 text-gray-500"

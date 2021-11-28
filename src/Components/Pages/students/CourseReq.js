@@ -35,17 +35,23 @@ const CourseReq = () => {
     };
 
     function submitToUpload(){
-        console.log(courses)
+        //console.log(courses)
         firestoreDb.collection('Students2021').where("AdmissionFormId",'==',id).get().then((doc)=>{
             firestoreDb.collection('Students2021').doc(doc.docs[0].id).collection("Courses").doc().set({
-                "courses" : courses,
-                "status":"pending"
+                "courses" : courses
 
 
 
             }).then(()=>{
-                alert("Course Request Sent")
-                history.goBack()
+                firestoreDb.collection('Students2021').where("AdmissionFormId",'==',id).get().then((doc)=>{
+                    firestoreDb.collection('Students2021').doc(doc.docs[0].id).update({
+                        "courseApprovalStatus":"pending"
+                    } )
+                }) .then(()=>{
+                    alert("Course Request Sent")
+                    history.goBack()
+                })
+
             })
         })
     }
@@ -89,7 +95,10 @@ const CourseReq = () => {
 
     return (
         <div className='container d-flex-vertical justify-content-center px-auto w-50'>
-            <p className="h5 mt-5">Select Semester</p>
+            <div className='d-flex px-auto mt-6 mb-5 justify-content-between'>
+                <p className="h5 my-auto"><b>Select Semester</b></p>
+                <div><span className='bg-black border-gray-400 btn btn-primary' onClick={()=>{history.goBack()}}>Back</span></div>
+            </div>
             <select className="form-select" aria-label="Default select example" id='courseSelect'
                     onChange={e => handleInputChange(e)}>
                 <option selected>Sem-1</option>
