@@ -30,10 +30,10 @@ const ArticleFeed = ({ }) => {
 
 
     return (
-        <div className="container md:mx-auto mb-10 sm:mt-20">
+        <div className="container md:mx-auto mb-10 sm:mt-8">
             <div className="lg:text-left flex items-center justify-between mx-4">
                 <div>
-                    <h1 className="md:ml-32 text-3xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                    <h1 className="md:ml-32 text-xl tracking-tight font-extrabold text-gray-900 sm:text-xl md:text-3xl">
                         <span className="hidden lg:block xl:inline">Articles</span>{" "}
                     </h1>
                 </div>
@@ -72,6 +72,7 @@ const ArticleFeed = ({ }) => {
           </span>
                 </div>
             </div>
+            <hr/>
 
             {!loading && data && data.length ? (
                 <div className="mx-auto">
@@ -94,7 +95,7 @@ const ArticleFeed = ({ }) => {
                                 <div className="px-4 w-2/3" key={key}>
                                     <div>
                                         <Link
-                                            to={`/articles/${value.data().createdAt}/${key}`}
+                                            to={`/articles/${value.data().userId}/${value.data().articleId}`}
                                             className="text-base md:text-2xl text-gray-700 font-bold hover:text-gray-600 hover:underline"
                                         >
                                             {value.data().title ? value.data().title : "Plastic Collection"}
