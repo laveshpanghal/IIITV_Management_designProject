@@ -12,7 +12,12 @@ const CourseMaster = ({events}) => {
     const firestoreDb = firebase.firestore()
     const{rollNo}= useApp();
 
+
     const history = useHistory();
+
+
+
+
 
     return (<div>
 
@@ -174,6 +179,12 @@ const CourseMaster = ({events}) => {
 
                             </ul>
                         </div>
+
+
+
+
+
+
                     </div>
                 )
                 : (
