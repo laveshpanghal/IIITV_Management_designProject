@@ -6,6 +6,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
 import {useHistory} from "react-router-dom";
 import firebase from "firebase/compat";
+import moment from "moment";
 
 
 const AddArticle = ({ auth }) => {

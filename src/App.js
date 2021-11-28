@@ -53,6 +53,7 @@ import AddArticle from "./Components/Pages/Articles/AddArticle";
 import FacultyCourseCode from "./Components/Pages/Faculty/FacultyCourseCode";
 import AddCourseCode from "./Components/Pages/Faculty/AddCourseCode";
 import CourseReq from "./Components/Pages/students/CourseReq";
+import GetArticle from "./Components/Pages/Articles/GetArticle";
 
 
 
@@ -108,6 +109,7 @@ function App() {
       <Route path='/FacultyCourseCode' exact component={FacultyCourseCode} />
       <Route path='/FacultyCourseCode/:facultyName' component={AddCourseCode} />
       <Route path='/CourseReq/:id' exact component={CourseReq} />
+      <Route path='/articles/:userId/:articleId' exact component={GetArticle} />
 
       <Route path='/StudentLogin' component={StudentLogin} />
       <Route path='/StudentRegister' component={StudentRegister} />

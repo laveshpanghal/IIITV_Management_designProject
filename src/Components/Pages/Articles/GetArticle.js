@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../../Loader/Loader";
-import { ShareButton } from "../Utility/UtilityButton";
 import {useHistory, useParams} from "react-router-dom";
 import firebase from "firebase/compat";
+import moment from "moment";
 
 const GetArticle = ({ }) => {
     const history = useHistory()
@@ -23,7 +23,7 @@ const GetArticle = ({ }) => {
 
         firestoreDb.collection('Article').where("userId","==",userId).where("articleId","==",articleId).get().then((res)=>{
             setLoading(false);
-            setData(res.docs);
+            setData(res.docs[0].data());
             console.log(res.docs[0].data())
 
         }).catch((err) => {
@@ -61,70 +61,70 @@ const GetArticle = ({ }) => {
         })
 
     }
+    //
+    // function deleteActivity(article, auth) {
+    //     const apiName = "activityApi";
+    //     const path = `/activity/object/${article.articleId}/${auth.username}`;
+    //     const myInit = {};
 
-    function deleteActivity(article, auth) {
-        const apiName = "activityApi";
-        const path = `/activity/object/${article.articleId}/${auth.username}`;
-        const myInit = {};
+    //     API.del(apiName, path, myInit)
+    //         .then((res) => {
+    //             console.log(res);
+    //             setLiked(false);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }
+    //
+    // function uploadActivity(article, auth) {
+    //     console.log("Inside upload");
+    //     const apiName = "activityApi";
+    //     const path = "/activity";
+    //     const myInit = {
+    //         body: {
+    //             postTypeId: article.articleId,
+    //             userId: auth.username,
+    //             name: auth.attributes.name,
+    //         },
+    //     };
+    //
+    //     API.post(apiName, path, myInit)
+    //         .then((res) => {
+    //             console.log(res);
+    //             setLiked(true);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }
+    //
+    // function checkActivity(article, auth) {
+    //     const apiName = "activityApi";
+    //     const path = `/activity/${article.articleId}/${auth.username}`;
+    //     const myInit = {};
+    //
+    //     API.get(apiName, path, myInit)
+    //         .then((res) => {
+    //             console.log(res);
+    //             if (res.length > 0) {
+    //                 setLiked(true);
+    //             }
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }
 
-        API.del(apiName, path, myInit)
-            .then((res) => {
-                console.log(res);
-                setLiked(false);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
-
-    function uploadActivity(article, auth) {
-        console.log("Inside upload");
-        const apiName = "activityApi";
-        const path = "/activity";
-        const myInit = {
-            body: {
-                postTypeId: article.articleId,
-                userId: auth.username,
-                name: auth.attributes.name,
-            },
-        };
-
-        API.post(apiName, path, myInit)
-            .then((res) => {
-                console.log(res);
-                setLiked(true);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
-
-    function checkActivity(article, auth) {
-        const apiName = "activityApi";
-        const path = `/activity/${article.articleId}/${auth.username}`;
-        const myInit = {};
-
-        API.get(apiName, path, myInit)
-            .then((res) => {
-                console.log(res);
-                if (res.length > 0) {
-                    setLiked(true);
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
-
-    function likeButtonClicked(article, auth) {
-        incrementLike(article);
-        uploadActivity(article, auth);
-    }
-
-    function unLikeButtonClicked(article, auth) {
-        decrementLike(article);
-        deleteActivity(article, auth);
-    }
+    // function likeButtonClicked(article, auth) {
+    //     incrementLike(article);
+    //     uploadActivity(article, auth);
+    // }
+    //
+    // function unLikeButtonClicked(article, auth) {
+    //     decrementLike(article);
+    //     deleteActivity(article, auth);
+    // }
 
     return (
         <div className="container mx-auto">
@@ -135,7 +135,7 @@ const GetArticle = ({ }) => {
                             <div className="mr-2">
                                 <img
                                     className="h-10 object-cover rounded-full"
-                                    src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60"
+                                    src="https://cdn-icons.flaticon.com/png/512/1144/premium/1144709.png?token=exp=1638086665~hmac=91b059e00b8e01039a3574fcc4da8deb"
                                     alt="Avatar"
                                 />
                             </div>
@@ -145,7 +145,7 @@ const GetArticle = ({ }) => {
                                 </div>
                                 <div className="text-sm">
                                     {data.createdAt
-                                        ? new Date(data.createdAt).toDateString()
+                                        ?  moment.unix(data.createdAt.seconds).format("MMM DD,YYYY")
                                         : ""}
                                 </div>
                             </div>
@@ -154,7 +154,7 @@ const GetArticle = ({ }) => {
                             {!liked ? (
                                 <span
                                     className="w-6 ml-4"
-                                    onClick={(_e) => likeButtonClicked(data, auth)}
+                                    // onClick={(_e) => likeButtonClicked(data, auth)}
                                 >
                   <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -174,7 +174,7 @@ const GetArticle = ({ }) => {
                             ) : (
                                 <span
                                     className="w-6 ml-4"
-                                    onClick={(_e) => unLikeButtonClicked(data, auth)}
+                                    // onClick={(_e) => unLikeButtonClicked(data, auth)}
                                 >
                   <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -188,14 +188,19 @@ const GetArticle = ({ }) => {
                         clipRule="evenodd"
                     />
                   </svg>
+
                 </span>
+
                             )}
                             <span className="w-6 ml-4">
-                <ShareButton />
+                                                            <div><span className='bg-black border-gray-400 btn ml-4 btn-primary' onClick={()=>{history.goBack()}}>Back</span></div>
+
+
               </span>
                         </div>
                     </div>
                     <div className="">
+                        <hr/>
                         <article
                             className="prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto prose-indigo mt-4"
                             dangerouslySetInnerHTML={{ __html: data.content }}
@@ -209,14 +214,6 @@ const GetArticle = ({ }) => {
     );
 };
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        article: state.article,
-        match: ownProps.match,
-        auth: state.auth,
-    };
-};
 
-const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(GetArticle);
+export default GetArticle;
