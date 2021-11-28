@@ -52,6 +52,8 @@ import ArticleFeed from "./Components/Pages/Articles/ArticleFeed";
 import AddArticle from "./Components/Pages/Articles/AddArticle";
 import FacultyCourseCode from "./Components/Pages/Faculty/FacultyCourseCode";
 import AddCourseCode from "./Components/Pages/Faculty/AddCourseCode";
+import CourseReq from "./Components/Pages/students/CourseReq";
+
 
 
 function App() {
@@ -105,6 +107,7 @@ function App() {
       <Route path='/Admin/ViewStudentDocs/:id' exact component={StudentDocumentsAdmin} />
       <Route path='/FacultyCourseCode' exact component={FacultyCourseCode} />
       <Route path='/FacultyCourseCode/:facultyName' component={AddCourseCode} />
+      <Route path='/CourseReq' exact component={CourseReq} />
 
       <Route path='/StudentLogin' component={StudentLogin} />
       <Route path='/StudentRegister' component={StudentRegister} />
