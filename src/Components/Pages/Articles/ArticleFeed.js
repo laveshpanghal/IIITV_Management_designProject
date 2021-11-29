@@ -69,7 +69,7 @@ const ArticleFeed = ({ }) => {
                                 key={key}
                             >
                                 <div className="w-1/3 py-2">
-                                    <img
+                                    <img className='rounded'
                                         src={
                                            img
                                         }

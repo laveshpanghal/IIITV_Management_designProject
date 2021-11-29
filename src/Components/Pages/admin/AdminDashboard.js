@@ -11,6 +11,7 @@ import FacultyReq from "./FacultyReq";
 import StudentInfoFetch from "./StudentInfoFetch";
 import AddAlert from "../../Reusable/AddAlert";
 import AddArticle from "../Articles/AddArticle";
+import Adminavtar from "../../../profile-user.png"
 
 const AdminDashboard=()=> {
 
@@ -21,11 +22,12 @@ const AdminDashboard=()=> {
       <div id="content" className="h-screen">
           <nav id="nav1" className="h-full">
               <a href="#page3">
-                  <div className="text-center">
-                      <img className="mx-auto my-2 rounded-circle" src="https://firebasestorage.googleapis.com/v0/b/iiitv-198b6.appspot.com/o/ContentImages%2FIIITV_Logo.jpg?alt=media&token=fbcc68ab-82f5-498f-a669-0f6bd0227809" alt="" />
-                      <p>Admin name</p>
-                      <p> Role</p>
-                      <p>last-login</p>
+                  <div className="text-center flex flex-row justify-between">
+                      <div className='pl-12'>  <img className="mx-auto my-2 rounded-circle" src={Adminavtar} alt="" /></div>
+                      <div className='pr-24 pt-10 text-xl font-bold'><p>Admin </p></div>
+
+
+
                   </div>
               </a><hr />
               <a href="#page3">Student Admission Request</a><hr/>

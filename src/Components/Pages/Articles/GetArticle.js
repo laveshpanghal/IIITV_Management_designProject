@@ -3,6 +3,7 @@ import Loader from "../../Loader/Loader";
 import {useHistory, useParams} from "react-router-dom";
 import firebase from "firebase/compat";
 import moment from "moment";
+import avtar from "../../../user.png"
 
 const GetArticle = ({ }) => {
     const history = useHistory()
@@ -135,7 +136,7 @@ const GetArticle = ({ }) => {
                             <div className="mr-2">
                                 <img
                                     className="h-10 object-cover rounded-full"
-                                    src="https://cdn-icons.flaticon.com/png/512/1144/premium/1144709.png?token=exp=1638086665~hmac=91b059e00b8e01039a3574fcc4da8deb"
+                                    src={avtar}
                                     alt="Avatar"
                                 />
                             </div>
