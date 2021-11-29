@@ -6,14 +6,16 @@ import {useParams, useHistory, useLocation} from "react-router-dom";
 import {useApp} from "../../../Context/AppContext";
 import FetchstudentSearch from "../../Reusable/FetchstudentSearch";
 import axios from "axios";
+import Adminavtar from "../../../profile-user.png";
 
-const GradeMasterStudentFetch = ({}) => {
+const CitationSearch = ({}) => {
+    const [showModal, setShowModal] = useState(false);
 
     const [events, setEvents] = useState(null);
-    const [temp, setTemp] = useState('uploaded for verification ');
-    const [temp1, setTemp1] = useState('not-uploaded yet')
+    const [temp, setTemp] = useState(0);
+    const [temp1, setTemp1] = useState(null)
     const firestoreDb = firebase.firestore()
-
+   
     const history = useHistory();
     const[roll,setRoll]=useState()
 
@@ -28,35 +30,31 @@ const GradeMasterStudentFetch = ({}) => {
 
     function fetchEvents() {
 
+        console.log(roll)
+        axios(`https://serpapi.com/search?engine=google_scholar_author&author_id=${roll}&api_key=a89175a71107099a4e42dc6c42323f904a86cd860caa81ad816bbf97f7df4a04`, {
+            method: 'GET',
+            mode: 'no-cors',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+            },
+            credentials: 'same-origin',
+            params:{}
+        }).then(response => {
+            setEvents(response.data.author)
+            setTemp(response.data)
 
 
 
 
-        axios
-            .get(`https://serpapi.com/search`,
-
-                {
-                    headers:{},
-                    params: {
-                        engine:'google_scholar_author',
-                        author_id:roll,
-                        api_key:'a89175a71107099a4e42dc6c42323f904a86cd860caa81ad816bbf97f7df4a04'
-                    }
-                }
-            )
-            .then((res) => {
-                if (res) {
-                    console.log(res)
-                }
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-
+            console.log(temp)
+            
+            
+            console.log(response.data)
+        })
 
 
     }
-
 
 
     return (<div>
@@ -67,15 +65,13 @@ const GradeMasterStudentFetch = ({}) => {
 
                         <div className="px-4 py-5 sm:px-6 w-full border dark:bg-gray-800 bg-white shadow mb-2 rounded-md">
                             <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
-                                GradeMaster Dashboard
+                                Google Scholar Search
                             </h3>
-                            <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-200">
-                                student search
-                            </p>
+
                         </div>
                         <div className="container flex  flex-row ... mx-auto w-full items-center justify-center mt-12">
                             <div className="bg-purple-200 max-w-2xl shadow overflow-hidden sm:rounded-lg  mt-0  ">
-
+                                <img className="mx-auto my-2 rounded-circle" src={events.thumbnail} alt="" />
 
                                 <div className="border-t border-gray-200">
                                     <dl>
@@ -84,33 +80,26 @@ const GradeMasterStudentFetch = ({}) => {
                                                 Name:
                                             </dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {events.data().Name}
+                                                {events.name}
                                             </dd>
                                         </div>
                                         <div className="bg-purple-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt className="text-sm font-medium text-gray-500">
-                                                Roll No :
+                                                Affiliation :
                                             </dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {roll}
+                                                {events.affiliations}
                                             </dd>
                                         </div>
                                         <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                             <dt className="text-sm font-medium text-gray-500">
-                                                Degree :
+                                                interest :
                                             </dt>
                                             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {events.data().Course? events.data().Course : "Fill Admission Form"}
+                                                {events.interests[0].title}
                                             </dd>
                                         </div>
-                                        <div className="bg-purple-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt className="text-sm font-medium text-gray-500">
-                                                Branch :
-                                            </dt>
-                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {events.data().Branch? events.data().Branch : "Fill Admission Form"}
-                                            </dd>
-                                        </div>
+
 
 
                                     </dl>
@@ -126,18 +115,18 @@ const GradeMasterStudentFetch = ({}) => {
                                         </div>
                                         <div className="flex-1 pl-1 md:mr-16">
                                             <div className="font-medium dark:text-white">
-                                                Add Grades
+                                                Articles Published
                                             </div>
                                             <div className="text-gray-600 dark:text-gray-200 text-sm">
-                                                present and previous grades
+                                                articles published by {events.name}
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
-                                            add
+                                            view
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
 
-                                            (history.push(`/AddGradeCard/${roll}`))
+                                            (history.push(`/CitationSearch/PublishedList/${roll}`))
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
@@ -158,10 +147,10 @@ const GradeMasterStudentFetch = ({}) => {
                                         </div>
                                         <div className="flex-1 pl-1 md:mr-16">
                                             <div className="font-medium dark:text-white">
-                                                View uploaded grade cards
+                                                Citations
                                             </div>
                                             <div className="text-gray-600 dark:text-gray-200 text-sm">
-                                                grade cards
+
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">
@@ -169,7 +158,7 @@ const GradeMasterStudentFetch = ({}) => {
                                         </div>
                                         <span className="w-24 text-right flex justify-end"  onClick={() => {
 
-                                            history.push(`/GradeMaster/ViewGradeCard/${roll}`)
+                                            setShowModal(true)
 
                                         }}>
                                 <svg width="12" fill="currentColor" height="12"
@@ -188,6 +177,88 @@ const GradeMasterStudentFetch = ({}) => {
 
                             </ul>
                         </div>
+
+                        {showModal ? (
+                            <>
+                                <div
+                                    className=" w-2/4 left-1/4 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                                >
+                                    <div className="relative w-auto my-6 mx-auto max-w-3xl">
+
+                                        <div
+                                            className="bg-white rounded-lg shadow sm:max-w-md sm:w-full sm:mx-auto sm:overflow-hidden">
+                                            <div className="px-4 py-8 sm:px-10">
+                                                <div className="relative mt-6">
+                                                    <div className="absolute inset-0 flex items-center">
+                                                        <div className="w-full border-t border-gray-300">
+                                                        </div>
+                                                    </div>
+                                                    <div className="relative flex justify-center text-sm leading-5">
+                <span className="px-2 text-gray-500 bg-white">
+                    Alert Details
+                </span>
+                                                    </div>
+                                                </div>
+                                                <div className="mt-6">
+                                                    <div className="w-full space-y-6">
+                                                        <div className="w-full">
+                                                            <div className=" relative ">
+                                                                Citations:
+                                                                <hr/>
+                                                                <p>
+                                                                    {temp.cited_by.graph.map((e)=>{return(
+
+                                                                        <div className=" rounded bg-purple-100 px-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                                                            <dt className="text-sm font-medium text-gray-500">
+                                                                                year:{e.year}
+                                                                            </dt>
+                                                                            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                                                                {e.citations}
+                                                                            </dd>
+                                                                        </div>
+                                                                    )
+
+
+
+                                                                    })}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className='flex flex-row... justify-between'>
+
+                                                <div className="p-2 md:w-40 " onClick={() => {setShowModal(false)}}>
+                                                    <div
+                                                        className="flex items-center p-2 bg-green-200 rounded-lg shadow-xs cursor-pointer hover:bg-green-500 hover:text-gray-100"
+
+
+                                                    >
+
+                                                        <div >
+                                                            <p className=" text-xs font-medium ml-2 pl-4 ">
+                                                                Back
+                                                            </p>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                            </>
+                        ) : null}
+
+
+
+
                     </div>
                 )
                 : (
@@ -250,7 +321,7 @@ const GradeMasterStudentFetch = ({}) => {
     );
 };
 
-export default GradeMasterStudentFetch;
+export default CitationSearch;
 
 
 

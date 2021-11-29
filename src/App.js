@@ -57,6 +57,7 @@ import GetArticle from "./Components/Pages/Articles/GetArticle";
 import StudentCourseRequests from "./Components/Pages/Faculty/StudentCourseRequests";
 import FacultyEnrolledStudents from "./Components/Pages/Faculty/FacultyEnrolledStudents";
 import CitationSearch from "./Components/Pages/Citations/CitationSearch";
+import PublishedList from "./Components/Pages/Citations/PublishedList";
 
 
 
@@ -122,7 +123,8 @@ function App() {
       <Route path='/AddAcademicCalender' component={AddAcademicCalender} />
       <Route path='/AddAlert' component={AddAlert} />
       <Route path='/AddArticle' component={AddArticle} />
-      <Route path='/CitationSearch' component={CitationSearch} />
+      <Route path='/CitationSearch' exact component={CitationSearch} />
+      <Route path='/CitationSearch/PublishedList/:roll' exact component={PublishedList} />
 
 
 

@@ -2,6 +2,7 @@
   "name": "iiitv",
   "version": "0.1.0",
   "private": true,
+  "proxy":"https://serpapi.com",
   "dependencies": {
     "@craco/craco": "^6.3.0",
     "@strongdm/glyphicon": "^0.0.5",
