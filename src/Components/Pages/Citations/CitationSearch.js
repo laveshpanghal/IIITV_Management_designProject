@@ -63,15 +63,17 @@ const CitationSearch = ({}) => {
             {events ? (
                     <div>
 
-                        <div className="px-4 py-5 sm:px-6 w-full border dark:bg-gray-800 bg-white shadow mb-2 rounded-md">
-                            <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
+                        <div className="px-4 flex flex-row justify-between py-5 sm:px-6 w-full border dark:bg-gray-800 bg-white shadow mb-2 rounded-md">
+                            <div>  <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
                                 Google Scholar Search
-                            </h3>
+                            </h3></div>
+                            <div> <span className='btn btn-secondary w-20 '  onClick={(e)=>{setEvents(null)}}>Back</span>
+                            </div>
 
                         </div>
                         <div className="container flex  flex-row ... mx-auto w-full items-center justify-center mt-12">
                             <div className="bg-purple-200 max-w-2xl shadow overflow-hidden sm:rounded-lg  mt-0  ">
-                                <img className="mx-auto my-2 rounded-circle" src={events.thumbnail} alt="" />
+                                <img className="mx-auto my-2 rounded-full h-24 w-24" src={events.thumbnail} alt="" />
 
                                 <div className="border-t border-gray-200">
                                     <dl>
@@ -118,7 +120,7 @@ const CitationSearch = ({}) => {
                                                 Articles Published
                                             </div>
                                             <div className="text-gray-600 dark:text-gray-200 text-sm">
-                                                articles published by {events.name}
+                                                articles  by {events.name}
                                             </div>
                                         </div>
                                         <div className="text-gray-600 dark:text-gray-200 text-xs">

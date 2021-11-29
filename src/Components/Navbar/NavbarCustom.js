@@ -92,7 +92,7 @@ const NavbarCustom = () => {
                         Articles
                     </NavLink>
                     <NavLink to='/CitationSearch'>
-                        Citations
+                        Publications
                     </NavLink>
 
                     <form className="d-flex h-100">
