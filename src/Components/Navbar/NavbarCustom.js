@@ -91,6 +91,9 @@ const NavbarCustom = () => {
                     <NavLink to='/Article'>
                         Articles
                     </NavLink>
+                    <NavLink to='/CitationSearch'>
+                        Citations
+                    </NavLink>
 
                     <form className="d-flex h-100">
                         &emsp;
