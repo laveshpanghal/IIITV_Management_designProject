@@ -20,7 +20,7 @@ const AdminDashboard=()=> {
   return (
       <div id="content" className="h-screen">
           <nav id="nav1" className="h-full">
-              <a href="#page1">
+              <a href="#page3">
                   <div className="text-center">
                       <img className="mx-auto my-2 rounded-circle" src="https://firebasestorage.googleapis.com/v0/b/iiitv-198b6.appspot.com/o/ContentImages%2FIIITV_Logo.jpg?alt=media&token=fbcc68ab-82f5-498f-a669-0f6bd0227809" alt="" />
                       <p>Admin name</p>
@@ -74,9 +74,13 @@ const AdminDashboard=()=> {
                   </React.StrictMode>
               </div>
               <div id="page1" className="page default">
-                  <h1>Admin page</h1>
-                  <p>Admin Page</p>
+                  <h1>Student Admission Request</h1>
+
+                  <React.StrictMode>
+                      <AdmissionReq />
+                  </React.StrictMode>
               </div>
+
           </main>
       </div>
   );

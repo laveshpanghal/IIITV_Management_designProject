@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import firestoreDb from "../Pages";
 import firebase from "firebase/compat";
 import {useParams, useHistory,useLocation} from "react-router-dom";
 
