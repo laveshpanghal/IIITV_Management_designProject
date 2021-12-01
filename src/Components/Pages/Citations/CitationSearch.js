@@ -31,7 +31,7 @@ const CitationSearch = ({}) => {
     function fetchEvents() {
 
         console.log(roll)
-        axios(`https://cors-anywhere.herokuapp.com/https://serpapi.com/search?engine=google_scholar_author&author_id=${roll}&api_key=a89175a71107099a4e42dc6c42323f904a86cd860caa81ad816bbf97f7df4a04`, {
+        axios(`https://serpapi.com/search?engine=google_scholar_author&author_id=${roll}&api_key=a89175a71107099a4e42dc6c42323f904a86cd860caa81ad816bbf97f7df4a04`, {
             method: 'GET',
             mode: 'no-cors',
             headers: {
