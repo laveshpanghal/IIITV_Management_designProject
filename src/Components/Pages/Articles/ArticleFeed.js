@@ -3,6 +3,7 @@ import {Link, useHistory} from "react-router-dom";
 import Loader from "../../Loader/Loader";
 import img from "../../../wallpaperbetter.com_1920x1200.jpg"
 import firebase from "firebase/compat";
+import scholar from "google-scholar";
 
 const ArticleFeed = ({ }) => {
     const history = useHistory()
@@ -12,6 +13,12 @@ const ArticleFeed = ({ }) => {
 
     useEffect(() => {
         fetchArticle();
+        console.log("hi working")
+
+        scholar.all('Novarun')
+            .then(resultsObj => {
+                console.log(resultsObj) // this will have all ~112 results
+            })
     }, []);
 
     function fetchArticle() {
@@ -21,6 +28,7 @@ const ArticleFeed = ({ }) => {
             setLoading(false);
             setData(res.docs);
             console.log(res.docs[0].data())
+            console.log(data)
 
         }).catch((err) => {
             console.log(err)

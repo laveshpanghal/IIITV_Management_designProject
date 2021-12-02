@@ -101,7 +101,7 @@ const AdmissionReq = () => {
                 </div>
             ) : (
                 <div>
-                    No Events
+                    No Admission requests
                 </div>
             )}
         </div>
