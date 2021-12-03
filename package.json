@@ -14,6 +14,7 @@
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "firebase": "^9.0.1",
+    "google-scholar": "^1.5.1",
     "mdbreact": "^5.1.0",
     "moment": "^2.29.1",
     "react": "^17.0.2",

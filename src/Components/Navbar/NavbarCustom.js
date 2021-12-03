@@ -28,7 +28,6 @@ const NavbarCustom = () => {
 
 
 
-
     useEffect(()=>{
         console.log(auth)
         if(auth.currentUser===null){
@@ -62,7 +61,13 @@ const NavbarCustom = () => {
     return (
         <>
             <Nav className="d-flex">
-                <Bars/>
+                <Bars onClick={()=>{
+                    if (document.getElementById('List-Nav').hidden){
+                        document.getElementById('List-Nav').hidden = false
+                    }else{
+                        document.getElementById('List-Nav').hidden = true
+                    }
+                }}/>
 
                 <NavMenu>
 
@@ -101,10 +106,47 @@ const NavbarCustom = () => {
                         </button>
                     </form>
 
+
+
                 </NavMenu>
 
 
             </Nav>
+
+            <nav hidden={true} className="d-md-none d-lg-none w-100 bg-gray-200" id="List-Nav">
+
+                <ul className="navbar-nav d-inline-block  w-100" >
+
+
+                    <li className="p-1 bg-gray-200 hover:bg-gray-300">
+                        <a href="/" className="active d-block">Home</a>
+                    </li>
+                    <li className="p-1 bg-gray-200 hover:bg-gray-300">
+                        <a href="/Login" className="active d-block">Admission</a>
+                    </li>
+                    <li className="p-1 bg-gray-200 hover:bg-gray-300">
+                        <a href="/StudentLogin" className="active d-block">Students</a>
+                    </li>
+                    <li className="p-1 bg-gray-200 hover:bg-gray-300">
+                        <a href="/FacultyLogin" className="active d-block">Faculty</a>
+                    </li>
+                    <li className="p-1 bg-gray-200 hover:bg-gray-300">
+                        <a href="/adminLogin" className="active d-block">Admin</a>
+                    </li>
+                    <li className="p-1 bg-gray-200 hover:bg-gray-300">
+                        <a href="/Fees" className="active d-block">Fees</a>
+                    </li>
+                    <li className="p-1 bg-gray-200 hover:bg-gray-300">
+                        <a href="/Article" className="active d-block">Article</a>
+                    </li>
+                    <li className="p-1 bg-gray-200 hover:bg-gray-300">
+                        <a href="/CitationSearch" className="active d-block">Publications</a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
         </>
     );
 };
